@@ -3,7 +3,6 @@ Shader "Custom/Asteroid_Shader"
        Properties
     {
         [Enum(Outline,0, Solid,1, Outline And Pattern,2, Solid And Outline,3)] _Mode ("Mode", Float) = 0
-        [Enum(All,0, Fill Only,1, Outline Only,2)] _PassFilter ("Pass Filter (use Fill Only + Outline Only em 2 materiais)", Float) = 0
 
         [Header(Colors)]
         [HDR] _LineColor ("Line Color", Color) = (1,1,1,1)
@@ -13,8 +12,7 @@ Shader "Custom/Asteroid_Shader"
         [Header(Lines)]
         _LineWidth ("Line Width (pixels)", Range(0.5, 10)) = 1.5
         [Enum(Normal,0, Radial,1)] _ExtrudeMode ("Extrude Direction (Radial = no gaps on hard edges)", Float) = 1
-        _OutlineDepthBias ("Outline Depth Bias (world units)", Range(0, 0.5)) = 0.02
-        [Enum(UnityEngine.Rendering.CompareFunction)] _OutlineZTest ("Outline ZTest (Always = vê-se através de tudo)", Float) = 4
+        _OutlineDepthBias ("Outline Depth Bias (world units)", Range(0, 0.5)) = 0.05
 
         [Header(Pattern)]
         [Enum(Stripes,0, Crosshatch,1)] _PatternType ("Pattern Type", Float) = 0
@@ -38,7 +36,6 @@ Shader "Custom/Asteroid_Shader"
 
         CBUFFER_START(UnityPerMaterial)
             float _Mode;
-            float _PassFilter;
             float4 _LineColor;
             float4 _FillColor;
             float4 _PatternColor;
@@ -146,7 +143,7 @@ Shader "Custom/Asteroid_Shader"
                 bool fill = (mode == 1 || mode == 3);
                 bool pattern = (mode == 2);
 
-                if ((!fill && !pattern) || _PassFilter > 1.5)
+                if (!fill && !pattern)
                     clip(-1);
 
                 float flick = FlickerMul();
@@ -163,9 +160,9 @@ Shader "Custom/Asteroid_Shader"
         Pass
         {
             Name "Outline"
-            Tags { "LightMode"="UniversalForwardOnly" }
+            Tags { "LightMode"="AsteroidOutline" } // ALTERADO
             ZWrite Off
-            ZTest [_OutlineZTest]
+            ZTest LEqual
             Cull Front
 
             HLSLPROGRAM
@@ -196,8 +193,7 @@ Shader "Custom/Asteroid_Shader"
             half4 frag(Varyings i) : SV_Target
             {
                 int mode = (int)(_Mode + 0.5);
-
-                if (mode == 1 || (_PassFilter > 0.5 && _PassFilter < 1.5))
+                if (mode == 1)
                     clip(-1);
 
                 return half4(_LineColor.rgb * FlickerMul(), 1);
