@@ -13,6 +13,10 @@ public class GunController : MonoBehaviour
     [Header("Firing Point")]
     [SerializeField] private Transform firingPoint;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootClip;
+
     private float nextFireTime;
 
     private void OnEnable()
@@ -57,11 +61,17 @@ public class GunController : MonoBehaviour
 
         nextFireTime = Time.time + fireInterval;
 
+        if (audioSource != null && shootClip != null)
+        {
+            audioSource.PlayOneShot(shootClip);
+        }
+        
         projectilePool.GetProjectile(
             firingPoint.position,
             firingPoint.rotation,
             gunData.ProjectileSpeed,
-            gunData.Range
+            gunData.Range,
+            gunData.Damage
         );
     }
 }

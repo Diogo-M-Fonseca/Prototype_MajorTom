@@ -49,11 +49,11 @@ public class ProjectilePool : MonoBehaviour
         Destroy(projectile.gameObject);
     }
 
-    public Projectile GetProjectile(Vector3 position,Quaternion rotation,float speed,float range)
+    public Projectile GetProjectile(Vector3 position,Quaternion rotation,float speed,float range, float damage)
     {
         Projectile projectile = pool.Get();
         projectile.transform.SetPositionAndRotation(position, rotation);
-        projectile.Initialize(speed, range);
+        projectile.Initialize(speed, range, damage);
 
         return projectile;
     }
