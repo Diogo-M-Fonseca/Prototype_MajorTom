@@ -7,9 +7,6 @@ public class GunController : MonoBehaviour
     [SerializeField] private GunData gunData;
     [SerializeField] private ProjectilePool projectilePool;
 
-    [Header("Input")]
-    [SerializeField] private InputActionReference fireAction;
-
     [Header("Firing Point")]
     [SerializeField] private Transform firingPoint;
 
@@ -18,32 +15,23 @@ public class GunController : MonoBehaviour
     [SerializeField] private AudioClip shootClip;
 
     private float nextFireTime;
+    private bool isFiring;
 
-    private void OnEnable()
+    public float Range => gunData != null ? gunData.Range : 0f;
+
+    public void SetFiring(bool firing)
     {
-        if (fireAction != null && fireAction.action != null)
-        {
-            fireAction.action.Enable();
-        }
+        isFiring = firing;
     }
 
     private void OnDisable()
     {
-        if (fireAction != null && fireAction.action != null)
-        {
-            fireAction.action.Disable();
-        }
+        isFiring = false;
     }
 
     private void Update()
     {
-        if (fireAction == null || fireAction.action == null)
-            return;
-
-        if (gunData == null || projectilePool == null || firingPoint == null)
-            return;
-
-        if (fireAction.action.IsPressed())
+        if (isFiring)
         {
             TryFire();
         }
@@ -51,6 +39,9 @@ public class GunController : MonoBehaviour
 
     private void TryFire()
     {
+        if (gunData == null || projectilePool == null || firingPoint == null)
+            return;
+
         if (Time.time < nextFireTime)
             return;
 
@@ -65,7 +56,7 @@ public class GunController : MonoBehaviour
         {
             audioSource.PlayOneShot(shootClip);
         }
-        
+
         projectilePool.GetProjectile(
             firingPoint.position,
             firingPoint.rotation,
