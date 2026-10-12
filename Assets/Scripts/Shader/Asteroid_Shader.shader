@@ -1,8 +1,11 @@
 Shader "Custom/Asteroid_Shader"
 {
-       Properties
+ Properties
     {
-        [Enum(Outline,0, Solid,1, Outline And Pattern,2, Solid And Outline,3)] _Mode ("Mode", Float) = 0
+        [Header(Layers)]
+        [Toggle] _ShowOutline ("Outline", Float) = 1
+        [Toggle] _ShowSolid ("Solid", Float) = 0
+        [Toggle] _ShowPattern ("Pattern", Float) = 0
 
         [Header(Colors)]
         [HDR] _LineColor ("Line Color", Color) = (1,1,1,1)
@@ -11,7 +14,7 @@ Shader "Custom/Asteroid_Shader"
 
         [Header(Lines)]
         _LineWidth ("Line Width (pixels)", Range(0.5, 10)) = 1.5
-        [Enum(Normal,0, Radial,1)] _ExtrudeMode ("Extrude Direction (Radial = no gaps on hard edges)", Float) = 1
+        [Enum(Vertex Normals,0, Radial,1)] _ExtrudeMode ("Extrude Direction", Float) = 1
         _OutlineDepthBias ("Outline Depth Bias (world units)", Range(0, 0.5)) = 0.05
 
         [Header(Pattern)]
@@ -35,7 +38,9 @@ Shader "Custom/Asteroid_Shader"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
         CBUFFER_START(UnityPerMaterial)
-            float _Mode;
+            float _ShowOutline;
+            float _ShowSolid;
+            float _ShowPattern;
             float4 _LineColor;
             float4 _FillColor;
             float4 _PatternColor;
@@ -139,20 +144,19 @@ Shader "Custom/Asteroid_Shader"
 
             half4 frag(Varyings i) : SV_Target
             {
-                int mode = (int)(_Mode + 0.5);
-                bool fill = (mode == 1 || mode == 3);
-                bool pattern = (mode == 2);
+                bool solid = _ShowSolid > 0.5;
+                bool pattern = _ShowPattern > 0.5;
 
-                if (!fill && !pattern)
+                if (!solid && !pattern)
                     clip(-1);
 
-                float flick = FlickerMul();
+                float m = pattern ? PatternMask(i) : 0.0;
 
-                if (fill)
-                    return half4(_FillColor.rgb * flick, 1);
+                if (!solid)
+                    clip(m - 0.5);
 
-                clip(PatternMask(i) - 0.5);
-                return half4(_PatternColor.rgb * flick, 1);
+                float3 col = (pattern && m > 0.5) ? _PatternColor.rgb : _FillColor.rgb;
+                return half4(col * FlickerMul(), 1);
             }
             ENDHLSL
         }
@@ -160,7 +164,7 @@ Shader "Custom/Asteroid_Shader"
         Pass
         {
             Name "Outline"
-            Tags { "LightMode"="AsteroidOutline" } // ALTERADO
+            Tags { "LightMode"="AsteroidOutline" }
             ZWrite Off
             ZTest LEqual
             Cull Front
@@ -192,8 +196,7 @@ Shader "Custom/Asteroid_Shader"
 
             half4 frag(Varyings i) : SV_Target
             {
-                int mode = (int)(_Mode + 0.5);
-                if (mode == 1)
+                if (_ShowOutline < 0.5)
                     clip(-1);
 
                 return half4(_LineColor.rgb * FlickerMul(), 1);

@@ -25,7 +25,9 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _SHOWPATTERN_ON
+  - _SHOWSOLID_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -125,13 +127,16 @@ Material:
     - _Parallax: 0.005
     - _PassFilter: 0
     - _PatternAngle: 130.2
-    - _PatternDensity: 12
-    - _PatternScroll: 1
+    - _PatternDensity: 17.9
+    - _PatternScroll: 0.5
     - _PatternSpace: 0
-    - _PatternThickness: 0.143
+    - _PatternThickness: 0.605
     - _PatternType: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _ShowOutline: 0
+    - _ShowPattern: 1
+    - _ShowSolid: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -145,7 +150,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FillColor: {r: 0.15, g: 0.15, b: 0.15, a: 1}
+    - _FillColor: {r: 0.8867924, g: 0.29839846, b: 0.10457456, a: 1}
     - _LineColor: {r: 1, g: 0, b: 0, a: 1}
     - _PatternColor: {r: 0.3584906, g: 0.09976861, b: 0.09976861, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
