@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [Header("Hit Detection")]
+    [SerializeField] private LayerMask hitMask;
+    [SerializeField] private float hitRadius = 0.2f;
+
     [Header("Audio")]
     [SerializeField] private AudioClip hitClip;
-    
+
     private ProjectilePool projectilePool;
-    
+
     private float speed;
     private float remainingRange;
     private float damage;
@@ -15,7 +19,7 @@ public class Projectile : MonoBehaviour
     {
         projectilePool = pool;
     }
-    
+
     public void Initialize(float projectileSpeed, float range, float projectileDamage)
     {
         speed = projectileSpeed;
@@ -23,23 +27,16 @@ public class Projectile : MonoBehaviour
         damage = projectileDamage;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<IDamageable>(out var damageable))
-        {
-            if (hitClip != null)
-            {
-                AudioSource.PlayClipAtPoint(hitClip, transform.position);
-            }
-            
-            damageable.TakeDamage(damage);
-            ReturnToPool();
-        }
-    }
-
     private void Update()
     {
         float distanceThisFrame = speed * Time.deltaTime;
+
+        if (Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit hit,
+                distanceThisFrame, hitMask, QueryTriggerInteraction.Ignore))
+        {
+            HandleHit(hit);
+            return;
+        }
 
         transform.position += transform.forward * distanceThisFrame;
 
@@ -49,6 +46,23 @@ public class Projectile : MonoBehaviour
         {
             ReturnToPool();
         }
+    }
+
+    private void HandleHit(RaycastHit hit)
+    {
+        IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+
+        if (damageable != null)
+        {
+            if (hitClip != null)
+            {
+                AudioSource.PlayClipAtPoint(hitClip, hit.point);
+            }
+
+            damageable.TakeDamage(damage);
+        }
+
+        ReturnToPool();
     }
 
     private void ReturnToPool()
