@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _SHOWOUTLINE_ON
   - _SHOWSOLID_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -108,7 +109,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthBias: 0.02
+    - _OutlineDepthBias: 0
     - _OutlineZTest: 4
     - _Parallax: 0.005
     - _PassFilter: 0
