@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TargetInfo : MonoBehaviour
+public readonly struct TargetInfo
 {
     public bool HasTarget { get; }
     public Vector3 Position { get; }
