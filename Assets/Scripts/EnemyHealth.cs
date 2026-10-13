@@ -2,19 +2,30 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
+    [Header("Stats")]
+    [SerializeField] private ShipStats stats;
+
     [Header("Audio")]
     [SerializeField] private AudioClip deathClip;
-    
-    [SerializeField] private float maxHealth = 100f;
+
     private float currentHealth;
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        if (stats == null)
+        {
+            Debug.LogError($"{name}: falta o ShipStats.", this);
+            return;
+        }
+
+        currentHealth = stats.MaxHealth;
     }
 
     public void TakeDamage(float damage)
     {
+        if (currentHealth <= 0f)
+            return;
+
         currentHealth -= damage;
 
         if (currentHealth <= 0f)
@@ -29,7 +40,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             AudioSource.PlayClipAtPoint(deathClip, transform.position);
         }
-        
+
         Destroy(gameObject);
     }
 }

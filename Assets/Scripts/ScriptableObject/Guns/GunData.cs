@@ -6,7 +6,6 @@ public class GunData : ScriptableObject
 {
     [Header("Gun Info")]
     [SerializeField] private string gunName;
-    [SerializeField] private GameObject projectilePrefab;
 
     [Header("Gun Stats")]
     [SerializeField] private float damage;
@@ -15,7 +14,6 @@ public class GunData : ScriptableObject
     [SerializeField] private float range;
 
     public string GunName => gunName;
-    public GameObject ProjectilePrefab => projectilePrefab;
     public float Damage => damage;
     public float FireRate => fireRate;
     public float ProjectileSpeed => projectileSpeed;

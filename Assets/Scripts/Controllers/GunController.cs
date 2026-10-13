@@ -3,12 +3,11 @@ using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
+    private const string FireActionPath = "Player/Attack";
+
     [Header("Gun Configuration")]
     [SerializeField] private GunData gunData;
     [SerializeField] private ProjectilePool projectilePool;
-
-    [Header("Input")]
-    [SerializeField] private InputActionReference fireAction;
 
     [Header("Firing Point")]
     [SerializeField] private Transform firingPoint;
@@ -17,33 +16,46 @@ public class GunController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootClip;
 
+    private InputAction fireAction;
     private float nextFireTime;
+    private bool isFiring;
+    private bool playerInputAllowed = true;
 
-    private void OnEnable()
+    public float Range => gunData != null ? gunData.Range : 0f;
+
+    public void SetFiring(bool firing)
     {
-        if (fireAction != null && fireAction.action != null)
+        isFiring = firing;
+    }
+
+    public void SetPlayerInput(bool allowed)
+    {
+        playerInputAllowed = allowed;
+    }
+
+    private void Awake()
+    {
+        if (InputSystem.actions != null)
         {
-            fireAction.action.Enable();
+            fireAction = InputSystem.actions.FindAction(FireActionPath);
+        }
+
+        if (fireAction == null)
+        {
+            Debug.LogWarning($"{name}: acao '{FireActionPath}' nao encontrada em InputSystem.actions.", this);
         }
     }
 
     private void OnDisable()
     {
-        if (fireAction != null && fireAction.action != null)
-        {
-            fireAction.action.Disable();
-        }
+        isFiring = false;
     }
 
     private void Update()
     {
-        if (fireAction == null || fireAction.action == null)
-            return;
+        bool inputPressed = playerInputAllowed && fireAction != null && fireAction.IsPressed();
 
-        if (gunData == null || projectilePool == null || firingPoint == null)
-            return;
-
-        if (fireAction.action.IsPressed())
+        if (isFiring || inputPressed)
         {
             TryFire();
         }
@@ -51,6 +63,9 @@ public class GunController : MonoBehaviour
 
     private void TryFire()
     {
+        if (gunData == null || projectilePool == null || firingPoint == null)
+            return;
+
         if (Time.time < nextFireTime)
             return;
 
@@ -65,13 +80,8 @@ public class GunController : MonoBehaviour
         {
             audioSource.PlayOneShot(shootClip);
         }
-        
-        projectilePool.GetProjectile(
-            firingPoint.position,
-            firingPoint.rotation,
-            gunData.ProjectileSpeed,
-            gunData.Range,
-            gunData.Damage
-        );
+
+        projectilePool.GetProjectile(firingPoint.position, firingPoint.rotation, gunData.ProjectileSpeed, gunData.Range, gunData.Damage);
+
     }
 }
