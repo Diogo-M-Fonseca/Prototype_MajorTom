@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
+    private const string FireActionPath = "Player/Attack";
+
     [Header("Gun Configuration")]
     [SerializeField] private GunData gunData;
     [SerializeField] private ProjectilePool projectilePool;
@@ -14,14 +16,34 @@ public class GunController : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootClip;
 
+    private InputAction fireAction;
     private float nextFireTime;
     private bool isFiring;
+    private bool playerInputAllowed = true;
 
     public float Range => gunData != null ? gunData.Range : 0f;
 
     public void SetFiring(bool firing)
     {
         isFiring = firing;
+    }
+
+    public void SetPlayerInput(bool allowed)
+    {
+        playerInputAllowed = allowed;
+    }
+
+    private void Awake()
+    {
+        if (InputSystem.actions != null)
+        {
+            fireAction = InputSystem.actions.FindAction(FireActionPath);
+        }
+
+        if (fireAction == null)
+        {
+            Debug.LogWarning($"{name}: ação '{FireActionPath}' não encontrada em InputSystem.actions.", this);
+        }
     }
 
     private void OnDisable()
@@ -31,7 +53,9 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-        if (isFiring)
+        bool inputPressed = playerInputAllowed && fireAction != null && fireAction.IsPressed();
+
+        if (isFiring || inputPressed)
         {
             TryFire();
         }

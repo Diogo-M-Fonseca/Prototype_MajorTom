@@ -9,6 +9,12 @@ public class AIGunTrigger : MonoBehaviour
 
     public void SetTarget(Transform newTarget) => _target = newTarget;
 
+    private void Awake()
+    {
+        if (_gun != null)
+            _gun.SetPlayerInput(false);
+    }
+
     private void Update()
     {
         if (_gun == null)
