@@ -766,13 +766,15 @@ MonoBehaviour:
   maxSpeed: 150
   enginePower: 30
   reverseRatio: 0.5
+  throttleResponse: 4
   lateralGrip: 4
   invertForward: 1
-  maxTurnRate: 120
-  turnAcceleration: 600
-  visual: {fileID: 238785186}
-  bankAngle: 35
-  bankSmoothing: 8
+  mouseSensitivity: 0.15
+  invertMouseY: 0
+  invertMouseX: 1
+  aimSmoothing: 0.03
+  maxRollRate: 120
+  rollAcceleration: 600
 --- !u!54 &1061515122
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -814,6 +816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShipInputAdapter
   ship: {fileID: 1061515121}
   move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  lockCursor: 1
 --- !u!1001 &1154601327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1267,13 +1271,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725915433}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31532887, y: -0.62057424, z: 0.30000886, w: 0.65226537}
-  m_LocalPosition: {x: 5.618477, y: 9.305637, z: -0.03514409}
+  m_LocalRotation: {x: 0.16284993, y: -0.6880988, z: 0.16284993, w: 0.6880987}
+  m_LocalPosition: {x: 8.650001, y: 6.85, z: -0.06999905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 89.492}
+  m_LocalEulerAnglesHint: {x: 153.37, y: 0, z: 180}
 --- !u!114 &1725915437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,9 +1335,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 1061515120}
-  lookAheadTime: 0.5
-  maxLookAhead: 6
-  smoothTime: 0.25
+  invertForward: 1
+  distance: 10
+  height: 3
+  lookAheadDistance: 15
+  positionSmoothTime: 0.08
+  rotationSharpness: 8
 --- !u!1 &2089335275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,8 +1457,8 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1725915436}
   - {fileID: 1170309256}
+  - {fileID: 1725915436}
   - {fileID: 1061515120}
   - {fileID: 221232937}
   - {fileID: 304323656}
