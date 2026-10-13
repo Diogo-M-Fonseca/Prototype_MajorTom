@@ -42,7 +42,7 @@ public class GunController : MonoBehaviour
 
         if (fireAction == null)
         {
-            Debug.LogWarning($"{name}: ação '{FireActionPath}' não encontrada em InputSystem.actions.", this);
+            Debug.LogWarning($"{name}: acao '{FireActionPath}' nao encontrada em InputSystem.actions.", this);
         }
     }
 
@@ -81,12 +81,7 @@ public class GunController : MonoBehaviour
             audioSource.PlayOneShot(shootClip);
         }
 
-        projectilePool.GetProjectile(
-            firingPoint.position,
-            firingPoint.rotation,
-            gunData.ProjectileSpeed,
-            gunData.Range,
-            gunData.Damage
-        );
+        projectilePool.GetProjectile(firingPoint.position, firingPoint.rotation, gunData.ProjectileSpeed, gunData.Range, gunData.Damage);
+
     }
 }

@@ -155,4 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f365931c7de5a4a41a05a33ce4689308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalProjectile
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 320
+  hitRadius: 0.2
   hitClip: {fileID: 8300000, guid: 759238d9aba8c84478f186b270b0642a, type: 3}

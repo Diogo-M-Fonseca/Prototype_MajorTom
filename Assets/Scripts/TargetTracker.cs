@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TargetTracker : MonoBehaviour
+public class TargetTracker
 {
 
     private Transform _current;

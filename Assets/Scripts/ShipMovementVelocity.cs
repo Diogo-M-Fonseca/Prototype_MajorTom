@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ShipMovementVelocity : MonoBehaviour
 {
     [SerializeField] private MovementProfile _profile;
@@ -18,10 +19,8 @@ public class ShipMovementVelocity : MonoBehaviour
 
     public void Steer(Vector3 desiredDirection, float throttle, float dt)
     {
-
         Quaternion rotation = _rigidbody.rotation;
 
-        // Rotação: velocidade angular limitada pela taxa de viragem
         if (desiredDirection.sqrMagnitude > 0.0001f)
         {
             Quaternion goal = Quaternion.LookRotation(desiredDirection, rotation * Vector3.up);
@@ -32,7 +31,6 @@ public class ShipMovementVelocity : MonoBehaviour
             _rigidbody.angularVelocity = Vector3.zero;
         }
 
-        // Velocidade: componente frontal e lateral tratadas em separado
         Vector3 forward = rotation * Vector3.forward;
         Vector3 velocity = _rigidbody.linearVelocity;
 
@@ -51,7 +49,7 @@ public class ShipMovementVelocity : MonoBehaviour
         Quaternion delta = goal * Quaternion.Inverse(current);
         delta.ToAngleAxis(out float angle, out Vector3 axis);
 
-        if (angle > 180f) angle -= 360f;// caminho mais curto
+        if (angle > 180f) angle -= 360f;   // caminho mais curto
         if (Mathf.Abs(angle) < 0.01f) return Vector3.zero;
 
         float maxStep = _profile.MaxTurnRate * dt;

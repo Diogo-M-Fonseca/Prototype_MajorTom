@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MovementProfile", menuName = "Scriptable Objects/MovementProfile")]
+[CreateAssetMenu(fileName = "MovementProfile", menuName = "ScriptableObjects/MovementProfile")]
 public class MovementProfile : ScriptableObject
 {
     [SerializeField] private float _minSpeed = 15f;
