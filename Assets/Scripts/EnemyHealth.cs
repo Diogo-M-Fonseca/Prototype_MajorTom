@@ -5,10 +5,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [Header("Stats")]
     [SerializeField] private ShipStats stats;
 
+    [Header("Score")]
+    [SerializeField, Min(0)] private int scoreValue = 10;
+    [SerializeField] private ScoreManager scoreManager;
+
     [Header("Audio")]
     [SerializeField] private AudioClip deathClip;
 
-    private float currentHealth;
+    private float _currentHealth;
+    private bool _isDead;
 
     private void Awake()
     {
@@ -18,17 +23,17 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return;
         }
 
-        currentHealth = stats.MaxHealth;
+        _currentHealth = stats.MaxHealth;
     }
 
     public void TakeDamage(float damage)
     {
-        if (currentHealth <= 0f)
+        if (_currentHealth <= 0f)
             return;
 
-        currentHealth -= damage;
+        _currentHealth -= damage;
 
-        if (currentHealth <= 0f)
+        if (_currentHealth <= 0f)
         {
             Die();
         }
@@ -36,6 +41,16 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if (_isDead)
+            return;
+
+        _isDead = true;
+
+        if(scoreManager != null)
+        {
+            scoreManager.AddScore(scoreValue);
+        }
+        
         if (deathClip != null)
         {
             AudioSource.PlayClipAtPoint(deathClip, transform.position);
