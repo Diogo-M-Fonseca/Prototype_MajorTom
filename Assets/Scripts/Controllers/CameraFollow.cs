@@ -5,21 +5,28 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     Transform target;
 
-    [SerializeField, Min(0f)]
-    float lookAheadTime = 0.5f;
+    [Tooltip("Igual ao 'invertForward' da nave.")]
+    [SerializeField]
+    bool invertForward = true;
 
     [SerializeField, Min(0f)]
-    float maxLookAhead = 6f;
+    float distance = 10f;
+
+    [SerializeField]
+    float height = 3f;
+
+    [Tooltip("Distância à frente da nave para onde a câmera olha.")]
+    [SerializeField, Min(0f)]
+    float lookAheadDistance = 15f;
 
     [SerializeField, Min(0.01f)]
-    float smoothTime = 0.25f;
+    float positionSmoothTime = 0.08f;
 
-    const float VelocitySmoothing = 10f;
+    [Tooltip("Maior = a câmera acompanha a rotação mais depressa.")]
+    [SerializeField, Min(0.1f)]
+    float rotationSharpness = 8f;
 
-    Vector3 offset,
-        lastPos,
-        velocity,
-        camVelocity;
+    Vector3 posVelocity;
 
     void Start()
     {
@@ -28,8 +35,23 @@ public class CameraFollow : MonoBehaviour
             enabled = false;
             return;
         }
-        offset = transform.position - target.position;
-        lastPos = target.position;
+        SnapToTarget();
+    }
+
+    Vector3 Forward => target.forward * (invertForward ? -1f : 1f);
+
+    Vector3 DesiredPosition => target.position - Forward * distance + target.up * height;
+
+    Quaternion DesiredRotation()
+    {
+        Vector3 lookPoint = target.position + Forward * lookAheadDistance;
+        return Quaternion.LookRotation(lookPoint - transform.position, target.up);
+    }
+
+    void SnapToTarget()
+    {
+        transform.position = DesiredPosition;
+        transform.rotation = DesiredRotation();
     }
 
     void LateUpdate()
@@ -38,18 +60,17 @@ public class CameraFollow : MonoBehaviour
         if (dt <= 0f)
             return;
 
-        Vector3 pos = target.position;
-        Vector3 raw = (pos - lastPos) / dt;
-        raw.y = 0f;
-        lastPos = pos;
-        velocity = Vector3.Lerp(velocity, raw, 1f - Mathf.Exp(-VelocitySmoothing * dt));
-
-        Vector3 lead = Vector3.ClampMagnitude(velocity * lookAheadTime, maxLookAhead);
         transform.position = Vector3.SmoothDamp(
             transform.position,
-            pos + lead + offset,
-            ref camVelocity,
-            smoothTime
+            DesiredPosition,
+            ref posVelocity,
+            positionSmoothTime
+        );
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            DesiredRotation(),
+            1f - Mathf.Exp(-rotationSharpness * dt)
         );
     }
 }
