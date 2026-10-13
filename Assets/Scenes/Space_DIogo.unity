@@ -231,6 +231,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &238785185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 238785186}
+  m_Layer: 0
+  m_Name: PlayerTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &238785186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238785185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1154601328}
+  m_Father: {fileID: 1061515120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &304323652
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,12 +743,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1154601328}
   - {fileID: 1493905963}
   - {fileID: 884233984}
   - {fileID: 2089335276}
   - {fileID: 715360786}
   - {fileID: 610342746}
+  - {fileID: 238785186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1061515121
@@ -731,82 +763,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8b6c1a440e5de4d923d354d0fc2ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceFlight.SpaceshipController
-  hasAtmosphere: 0
-  modeTransitionTime: 1
-  configureRigidbodyOnAwake: 1
-  useBuiltInInput: 1
-  inputSmoothing: 8
-  inputDeadzone: 0.05
-  rotationSensitivity: 1
-  invertPitch: 0
   maxSpeed: 150
-  cruiseSpeed: 80
-  stallSpeed: 25
-  liftAtCruise: 9.81
-  maxLiftMultiplier: 2.5
-  bankLiftCompensation: 0.7
-  atmosphereGravity: 9.81
-  lateralDragMultiplier: 12
-  verticalDragMultiplier: 8
-  linearDrag: 0.02
-  fullAuthoritySpeed: 40
-  minControlAuthority: 0.25
-  highSpeedAuthority: 0.7
-  stallNoseDrop: 40
-  spaceMaxSpeed: 0
-  atmosphereRotation:
-    pitchRate: 80
-    yawRate: 35
-    rollRate: 140
-    responsiveness: 5
-    maxAngularAcceleration: 600
-  spaceRotation:
-    pitchRate: 100
-    yawRate: 100
-    rollRate: 120
-    responsiveness: 4
-    maxAngularAcceleration: 360
-  atmosphericEnginePower: 30
-  spaceEnginePower: 25
-  throttleChangeRate: 0.5
-  reverseThrustRatio: 0.5
-  strafePower: 12
-  verticalPower: 12
-  auxThrustersInAtmosphere: 0
-  spaceBrakePower: 30
-  airbrakeDragMultiplier: 4
-  boostPowerMultiplier: 1
-  boostMaxSpeedMultiplier: 1.5
-  boostDuration: 3
-  boostRechargeTime: 8
-  boostReactivateThreshold: 0.25
-  boostRampSpeed: 4
-  rotationStabilization: 1
-  stabilizationStrength: 3
-  driftCompensation: 0
-  autoLevel: 1
-  bankToYaw: 1.5
-  directionalStability: 1.5
-  toggleStabilizationKey: 120
-  pitchUpKey: 274
-  pitchDownKey: 273
-  yawRightKey: 101
-  yawLeftKey: 113
-  rollRightKey: 275
-  rollLeftKey: 276
-  throttleUpKey: 119
-  throttleDownKey: 115
-  strafeRightKey: 100
-  strafeLeftKey: 97
-  verticalUpKey: 114
-  verticalDownKey: 102
-  brakeKey: 32
-  boostKey: 304
-  showDebugHUD: 0
-  showDebugGizmos: 0
-  allowRuntimeModeToggle: 1
-  toggleAtmosphereKey: 103
-  gizmoScale: 0.5
+  enginePower: 30
+  reverseRatio: 0.5
+  lateralGrip: 4
+  invertForward: 1
+  maxTurnRate: 120
+  turnAcceleration: 600
+  visual: {fileID: 238785186}
+  bankAngle: 35
+  bankSmoothing: 8
 --- !u!54 &1061515122
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -847,26 +813,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipInputAdapter
   ship: {fileID: 1061515121}
-  pitchYaw: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  rollThrottle: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  strafeVertical: {fileID: 2411907206095950430, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  brake: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  boost: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &1154601327
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1061515120}
+    m_TransformParent: {fileID: 238785186}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
       propertyPath: m_LocalPosition.z
@@ -882,11 +844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1230,6 +1192,7 @@ GameObject:
   - component: {fileID: 1725915435}
   - component: {fileID: 1725915434}
   - component: {fileID: 1725915437}
+  - component: {fileID: 1725915438}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1355,6 +1318,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1725915438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725915433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf07305946ebbec44a428dda8c860959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  target: {fileID: 1061515120}
+  lookAheadTime: 0.5
+  maxLookAhead: 6
+  smoothTime: 0.25
 --- !u!1 &2089335275
 GameObject:
   m_ObjectHideFlags: 0
