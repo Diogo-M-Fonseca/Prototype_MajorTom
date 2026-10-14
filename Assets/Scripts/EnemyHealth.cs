@@ -15,6 +15,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private float _currentHealth;
     private bool _isDead;
 
+    public float HealthFraction =>
+        stats != null && stats.MaxHealth > 0f ? Mathf.Clamp01(_currentHealth / stats.MaxHealth) : 1f;
+
     private void Awake()
     {
         if (stats == null)
@@ -46,11 +49,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         _isDead = true;
 
-        if(scoreManager != null)
+        if (scoreManager != null)
         {
             scoreManager.AddScore(scoreValue);
         }
-        
+
         if (deathClip != null)
         {
             AudioSource.PlayClipAtPoint(deathClip, transform.position);

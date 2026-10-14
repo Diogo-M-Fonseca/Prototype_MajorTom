@@ -4,20 +4,27 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(ShipMovementVelocity))]
 public class SteeringAgent : MonoBehaviour
 {
-    [SerializeField, FormerlySerializedAs("behaviour")] private BehaviourProfile _behaviour;
-    [SerializeField, FormerlySerializedAs("target")] private Transform _target;
-    [SerializeField, FormerlySerializedAs("flock")] private Flock _flock;   
+    [SerializeField] private BehaviourProfile _behaviour;
+    [SerializeField] private Transform _target;
+    [SerializeField] private Flock _flock;
 
     private readonly TargetTracker _tracker = new();
     private ShipMovementVelocity _movement;
     private Vector3 _desiredDirection;
     private float _throttle;
+    private float _seed;
 
     public BehaviourProfile Behaviour => _behaviour;
     public Vector3 Position => transform.position;
     public Vector3 Velocity => _movement.Velocity;
 
-    private void Awake() => _movement = GetComponent<ShipMovementVelocity>();
+    public Transform TargetTransform => _target != null ? _target : (_flock != null ? _flock.Target : null);
+
+    private void Awake()
+    {
+        _movement = GetComponent<ShipMovementVelocity>();
+        _seed = Random.value * 100f;
+    }
 
     private void OnEnable()
     {
@@ -62,7 +69,7 @@ public class SteeringAgent : MonoBehaviour
         TargetInfo target = own.HasTarget ? own : flockTarget;
 
         SteeringContext context = new SteeringContext(Position, transform.forward, _movement.Profile.MaxSpeed,
-            neighbourhood, target.HasTarget, target.Position, target.Velocity);
+            neighbourhood, target.HasTarget, target.Position, target.Velocity, _seed);
 
         Vector3 sum = transform.forward;
         foreach (BehaviourProfile.Entry entry in _behaviour.Entries)

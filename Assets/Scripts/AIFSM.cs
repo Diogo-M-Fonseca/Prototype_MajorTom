@@ -1,10 +1,9 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SteeringAgent))]
 public class AIFSM : MonoBehaviour
 {
     [SerializeField] private AIState _initialState;
-    
-    [SerializeField] private Transform _target;
 
     [SerializeField] private EnemyHealth _health;
 
@@ -24,18 +23,13 @@ public class AIFSM : MonoBehaviour
     private float _timeAway;
 
 
-    public AIState Current = _current;
-
-    public void SetTarget(Transform newTarget)
-    {
-        _target = newTarget;
-    }
+    public AIState Current => _current;
 
     private void Awake()
     {
         _agent = GetComponent<SteeringAgent>();
 
-        _baseProfile = GetComponent<BehaviourProfile>();
+        _baseProfile = _agent.Behaviour;
 
         if (_health == null)
         {
@@ -45,7 +39,7 @@ public class AIFSM : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        Enter(_initialState);
     }
 
     private void Update()
@@ -76,7 +70,7 @@ public class AIFSM : MonoBehaviour
 
         StateTransition[] transitions = _current.Transitions;
 
-        if(transitions == null || transitions.Length == 0 )
+        if (transitions == null || transitions.Length == 0)
         {
             return;
         }
@@ -118,18 +112,21 @@ public class AIFSM : MonoBehaviour
 
     private StateContext BuildContext(float dt)
     {
-        bool hasTarget = _target != null;
+        Transform target = _agent.TargetTransform;
+
+        bool hasTarget = target != null;
         float distance = 0f;
         float angle = 0f;
 
         if (hasTarget)
         {
-            Vector3 toTarget = _target.position - transform.position;
+            Vector3 toTarget = target.position - transform.position;
             distance = toTarget.magnitude;
 
             if (distance > 0.0001f)
                 angle = Vector3.Angle(transform.forward, toTarget);
         }
+
         float health = _health != null ? _health.HealthFraction : 1f;
 
         return new StateContext(_elapsed, _duration, dt, Random.value, hasTarget, distance, angle, health);

@@ -9,6 +9,8 @@ public class Flock : MonoBehaviour
     private readonly List<SteeringAgent> _agents = new();
     private readonly TargetTracker _tracker = new();
 
+    public Transform Target => _target;
+
     public void SetTarget(Transform newTarget) => _target = newTarget;
 
     public void Register(SteeringAgent agent)

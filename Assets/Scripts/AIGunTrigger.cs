@@ -3,14 +3,15 @@ using UnityEngine;
 public class AIGunTrigger : MonoBehaviour
 {
     [SerializeField] private GunController _gun;
-    [SerializeField] private Transform _target;
+    [SerializeField] private SteeringAgent _agent;
     [SerializeField, Range(0f, 90f)] private float _coneAngle = 10f;
     [SerializeField, Range(0f, 1f)] private float _rangeFraction = 0.9f;
 
-    public void SetTarget(Transform newTarget) => _target = newTarget;
-
     private void Awake()
     {
+        if (_agent == null)
+            _agent = GetComponent<SteeringAgent>();
+
         if (_gun != null)
             _gun.SetPlayerInput(false);
     }
@@ -31,10 +32,15 @@ public class AIGunTrigger : MonoBehaviour
 
     private bool ShouldFire()
     {
-        if (_target == null)
+        if (_agent == null)
             return false;
 
-        Vector3 toTarget = _target.position - transform.position;
+        Transform target = _agent.TargetTransform;
+
+        if (target == null)
+            return false;
+
+        Vector3 toTarget = target.position - transform.position;
 
         if (toTarget.magnitude > _gun.Range * _rangeFraction)
             return false;
