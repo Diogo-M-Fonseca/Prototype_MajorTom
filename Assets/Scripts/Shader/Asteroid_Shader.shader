@@ -177,15 +177,17 @@ Shader "Custom/Asteroid_Shader"
             {
                 Varyings o;
 
-                float3 dirOS = (_ExtrudeMode < 0.5) ? v.normalOS : normalize(v.positionOS.xyz + 1e-5);
-                float3 dirWS = normalize(TransformObjectToWorldDir(dirOS));
-
                 float3 posWS = TransformObjectToWorld(v.positionOS.xyz);
-                posWS += UNITY_MATRIX_V[2].xyz * _OutlineDepthBias;
                 float4 posCS = TransformWorldToHClip(posWS);
 
-                float2 dirCS = mul((float3x3)UNITY_MATRIX_VP, dirWS).xy;
-                float2 dirPx = normalize(dirCS * _ScreenParams.xy + 1e-5);
+                float4 centerCS = TransformWorldToHClip(TransformObjectToWorld(float3(0, 0, 0)));
+
+                float2 dirPx = (posCS.xy / posCS.w - centerCS.xy / centerCS.w) * _ScreenParams.xy;
+                dirPx = dirPx / max(length(dirPx), 1e-4);
+
+                float3 centerWS = TransformObjectToWorld(float3(0, 0, 0));
+                float radiusWS = length(TransformObjectToWorldDir(float3(1, 0, 0)));
+                posCS = TransformWorldToHClip(posWS + UNITY_MATRIX_V[2].xyz * _OutlineDepthBias * radiusWS);
 
                 posCS.xy += dirPx * _LineWidth * (2.0 / _ScreenParams.xy) * posCS.w;
 

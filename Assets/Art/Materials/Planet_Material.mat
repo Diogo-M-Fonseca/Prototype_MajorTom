@@ -26,6 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
+  - _SHOWOUTLINE_ON
   - _SHOWPATTERN_ON
   - _SHOWSOLID_ON
   m_LightmapFlags: 4
@@ -134,7 +135,7 @@ Material:
     - _PatternType: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShowOutline: 0
+    - _ShowOutline: 1
     - _ShowPattern: 1
     - _ShowSolid: 1
     - _Smoothness: 0.5
