@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c103b5c63a8b25144a1b8b48de51a99b, type: 3}
   m_Name: TestLevel
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
-  _levelScore: 10
+  _levelScore: 200

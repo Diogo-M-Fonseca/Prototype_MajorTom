@@ -18,4 +18,4 @@ MonoBehaviour:
   projectileSpeed: 200
   range: 50
   maxAmmo: 30
-  reloadDuration: 2
+  reloadDuration: 3

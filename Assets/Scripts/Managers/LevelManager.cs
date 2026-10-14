@@ -1,9 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private LevelConfig levelConfig;
     [SerializeField] private ScoreManager scoreManager;
+
+    [Header("Victory")]
+    [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private Behaviour[] gameplayBehaviourToDisableOnVictory;
+    [SerializeField] private float slowDownDuration = 1.5f;
 
     private bool _levelCompleted;
 
