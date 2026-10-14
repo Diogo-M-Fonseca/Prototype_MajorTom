@@ -9,6 +9,9 @@ public class Projectile : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip hitClip;
 
+    [Header("Debug")]
+    [SerializeField] private bool debugLogs = true; // desliga depois de resolver
+
     private ProjectilePool projectilePool;
 
     private float speed;
@@ -31,6 +34,15 @@ public class Projectile : MonoBehaviour
     {
         float distanceThisFrame = speed * Time.deltaTime;
 
+        if (debugLogs &&
+            Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit any,
+                distanceThisFrame, ~0, QueryTriggerInteraction.Collide))
+        {
+            Debug.Log($"[Projectile] no caminho: {any.collider.name} " +
+                      $"(layer={LayerMask.LayerToName(any.collider.gameObject.layer)}, " +
+                      $"trigger={any.collider.isTrigger})", this);
+        }
+
         if (Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit hit,
                 distanceThisFrame, hitMask, QueryTriggerInteraction.Ignore))
         {
@@ -51,6 +63,11 @@ public class Projectile : MonoBehaviour
     private void HandleHit(RaycastHit hit)
     {
         IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+
+        if (debugLogs)
+        {
+            Debug.Log($"[Projectile] HIT {hit.collider.name}, damageable={(damageable != null)}", this);
+        }
 
         if (damageable != null)
         {

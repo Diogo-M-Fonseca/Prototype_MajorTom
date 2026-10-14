@@ -19,7 +19,7 @@ public class EnemyDataSettings
     [SerializeField] private float _lateralGrip = 100f;
     [SerializeField] private float _maxTurnRate = 100f;
 
-    [Header("Perfil de comportamento")]
+    [Header("Perfis estaticos (sem FSM)")]
     [SerializeField] private bool _createFlockProfile = true;
     [SerializeField] private bool _createSoloProfile = true;
     [SerializeField] private float _neighbourRadius = 60f;
@@ -35,6 +35,37 @@ public class EnemyDataSettings
     [SerializeField] private LayerMask _obstacleMask;
     [SerializeField] private float _avoidDistance = 40f;
     [SerializeField] private float _avoidRadius = 2.5f;
+
+    [Header("FSM (estados e transicoes)")]
+    [SerializeField] private bool _createFsm = true;
+    [SerializeField, Min(0f)] private float _commitTime = 1f;
+
+    [Header("FSM: pesos por estado")]
+    [SerializeField] private float _wanderWeight = 1f;
+    [SerializeField] private float _orbitWeight = 2f;
+    [SerializeField] private float _fleeWeight = 3f;
+
+    [Header("FSM: Wander (Patrol)")]
+    [SerializeField] private float _wanderFrequency = 0.8f;
+    [SerializeField, Range(0f, 1f)] private float _wanderVertical = 0.6f;
+
+    [Header("FSM: distancias das transicoes")]
+    [SerializeField] private float _detectRange = 300f;
+    [SerializeField] private float _loseRange = 500f;
+    [SerializeField] private float _closeRange = 40f;
+    [SerializeField] private float _orbitDistance = 60f;
+    [SerializeField] private float _orbitBreakRange = 120f;
+
+    [Header("FSM: fuga e duracoes")]
+    [SerializeField, Range(0f, 1f)] private float _fleeHealthFraction = 0.25f;
+    [SerializeField] private float _orbitMinDuration = 3f;
+    [SerializeField] private float _orbitMaxDuration = 6f;
+    [SerializeField] private float _fleeMinDuration = 4f;
+    [SerializeField] private float _fleeMaxDuration = 7f;
+
+    [Header("Feedback")]
+    [SerializeField] private bool _hitFlash = true;
+    [SerializeField, Min(0.01f)] private float _hitFlashDuration = 0.08f;
 
     [Header("Arma (opcional)")]
     [SerializeField] private bool _createGun;
@@ -68,6 +99,27 @@ public class EnemyDataSettings
     public LayerMask ObstacleMask => _obstacleMask;
     public float AvoidDistance => _avoidDistance;
     public float AvoidRadius => _avoidRadius;
+
+    public bool CreateFsm => _createFsm;
+    public float CommitTime => _commitTime;
+    public float WanderWeight => _wanderWeight;
+    public float OrbitWeight => _orbitWeight;
+    public float FleeWeight => _fleeWeight;
+    public float WanderFrequency => _wanderFrequency;
+    public float WanderVertical => _wanderVertical;
+    public float DetectRange => _detectRange;
+    public float LoseRange => _loseRange;
+    public float CloseRange => _closeRange;
+    public float OrbitDistance => _orbitDistance;
+    public float OrbitBreakRange => _orbitBreakRange;
+    public float FleeHealthFraction => _fleeHealthFraction;
+    public float OrbitMinDuration => _orbitMinDuration;
+    public float OrbitMaxDuration => _orbitMaxDuration;
+    public float FleeMinDuration => _fleeMinDuration;
+    public float FleeMaxDuration => _fleeMaxDuration;
+
+    public bool HitFlash => _hitFlash;
+    public float HitFlashDuration => _hitFlashDuration;
 
     public bool CreateGun => _createGun;
     public float Damage => _damage;

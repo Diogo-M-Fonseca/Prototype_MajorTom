@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9add41b0088134683d78c8ec484f9f, type: 3}
+  m_Name: BasicEnemy_OrbitProfile
+  m_EditorClassIdentifier: Assembly-CSharp::BehaviourProfile
+  _neighbourRadius: 60
+  _separationRadius: 15
+  _entries:
+  - _behaviour: {fileID: 11400000, guid: fa9382dadee503640926448d0e828a53, type: 2}
+    _weight: 2
+  - _behaviour: {fileID: 11400000, guid: ba22a6c67ed79024faa2f54c9389a37f, type: 2}
+    _weight: 1.5
+  - _behaviour: {fileID: 11400000, guid: 86f33991aa1f75b46b2a7a42bcfd5d69, type: 2}
+    _weight: 1
+  - _behaviour: {fileID: 11400000, guid: a7bf5bc651ac90644aabb1d02d4a6e23, type: 2}
+    _weight: 0.8
+  - _behaviour: {fileID: 11400000, guid: 7ceafd9157a83ba45a06075e4fd381cc, type: 2}
+    _weight: 5

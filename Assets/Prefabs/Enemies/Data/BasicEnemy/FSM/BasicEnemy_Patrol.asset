@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c53a69a4186a0049845e5292b79bff1, type: 3}
+  m_Name: BasicEnemy_Patrol
+  m_EditorClassIdentifier: Assembly-CSharp::AIState
+  _profile: {fileID: 11400000, guid: a161dd43b57f68744a30aec0db4d57b4, type: 2}
+  _minDuration: 3
+  _maxDuration: 6
+  _commitTime: 1
+  _transitions:
+  - _condition: {fileID: 11400000, guid: f6ad21b117892954792721edb4e4b886, type: 2}
+    _next: {fileID: 11400000, guid: e442e80996d795246b020fe8d3478f77, type: 2}

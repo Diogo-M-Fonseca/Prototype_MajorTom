@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c53a69a4186a0049845e5292b79bff1, type: 3}
+  m_Name: FlockEnemy_Patrol
+  m_EditorClassIdentifier: Assembly-CSharp::AIState
+  _profile: {fileID: 11400000, guid: f10c34f789d3a754bb6d699f1ff7a8cd, type: 2}
+  _minDuration: 3
+  _maxDuration: 6
+  _commitTime: 1
+  _transitions:
+  - _condition: {fileID: 11400000, guid: a7bc762abf8f4684580c882b4807616c, type: 2}
+    _next: {fileID: 11400000, guid: 1f7481b7f5d8b0748881f132a094cbac, type: 2}

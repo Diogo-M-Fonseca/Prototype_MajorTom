@@ -50,6 +50,12 @@ public static class EditorAssetUtility
     public static void SetString(Object target, string field, string value) =>
         Apply(target, field, property => property.stringValue = value);
 
+    public static void SetBool(Object target, string field, bool value) =>
+        Apply(target, field, property => property.boolValue = value);
+
+    public static void SetEnum(Object target, string field, int index) =>
+        Apply(target, field, property => property.enumValueIndex = index);
+
     private static void Apply(Object target, string field, System.Action<SerializedProperty> setter)
     {
         SerializedObject serialized = new SerializedObject(target);

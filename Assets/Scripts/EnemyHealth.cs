@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private float _currentHealth;
     private bool _isDead;
 
+    public event System.Action Damaged;
+
     public float HealthFraction =>
         stats != null && stats.MaxHealth > 0f ? Mathf.Clamp01(_currentHealth / stats.MaxHealth) : 1f;
 
@@ -35,6 +37,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             return;
 
         _currentHealth -= damage;
+        Damaged?.Invoke();
 
         if (_currentHealth <= 0f)
         {

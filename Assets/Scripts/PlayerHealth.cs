@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private float _currentHealth;
 
     public event Action<float, float> HealthChanged;
+    public event Action Damaged;
     public event Action Died;
 
     public float CurrentHealth => _currentHealth;
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);
         HealthChanged?.Invoke(_currentHealth, MaxHealth);
+        Damaged?.Invoke();
 
         if (_currentHealth <= 0f)
             Die();

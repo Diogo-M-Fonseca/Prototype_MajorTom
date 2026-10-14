@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c53a69a4186a0049845e5292b79bff1, type: 3}
+  m_Name: BasicEnemy_Attack
+  m_EditorClassIdentifier: Assembly-CSharp::AIState
+  _profile: {fileID: 11400000, guid: 46ae66a4ab52904459362a870baa9ad5, type: 2}
+  _minDuration: 3
+  _maxDuration: 6
+  _commitTime: 1
+  _transitions:
+  - _condition: {fileID: 11400000, guid: 73c3b99b5d4164c43bfb40cf97368bc7, type: 2}
+    _next: {fileID: 11400000, guid: 05c5921cb3139a14a95189538ac31638, type: 2}
+  - _condition: {fileID: 11400000, guid: 3ed85a3e5b8fe6e45a96ac688bdef5ba, type: 2}
+    _next: {fileID: 11400000, guid: aacb96821cc96e04492f94a9b20ff3b2, type: 2}
+  - _condition: {fileID: 11400000, guid: 5a87cb11783c980499208411c9d833ba, type: 2}
+    _next: {fileID: 11400000, guid: 439e145ad8810df4eb0891a06cf6d0c3, type: 2}

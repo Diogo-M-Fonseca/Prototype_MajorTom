@@ -1,4 +1,5 @@
 public interface IDamageable
 {
-    public void TakeDamage(float damage);
+    event System.Action Damaged;
+    void TakeDamage(float damage);
 }

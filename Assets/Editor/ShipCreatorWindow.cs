@@ -3,15 +3,18 @@
 // Abre em: Tools > Ship Creator
 //
 // Uma so janela para:
-//   Inimigo : criar/atualizar todos os dados (stats, movimento, behaviours, perfis, arma) + prefab
-//   Jogador : criar/atualizar o prefab do jogador
-//   Cena    : criar pools de projeteis, colocar o jogador e os inimigos (individuais ou em bando)
+//   Inimigo : criar/atualizar todos os dados (stats, movimento, behaviours, perfis, FSM de estados, arma) + prefab
+//   Jogador : criar/atualizar o prefab do jogador (com movimento e input ja configurados)
+//   Cena    : criar pools de projeteis, colocar o jogador (com a camara a segui-lo) e os inimigos (individuais ou em bando)
 //
-// Depende de: EditorAssetUtility, EnemyDataFactory, EnemyDataSettings, ShipPrefabUtility
+// Depende de: EditorAssetUtility, EnemyDataFactory, EnemyDataSettings, ShipPrefabUtility,
+// PlayerMovementSettings, CameraFollowSettings (+ SpaceshipController, ShipInputAdapter, CameraFollow)
 // (substitui o EnemyCreatorWindow, que podes apagar).
 using System.Collections.Generic;
+using SpaceFlight;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShipCreatorWindow : EditorWindow
 {
@@ -50,11 +53,13 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private BehaviourProfile _flockProfile;
     [SerializeField] private BehaviourProfile _soloProfile;
     [SerializeField] private GunData _enemyGun;
+    [SerializeField] private AIState _initialState;
 
     // ---- Inimigo: prefab
     [SerializeField] private GameObject _enemyModel;
     [SerializeField] private ShipColliderType _enemyCollider = ShipColliderType.Box;
     [SerializeField] private ProfileChoice _profileChoice = ProfileChoice.Flock;
+    [SerializeField] private bool _useFsm = true;
     [SerializeField] private string _enemyPrefabFolder = "Assets/Enemies";
 
     // ---- Jogador
@@ -69,6 +74,14 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private AudioClip _playerShootClip;
     [SerializeField] private AudioClip _playerDeathClip;
     [SerializeField] private List<MonoScript> _playerExtraScripts = new List<MonoScript>();
+
+    // ---- Jogador: movimento, input e camara
+    [SerializeField] private bool _playerMovement = true;
+    [SerializeField] private PlayerMovementSettings _movement = new PlayerMovementSettings();
+    [SerializeField] private InputActionReference _moveAction;
+    [SerializeField] private InputActionReference _lookAction;
+    [SerializeField] private bool _setupCameraOnPlace = true;
+    [SerializeField] private CameraFollowSettings _cameraSettings = new CameraFollowSettings();
 
     // ---- Opcoes comuns de prefab
     [SerializeField] private bool _replaceModel;
@@ -102,6 +115,7 @@ public class ShipCreatorWindow : EditorWindow
     private void OnEnable()
     {
         minSize = new Vector2(440f, 520f);
+        FindInputActions(false);
         _so = new SerializedObject(this);
         _so.FindProperty("_settings").isExpanded = true;
         DetectLayers();
@@ -184,7 +198,8 @@ public class ShipCreatorWindow : EditorWindow
 
         EditorGUILayout.HelpBox(
             "Se um asset com o mesmo nome ja existir, e reaproveitado e os valores sao atualizados. " +
-            "Separation, Alignment e Cohesion ficam em <pasta>/Shared e sao partilhados.",
+            "Separation, Alignment, Cohesion, Flee e StateTimeUp ficam em <pasta>/Shared e sao partilhados. " +
+            "Os estados, perfis por estado e condicoes da FSM ficam em <pasta>/<nome>/FSM.",
             MessageType.None);
 
         EditorGUILayout.Space();
@@ -193,6 +208,7 @@ public class ShipCreatorWindow : EditorWindow
         Prop("_enemyMovement", "Movement Profile");
         Prop("_flockProfile", "Behaviour (Flock)");
         Prop("_soloProfile", "Behaviour (Solo)");
+        Prop("_initialState", "Estado inicial (FSM)");
         Prop("_enemyGun", "Arma (opcional)");
 
         EditorGUILayout.Space();
@@ -200,7 +216,11 @@ public class ShipCreatorWindow : EditorWindow
         Prop("_enemyModel", "Modelo");
         Prop("_enemyCollider", "Collider");
         _enemyLayer = EditorGUILayout.LayerField("Layer", _enemyLayer);
-        Prop("_profileChoice", "Perfil a usar");
+        Prop("_useFsm", "Usar FSM (igual em bando e a solo)");
+
+        if (!_useFsm)
+            Prop("_profileChoice", "Perfil a usar");
+
         Prop("_enemyPrefabFolder", "Pasta do prefab");
         Prop("_replaceModel", "Substituir modelo (se o prefab ja existir)");
         Prop("_rebuildCollider", "Refazer collider (se o prefab ja existir)");
@@ -255,6 +275,7 @@ public class ShipCreatorWindow : EditorWindow
         _flockProfile = set.FlockProfile;
         _soloProfile = set.SoloProfile;
         _enemyGun = set.Gun;
+        _initialState = set.InitialState;
 
         if (_flockProfile == null && _soloProfile != null) _profileChoice = ProfileChoice.Solo;
         else if (_flockProfile != null) _profileChoice = ProfileChoice.Flock;
@@ -266,12 +287,19 @@ public class ShipCreatorWindow : EditorWindow
     private BehaviourProfile SelectedProfile() =>
         _profileChoice == ProfileChoice.Flock ? _flockProfile : _soloProfile;
 
+    // Com FSM, o perfil base do agente e o do estado inicial (os estados sem perfil proprio voltam a ele).
+    private BehaviourProfile BaseProfile() =>
+        _useFsm && _initialState != null && _initialState.Profile != null ? _initialState.Profile : SelectedProfile();
+
     private string ValidateEnemyPrefab()
     {
         if (string.IsNullOrWhiteSpace(_settings.Name)) return "Da um nome ao inimigo (nos parametros).";
         if (_enemyStats == null) return "Falta o ShipStats (cria os dados primeiro).";
         if (_enemyMovement == null) return "Falta o MovementProfile.";
-        if (SelectedProfile() == null) return $"Falta o Behaviour Profile ({_profileChoice}).";
+        if (_useFsm && _initialState == null)
+            return "Falta o estado inicial da FSM (cria os dados com 'Criar FSM' ligado, ou desliga 'Usar FSM').";
+        if (BaseProfile() == null)
+            return _useFsm ? "O estado inicial nao tem Behaviour Profile." : $"Falta o Behaviour Profile ({_profileChoice}).";
         if (string.IsNullOrWhiteSpace(_enemyPrefabFolder) || !_enemyPrefabFolder.StartsWith("Assets"))
             return "A pasta do prefab tem de comecar em 'Assets'.";
         return null;
@@ -300,8 +328,36 @@ public class ShipCreatorWindow : EditorWindow
             ApplyCollider(root, _enemyCollider);
 
             EditorAssetUtility.SetObject(movement, "_profile", _enemyMovement);
-            EditorAssetUtility.SetObject(agent, "_behaviour", SelectedProfile());
+            EditorAssetUtility.SetObject(agent, "_behaviour", BaseProfile());
             EditorAssetUtility.SetObject(health, "stats", _enemyStats);
+
+            if (_settings.HitFlash)
+            {
+                HitFlash flash = GetOrAdd<HitFlash>(root);
+                EditorAssetUtility.SetObject(flash, "_health", health);
+                EditorAssetUtility.SetObject(flash, "_flashMaterial", EnemyDataFactory.LoadOrCreateFlashMaterial(_settings.Folder));
+                EditorAssetUtility.SetFloat(flash, "_duration", _settings.HitFlashDuration);
+            }
+            else
+            {
+                HitFlash existingFlash = root.GetComponent<HitFlash>();
+                if (existingFlash != null)
+                    DestroyImmediate(existingFlash);
+            }
+
+            // A mesma FSM serve para bando e individual: quem decide e o _flock do SteeringAgent.
+            if (_useFsm)
+            {
+                AIFSM fsm = GetOrAdd<AIFSM>(root);
+                EditorAssetUtility.SetObject(fsm, "_initialState", _initialState);
+                EditorAssetUtility.SetObject(fsm, "_health", health);
+            }
+            else
+            {
+                AIFSM existingFsm = root.GetComponent<AIFSM>();
+                if (existingFsm != null)
+                    DestroyImmediate(existingFsm);
+            }
 
             if (_enemyGun != null)
             {
@@ -312,6 +368,7 @@ public class ShipCreatorWindow : EditorWindow
                 EditorAssetUtility.SetObject(gun, "gunData", _enemyGun);
                 EditorAssetUtility.SetObject(gun, "firingPoint", muzzle);
                 EditorAssetUtility.SetObject(trigger, "_gun", gun);
+                EditorAssetUtility.SetObject(trigger, "_agent", agent);
             }
 
             ShipPrefabUtility.SetLayerRecursively(root, _enemyLayer);
@@ -353,6 +410,36 @@ public class ShipCreatorWindow : EditorWindow
         Prop("_playerCollider", "Collider");
         _playerLayer = EditorGUILayout.LayerField("Layer", _playerLayer);
         Prop("_playerRigidbody", "Adicionar Rigidbody");
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Movimento e camara", EditorStyles.boldLabel);
+        Prop("_playerMovement", "Adicionar movimento e input (SpaceshipController)");
+
+        if (_playerMovement)
+        {
+            Prop("_movement", "Parametros de movimento");
+
+            if (_movement.InvertForward)
+                EditorGUILayout.HelpBox(
+                    "invertForward ligado: a nave voa para -Z e a camara fica do lado +Z, a olhar para -Z. " +
+                    "Se o nariz do modelo apontar para +Z, a camara fica a olhar para o lado contrario. " +
+                    "O ponto de disparo que a tool cria tambem fica em +Z.",
+                    MessageType.Info);
+            Prop("_moveAction", "Acao Move (Vector2)");
+            Prop("_lookAction", "Acao Look (Vector2)");
+
+            if (GUILayout.Button("Procurar acoes Move / Look"))
+            {
+                FindInputActions(true);
+                _so.Update();
+                GUIUtility.ExitGUI();
+            }
+        }
+
+        Prop("_setupCameraOnPlace", "Configurar a camara ao colocar o jogador na cena");
+
+        if (_setupCameraOnPlace)
+            Prop("_cameraSettings", "Parametros da camara");
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Vida", EditorStyles.boldLabel);
@@ -406,6 +493,8 @@ public class ShipCreatorWindow : EditorWindow
     {
         if (string.IsNullOrWhiteSpace(_playerName)) return "Da um nome ao jogador.";
         if (_playerStats == null) return "Falta o ShipStats do jogador (podes criar com 'Criar Stats').";
+        if (_playerMovement && (_moveAction == null || _lookAction == null))
+            return "Faltam as acoes Move e Look do ShipInputAdapter (usa 'Procurar acoes Move / Look' ou arrasta-as).";
         if (string.IsNullOrWhiteSpace(_playerFolder) || !_playerFolder.StartsWith("Assets"))
             return "A pasta tem de comecar em 'Assets'.";
         return null;
@@ -437,7 +526,7 @@ public class ShipCreatorWindow : EditorWindow
             if (!created && _replaceModel)
                 ReplaceModel(root, _playerModel);
 
-            if (_playerRigidbody)
+            if (_playerRigidbody || _playerMovement)
                 ShipPrefabUtility.ConfigureRigidbody(GetOrAdd<Rigidbody>(root));
 
             ApplyCollider(root, _playerCollider);
@@ -466,6 +555,9 @@ public class ShipCreatorWindow : EditorWindow
                 }
             }
 
+            if (_playerMovement)
+                BuildPlayerMovement(root);
+
             AddExtraScripts(root);
             ShipPrefabUtility.SetLayerRecursively(root, _playerLayer);
 
@@ -482,6 +574,69 @@ public class ShipCreatorWindow : EditorWindow
         }
 
         _so.Update();
+    }
+
+    // Valores atualizados de cada vez que o prefab e criado/atualizado, tal como nos dados do inimigo.
+    private void BuildPlayerMovement(GameObject root)
+    {
+        // O SpaceshipController exige o Rigidbody, que ja foi adicionado acima.
+        SpaceshipController ship = GetOrAdd<SpaceshipController>(root);
+
+        EditorAssetUtility.SetFloat(ship, "maxSpeed", _movement.MaxSpeed);
+        EditorAssetUtility.SetFloat(ship, "enginePower", _movement.EnginePower);
+        EditorAssetUtility.SetFloat(ship, "reverseRatio", _movement.ReverseRatio);
+        EditorAssetUtility.SetFloat(ship, "throttleResponse", _movement.ThrottleResponse);
+        EditorAssetUtility.SetFloat(ship, "lateralGrip", _movement.LateralGrip);
+        EditorAssetUtility.SetBool(ship, "invertForward", _movement.InvertForward);
+        EditorAssetUtility.SetFloat(ship, "mouseSensitivity", _movement.MouseSensitivity);
+        EditorAssetUtility.SetBool(ship, "invertMouseY", _movement.InvertMouseY);
+        EditorAssetUtility.SetBool(ship, "invertMouseX", _movement.InvertMouseX);
+        EditorAssetUtility.SetFloat(ship, "aimSmoothing", _movement.AimSmoothing);
+        EditorAssetUtility.SetFloat(ship, "maxRollRate", _movement.MaxRollRate);
+        EditorAssetUtility.SetFloat(ship, "rollAcceleration", _movement.RollAcceleration);
+
+        ShipInputAdapter input = GetOrAdd<ShipInputAdapter>(root);
+        EditorAssetUtility.SetObject(input, "ship", ship);
+        EditorAssetUtility.SetObject(input, "move", _moveAction);
+        EditorAssetUtility.SetObject(input, "look", _lookAction);
+        EditorAssetUtility.SetBool(input, "lockCursor", _movement.LockCursor);
+    }
+
+    private void FindInputActions(bool overwrite)
+    {
+        if (overwrite || _moveAction == null)
+        {
+            InputActionReference move = FindActionReference("Player", "Move");
+            if (move != null) _moveAction = move;
+        }
+
+        if (overwrite || _lookAction == null)
+        {
+            InputActionReference look = FindActionReference("Player", "Look");
+            if (look != null) _lookAction = look;
+        }
+    }
+
+    // Procura nos InputActionAssets do projeto a referencia da acao <mapa>/<acao>.
+    private static InputActionReference FindActionReference(string mapName, string actionName)
+    {
+        foreach (string guid in AssetDatabase.FindAssets("t:InputActionAsset"))
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+
+            foreach (Object asset in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (asset is not InputActionReference reference)
+                    continue;
+
+                InputAction action = reference.action;
+                if (action != null && action.actionMap != null &&
+                    action.actionMap.name == mapName && action.name == actionName)
+                    return reference;
+            }
+        }
+
+        return null;
     }
 
     private void AddExtraScripts(GameObject root)
@@ -551,6 +706,15 @@ public class ShipCreatorWindow : EditorWindow
             if (GUILayout.Button("Colocar jogador na cena", GUILayout.Height(26)))
             {
                 PlacePlayer();
+                GUIUtility.ExitGUI();
+            }
+        }
+
+        using (new EditorGUI.DisabledScope(playerError != null))
+        {
+            if (GUILayout.Button("Configurar camara para o jogador da cena"))
+            {
+                SetupCameraForScenePlayer();
                 GUIUtility.ExitGUI();
             }
         }
@@ -686,8 +850,80 @@ public class ShipCreatorWindow : EditorWindow
         else if (gun != null)
             Debug.LogWarning("Ship Creator: o jogador tem arma mas nao ha pool do jogador ligada.");
 
+        if (_setupCameraOnPlace)
+            SetupCamera(instance.transform, ReadInvertForward(instance));
+
         Selection.activeGameObject = instance;
         Debug.Log("Ship Creator: jogador colocado na cena.", instance);
+    }
+
+    private void SetupCameraForScenePlayer()
+    {
+        _so.ApplyModifiedProperties();
+
+        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
+        if (player == null)
+        {
+            Debug.LogWarning("Ship Creator: nao ha nenhum jogador (PlayerHealth) na cena.");
+            return;
+        }
+
+        SetupCamera(player.transform, ReadInvertForward(player.gameObject));
+    }
+
+    // Usa o invertForward da propria nave (se tiver SpaceshipController), para a camara nunca ficar desalinhada.
+    private bool ReadInvertForward(GameObject player)
+    {
+        SpaceshipController ship = player.GetComponent<SpaceshipController>();
+        if (ship == null)
+            return _movement.InvertForward;
+
+        SerializedProperty property = new SerializedObject(ship).FindProperty("invertForward");
+        return property != null ? property.boolValue : _movement.InvertForward;
+    }
+
+    // Reaproveita a camara da cena (ou cria uma). A camara nunca e filha da nave: o CameraFollow suaviza o seguimento.
+    private void SetupCamera(Transform target, bool invertForward)
+    {
+        Camera camera = Camera.main != null ? Camera.main : FindFirstObjectByType<Camera>();
+        GameObject cameraObject;
+
+        if (camera != null)
+        {
+            cameraObject = camera.gameObject;
+        }
+        else
+        {
+            cameraObject = new GameObject("Player Camera");
+            Undo.RegisterCreatedObjectUndo(cameraObject, "Create camera");
+            cameraObject.AddComponent<Camera>();
+
+            if (FindFirstObjectByType<AudioListener>() == null)
+                cameraObject.AddComponent<AudioListener>();
+        }
+
+        CameraFollow follow = cameraObject.GetComponent<CameraFollow>();
+        if (follow == null)
+            follow = Undo.AddComponent<CameraFollow>(cameraObject);
+
+        EditorAssetUtility.SetObject(follow, "target", target);
+        EditorAssetUtility.SetBool(follow, "invertForward", invertForward);
+        EditorAssetUtility.SetFloat(follow, "distance", _cameraSettings.Distance);
+        EditorAssetUtility.SetFloat(follow, "height", _cameraSettings.Height);
+        EditorAssetUtility.SetFloat(follow, "lookAheadDistance", _cameraSettings.LookAheadDistance);
+        EditorAssetUtility.SetFloat(follow, "positionSmoothTime", _cameraSettings.PositionSmoothTime);
+        EditorAssetUtility.SetFloat(follow, "rotationSharpness", _cameraSettings.RotationSharpness);
+
+        // Posiciona a camara ja em modo de edicao, como o CameraFollow faria no arranque.
+        Vector3 forward = target.forward * (invertForward ? -1f : 1f);
+        Vector3 position = target.position - forward * _cameraSettings.Distance + target.up * _cameraSettings.Height;
+        Vector3 lookPoint = target.position + forward * _cameraSettings.LookAheadDistance;
+
+        Undo.RecordObject(cameraObject.transform, "Setup camera");
+        cameraObject.transform.SetPositionAndRotation(position,
+            Quaternion.LookRotation(lookPoint - position, target.up));
+
+        Debug.Log($"Ship Creator: camara '{cameraObject.name}' a seguir '{target.name}'.", cameraObject);
     }
 
     // ------------------------------------------------------------ Inimigos na cena
@@ -802,10 +1038,6 @@ public class ShipCreatorWindow : EditorWindow
             EditorAssetUtility.SetObject(agent, "_flock", flock);
         else
             EditorAssetUtility.SetObject(agent, "_target", target);
-
-        AIGunTrigger trigger = instance.GetComponent<AIGunTrigger>();
-        if (trigger != null)
-            EditorAssetUtility.SetObject(trigger, "_target", target);
 
         GunController gun = instance.GetComponent<GunController>();
         if (gun != null)

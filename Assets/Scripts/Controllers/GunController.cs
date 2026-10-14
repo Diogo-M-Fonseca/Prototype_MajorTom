@@ -23,7 +23,6 @@ public class GunController : MonoBehaviour
     [SerializeField] private InputActionReference fireAction;
     [SerializeField] private InputActionReference reloadAction;
 
-    //private InputAction fireAction;
     private float nextFireTime;
     private bool isFiring;
     private bool playerInputAllowed = true;
@@ -72,10 +71,9 @@ public class GunController : MonoBehaviour
         if (reloadAction != null && reloadAction.action != null)
         {
             reloadAction.action.Enable();
-            //reloadAction.action.performed += context => StartReload();
         }
     }
-    
+
     private void OnDisable()
     {
         if (fireAction != null && fireAction.action != null)
@@ -95,7 +93,6 @@ public class GunController : MonoBehaviour
         }
 
         isReloading = false;
-        //isFiring = false;
     }
 
     private void Update()
@@ -105,7 +102,7 @@ public class GunController : MonoBehaviour
             return;
         }
 
-        if (reloadAction != null && reloadAction.action != null && reloadAction.action.WasPressedThisFrame())
+        if (playerInputAllowed && reloadAction != null && reloadAction.action != null && reloadAction.action.WasPressedThisFrame())
         {
             StartReload();
         }
@@ -115,7 +112,9 @@ public class GunController : MonoBehaviour
             return;
         }
 
-        if (fireAction != null && fireAction.action != null && fireAction.action.IsPressed())
+        bool inputPressed = playerInputAllowed && fireAction != null && fireAction.action != null && fireAction.action.IsPressed();
+
+        if (isFiring || inputPressed)
         {
             TryFire();
         }
@@ -171,7 +170,7 @@ public class GunController : MonoBehaviour
         {
             audioSource.PlayOneShot(reloadClip);
         }
-        
+
         reloadCoroutine = StartCoroutine(ReloadCoroutine());
     }
 
