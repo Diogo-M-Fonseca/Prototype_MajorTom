@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Blaster
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   gunName: Blaster
-  projectilePrefab: {fileID: 7291590375513856571, guid: cb5c476a001f92147ab70d7dae692c84, type: 3}
   damage: 10
   fireRate: 5
   projectileSpeed: 20
   range: 50
+  maxAmmo: 30
+  reloadDuration: 2
