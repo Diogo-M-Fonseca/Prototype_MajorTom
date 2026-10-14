@@ -15,7 +15,7 @@ MonoBehaviour:
   gunName: Blaster
   damage: 10
   fireRate: 5
-  projectileSpeed: 20
+  projectileSpeed: 200
   range: 50
   maxAmmo: 30
   reloadDuration: 2
