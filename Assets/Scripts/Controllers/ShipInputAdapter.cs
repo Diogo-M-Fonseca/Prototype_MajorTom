@@ -30,8 +30,8 @@ public class ShipInputAdapter : MonoBehaviour
 
     void Update()
     {
-        var kb = Keyboard.current;
-        var mouse = Mouse.current;
+        Keyboard kb = Keyboard.current;
+        Mouse mouse = Mouse.current;
         if (kb != null && kb.escapeKey.wasPressedThisFrame)
             SetCursorLocked(false);
         else if (mouse != null && mouse.leftButton.wasPressedThisFrame && !lockedNow)
