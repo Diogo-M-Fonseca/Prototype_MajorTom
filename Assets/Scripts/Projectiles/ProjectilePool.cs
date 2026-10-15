@@ -25,7 +25,7 @@ public class ProjectilePool : MonoBehaviour
 
     private Projectile CreateProjectile()
     {
-        Projectile projectile = Instantiate(projectilePrefab,transform);
+        Projectile projectile = Instantiate(projectilePrefab, transform);
         projectile.SetPool(this);
         projectile.gameObject.SetActive(false);
 
@@ -49,11 +49,11 @@ public class ProjectilePool : MonoBehaviour
         Destroy(projectile.gameObject);
     }
 
-    public Projectile GetProjectile(Vector3 position,Quaternion rotation,float speed,float range, float damage)
+    public Projectile GetProjectile(Vector3 position, Quaternion rotation, float speed, float range, float damage, float shooterSpeed = 0f)
     {
         Projectile projectile = pool.Get();
         projectile.transform.SetPositionAndRotation(position, rotation);
-        projectile.Initialize(speed, range, damage);
+        projectile.Initialize(speed, range, damage, shooterSpeed);
 
         return projectile;
     }

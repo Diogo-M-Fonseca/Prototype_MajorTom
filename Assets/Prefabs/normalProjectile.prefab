@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NormalProjectile
   hitMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 439
   hitRadius: 0.2
   hitClip: {fileID: 8300000, guid: 759238d9aba8c84478f186b270b0642a, type: 3}
   debugLogs: 1

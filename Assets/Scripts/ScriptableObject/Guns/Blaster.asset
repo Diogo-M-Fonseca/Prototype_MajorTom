@@ -16,6 +16,6 @@ MonoBehaviour:
   damage: 10
   fireRate: 5
   projectileSpeed: 200
-  range: 50
+  range: 100
   maxAmmo: 30
   reloadDuration: 3

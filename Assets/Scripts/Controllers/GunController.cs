@@ -14,6 +14,10 @@ public class GunController : MonoBehaviour
     [Header("Firing Point")]
     [SerializeField] private Transform firingPoint;
 
+    [Header("Velocity Inheritance")]
+    [Tooltip("Transform da nave cuja velocidade a bala herda. Se vazio, usa o Rigidbody do pai ou o root.")]
+    [SerializeField] private Transform shipTransform;
+
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootClip;
@@ -28,6 +32,9 @@ public class GunController : MonoBehaviour
     private bool playerInputAllowed = true;
     private bool isReloading;
     private Coroutine reloadCoroutine;
+
+    private Vector3 lastShipPosition;
+    private Vector3 shipVelocity;
 
     public float Range => gunData != null ? gunData.Range : 0f;
     public event Action<int, int> OnAmmoChanged;
@@ -52,6 +59,13 @@ public class GunController : MonoBehaviour
 
     private void Awake()
     {
+        if (shipTransform == null)
+        {
+            Rigidbody body = GetComponentInParent<Rigidbody>();
+            shipTransform = body != null ? body.transform : transform.root;
+        }
+        lastShipPosition = shipTransform.position;
+
         if (gunData == null)
         {
             Debug.LogError("GunController: GunData não foi atribuído.", this);
@@ -97,6 +111,12 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.deltaTime > 0f)
+        {
+            shipVelocity = (shipTransform.position - lastShipPosition) / Time.deltaTime;
+            lastShipPosition = shipTransform.position;
+        }
+
         if (gunData == null || projectilePool == null || firingPoint == null)
         {
             return;
@@ -141,7 +161,9 @@ public class GunController : MonoBehaviour
         float fireInterval = 1f / gunData.FireRate;
         nextFireTime = Time.time + fireInterval;
 
-        projectilePool.GetProjectile(firingPoint.position, firingPoint.rotation, gunData.ProjectileSpeed, gunData.Range, gunData.Damage);
+        float inheritedSpeed = Mathf.Max(0f, Vector3.Dot(shipVelocity, firingPoint.forward));
+
+        projectilePool.GetProjectile(firingPoint.position, firingPoint.rotation, gunData.ProjectileSpeed, gunData.Range, gunData.Damage, inheritedSpeed);
 
         CurrentAmmo--;
         NotifyAmmoChanged();
