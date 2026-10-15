@@ -18369,7 +18369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePool
   projectilePrefab: {fileID: 1956412244449875419, guid: 6e64f25dc115e8b4490c0f026a2809aa, type: 3}
   initialCapacity: 20
-  maxCapacity: 200
+  maxCapacity: 400
 --- !u!4 &2101729374
 Transform:
   m_ObjectHideFlags: 0

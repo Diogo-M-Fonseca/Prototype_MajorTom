@@ -10,11 +10,12 @@ public class Projectile : MonoBehaviour
     [SerializeField] private AudioClip hitClip;
 
     [Header("Debug")]
-    [SerializeField] private bool debugLogs = true; // desliga depois de resolver
+    [SerializeField] private bool debugLogs = true;
 
     private ProjectilePool projectilePool;
 
     private float speed;
+    private float inheritedSpeed;
     private float remainingRange;
     private float damage;
 
@@ -23,16 +24,17 @@ public class Projectile : MonoBehaviour
         projectilePool = pool;
     }
 
-    public void Initialize(float projectileSpeed, float range, float projectileDamage)
+    public void Initialize(float projectileSpeed, float range, float projectileDamage, float shooterSpeed = 0f)
     {
         speed = projectileSpeed;
+        inheritedSpeed = shooterSpeed;
         remainingRange = range;
         damage = projectileDamage;
     }
 
     private void Update()
     {
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = (speed + inheritedSpeed) * Time.deltaTime;
 
         if (debugLogs &&
             Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit any,
@@ -52,7 +54,7 @@ public class Projectile : MonoBehaviour
 
         transform.position += transform.forward * distanceThisFrame;
 
-        remainingRange -= distanceThisFrame;
+        remainingRange -= speed * Time.deltaTime;
 
         if (remainingRange <= 0f)
         {
