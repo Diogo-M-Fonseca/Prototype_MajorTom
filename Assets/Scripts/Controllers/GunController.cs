@@ -1,31 +1,67 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunController : MonoBehaviour
 {
     private const string FireActionPath = "Player/Attack";
 
     [Header("Gun Configuration")]
-    [SerializeField] private GunData gunData;
-    [SerializeField] private ProjectilePool projectilePool;
+    [SerializeField]
+    private GunData gunData;
+
+    [SerializeField]
+    private ProjectilePool projectilePool;
 
     [Header("Firing Point")]
-    [SerializeField] private Transform firingPoint;
+    [SerializeField]
+    private Transform firingPoint;
 
     [Header("Velocity Inheritance")]
-    [Tooltip("Transform da nave cuja velocidade a bala herda. Se vazio, usa o Rigidbody do pai ou o root.")]
-    [SerializeField] private Transform shipTransform;
+    [Tooltip(
+        "Transform da nave cuja velocidade a bala herda. Se vazio, usa o Rigidbody do pai ou o root."
+    )]
+    [SerializeField]
+    private Transform shipTransform;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip shootClip;
-    [SerializeField] private AudioClip reloadClip;
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip shootClip;
+
+    [SerializeField]
+    private AudioClip reloadClip;
 
     [Header("Input")]
-    [SerializeField] private InputActionReference fireAction;
-    [SerializeField] private InputActionReference reloadAction;
+    [SerializeField]
+    private InputActionReference fireAction;
+
+    [SerializeField]
+    private InputActionReference reloadAction;
+
+    [Header("Aim Animation")]
+    [SerializeField]
+    private Transform aimTransform;
+
+    [Tooltip("Valor 0-1 ao longo do tempo normalizado (0 a 1). Editável no Inspector.")]
+    [SerializeField]
+    private AnimationCurve aimCurve = new AnimationCurve(
+        new Keyframe(0f, 0f),
+        new Keyframe(0.3f, 1f),
+        new Keyframe(1f, 0f)
+    );
+
+    [SerializeField]
+    private float aimDuration = 0.1f;
+
+    [SerializeField]
+    private float aimScaleAmount = 0.3f;
+
+    private Vector3 aimBaseScale = Vector3.one;
+    private Coroutine aimCoroutine;
 
     private float nextFireTime;
     private bool isFiring;
@@ -65,6 +101,11 @@ public class GunController : MonoBehaviour
             shipTransform = body != null ? body.transform : transform.root;
         }
         lastShipPosition = shipTransform.position;
+
+        if (aimTransform != null)
+        {
+            aimBaseScale = aimTransform.localScale;
+        }
 
         if (gunData == null)
         {
@@ -122,7 +163,12 @@ public class GunController : MonoBehaviour
             return;
         }
 
-        if (playerInputAllowed && reloadAction != null && reloadAction.action != null && reloadAction.action.WasPressedThisFrame())
+        if (
+            playerInputAllowed
+            && reloadAction != null
+            && reloadAction.action != null
+            && reloadAction.action.WasPressedThisFrame()
+        )
         {
             StartReload();
         }
@@ -132,7 +178,11 @@ public class GunController : MonoBehaviour
             return;
         }
 
-        bool inputPressed = playerInputAllowed && fireAction != null && fireAction.action != null && fireAction.action.IsPressed();
+        bool inputPressed =
+            playerInputAllowed
+            && fireAction != null
+            && fireAction.action != null
+            && fireAction.action.IsPressed();
 
         if (isFiring || inputPressed)
         {
@@ -163,7 +213,14 @@ public class GunController : MonoBehaviour
 
         float inheritedSpeed = Mathf.Max(0f, Vector3.Dot(shipVelocity, firingPoint.forward));
 
-        projectilePool.GetProjectile(firingPoint.position, firingPoint.rotation, gunData.ProjectileSpeed, gunData.Range, gunData.Damage, inheritedSpeed);
+        projectilePool.GetProjectile(
+            firingPoint.position,
+            firingPoint.rotation,
+            gunData.ProjectileSpeed,
+            gunData.Range,
+            gunData.Damage,
+            inheritedSpeed
+        );
 
         CurrentAmmo--;
         NotifyAmmoChanged();
@@ -171,6 +228,7 @@ public class GunController : MonoBehaviour
         if (audioSource != null && shootClip != null)
         {
             audioSource.PlayOneShot(shootClip);
+            AnimateAIM();
         }
 
         if (CurrentAmmo <= 0)
@@ -206,5 +264,35 @@ public class GunController : MonoBehaviour
         reloadCoroutine = null;
 
         NotifyAmmoChanged();
+    }
+
+    private void AnimateAIM()
+    {
+        if (aimTransform == null)
+        {
+            return;
+        }
+
+        if (aimCoroutine != null)
+        {
+            StopCoroutine(aimCoroutine);
+        }
+
+        aimCoroutine = StartCoroutine(AimAnimation());
+    }
+
+    private IEnumerator AimAnimation()
+    {
+        float t = 0f;
+        while (t < aimDuration)
+        {
+            t += Time.deltaTime;
+            float curveValue = aimCurve.Evaluate(Mathf.Clamp01(t / aimDuration));
+            aimTransform.localScale = aimBaseScale * (1f + curveValue * aimScaleAmount);
+            yield return null;
+        }
+
+        aimTransform.localScale = aimBaseScale;
+        aimCoroutine = null;
     }
 }
