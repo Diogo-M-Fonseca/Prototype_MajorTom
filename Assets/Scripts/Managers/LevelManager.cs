@@ -18,19 +18,16 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         if (scoreManager != null)
-        {
             scoreManager.OnScoreChanged += CheckLevelCompletion;
-        }
     }
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         if (levelConfig == null || scoreManager == null)
         {
-            Debug.LogError(
-                "LevelManager: falta atribuir LevelConfig ou ScoreManager.",
-                this
-            );
+            Debug.LogError("LevelManager: falta atribuir LevelConfig ou ScoreManager.", this);
             return;
         }
 
@@ -40,9 +37,7 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         if (scoreManager != null)
-        {
             scoreManager.OnScoreChanged -= CheckLevelCompletion;
-        }
     }
 
     private void CheckLevelCompletion(int currentScore)
@@ -51,25 +46,22 @@ public class LevelManager : MonoBehaviour
             return;
 
         if (currentScore >= levelConfig.LevelScore)
-        {
             CompleteLevel();
-        }
     }
 
     private void CompleteLevel()
     {
         if (victoryPanel != null)
-        {
             victoryPanel.SetActive(true);
-        }
 
         _levelCompleted = true;
 
-        foreach (Behaviour behaviour in gameplayBehaviourToDisableOnVictory)
+        if (gameplayBehaviourToDisableOnVictory != null)
         {
-            if (behaviour != null)
+            foreach (Behaviour behaviour in gameplayBehaviourToDisableOnVictory)
             {
-                behaviour.enabled = false;
+                if (behaviour != null)
+                    behaviour.enabled = false;
             }
         }
 
@@ -87,7 +79,7 @@ public class LevelManager : MonoBehaviour
         while (elapsedTime < slowDownDuration)
         {
             elapsedTime += Time.unscaledDeltaTime;
-            
+
             float progress = elapsedTime / slowDownDuration;
             Time.timeScale = Mathf.Lerp(initialTimeScale, 0f, progress);
 
@@ -97,19 +89,19 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0f;
 
         if (victoryPanel != null)
-        {
             victoryPanel.SetActive(true);
-        }
     }
 
     public void RestartLevel()
     {
+        StopAllCoroutines();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ReturnToMainMenu()
     {
+        StopAllCoroutines();
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneName);
     }

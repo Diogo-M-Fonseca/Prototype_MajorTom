@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        Time.timeScale = 1f;
+
         if (_stats == null)
         {
             Debug.LogError($"{name}: falta o ShipStats.", this);
@@ -55,25 +57,25 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         Died?.Invoke();
 
-        playerShipToDisableOnDeath.SetActive(false);
+        StartCoroutine(DefeatSequence());
+
+        if (playerShipToDisableOnDeath != null)
+            playerShipToDisableOnDeath.SetActive(false);
 
         if (DefeatPanel != null)
-        {
             DefeatPanel.SetActive(true);
-        }
 
-        foreach (Behaviour behaviour in gameplayBehaviourToDisableOnVictory)
+        if (gameplayBehaviourToDisableOnVictory != null)
         {
-            if (behaviour != null)
+            foreach (Behaviour behaviour in gameplayBehaviourToDisableOnVictory)
             {
-                behaviour.enabled = false;
+                if (behaviour != null)
+                    behaviour.enabled = false;
             }
         }
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
-        StartCoroutine(DefeatSequence());
     }
 
     private IEnumerator DefeatSequence()
@@ -84,7 +86,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         while (elapsedTime < slowDownDuration)
         {
             elapsedTime += Time.unscaledDeltaTime;
-            
+
             float progress = elapsedTime / slowDownDuration;
             Time.timeScale = Mathf.Lerp(initialTimeScale, 0f, progress);
 
@@ -94,19 +96,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Time.timeScale = 0f;
 
         if (DefeatPanel != null)
-        {
             DefeatPanel.SetActive(true);
-        }
     }
 
     public void RestartLevel()
     {
+        StopAllCoroutines();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ReturnToMainMenu()
     {
+        StopAllCoroutines();
         Time.timeScale = 1f;
         SceneManager.LoadScene(mainMenuSceneName);
     }
