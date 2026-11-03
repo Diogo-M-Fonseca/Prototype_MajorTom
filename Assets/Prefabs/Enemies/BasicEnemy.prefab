@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6200783554302476725}
   - component: {fileID: 2861314368763327180}
   - component: {fileID: 1635632770718404892}
+  - component: {fileID: 2250159113281988105}
   m_Layer: 7
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -194,8 +195,48 @@ MonoBehaviour:
   gunData: {fileID: 11400000, guid: c3eb4862faea78447ba64fba81670c9b, type: 2}
   projectilePool: {fileID: 0}
   firingPoint: {fileID: 3968910652083876026}
+  shipTransform: {fileID: 0}
   audioSource: {fileID: 0}
   shootClip: {fileID: 0}
+  reloadClip: {fileID: 0}
+  fireAction: {fileID: 0}
+  reloadAction: {fileID: 0}
+  aimTransform: {fileID: 0}
+  aimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  aimDuration: 0.1
+  aimScaleAmount: 0.3
 --- !u!114 &1635632770718404892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +253,18 @@ MonoBehaviour:
   _agent: {fileID: 7904535642354195017}
   _coneAngle: 10
   _rangeFraction: 0.9
+--- !u!114 &2250159113281988105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446110276852740870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110d5b10da7facb458b4baab529cea78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RadarTarget
 --- !u!1001 &2588411227073149180
 PrefabInstance:
   m_ObjectHideFlags: 0
