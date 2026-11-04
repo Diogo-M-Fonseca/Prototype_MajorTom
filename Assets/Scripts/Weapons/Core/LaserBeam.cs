@@ -69,6 +69,7 @@ public class LaserBeam : MonoBehaviour
             QueryTriggerInteraction.Ignore))
         {
             endPosition = hit.point;
+            Debug.Log($"Laser hit: {hit.collider.name} (layer={LayerMask.LayerToName(hit.collider.gameObject.layer)}, damageable={hit.collider.GetComponentInParent<IDamageable>() != null})", this);
 
             IDamageable damageable =
                 hit.collider.GetComponentInParent<IDamageable>();

@@ -4575,6 +4575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 493816962}
   - component: {fileID: 493816963}
+  - component: {fileID: 493816964}
   m_Layer: 6
   m_Name: LaserVisual
   m_TagString: Untagged
@@ -4707,6 +4708,24 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &493816964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493816961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405a3eefcd8b7d448a6bb0e575c54ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaserBeam
+  range: 500
+  damagePerSecond: 200
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 439
+  laserLine: {fileID: 493816963}
 --- !u!1001 &496954741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10555,6 +10574,7 @@ GameObject:
   - component: {fileID: 1061515129}
   - component: {fileID: 1061515128}
   - component: {fileID: 1061515130}
+  - component: {fileID: 1061515131}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -10851,24 +10871,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1061515119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 0b5140e229071cc419ee097536e81509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipBoost
   _ship: {fileID: 1061515121}
   _rampInTime: 0.5
   _rampOutTime: 1.5
-=======
-  m_Script: {fileID: 11500000, guid: 405a3eefcd8b7d448a6bb0e575c54ad8, type: 3}
+--- !u!114 &1061515131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061515119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5a02cf164091d48a1882cb329dc9b8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LaserBeam
-  range: 500
-  damagePerSecond: 20
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  laserLine: {fileID: 493816963}
->>>>>>> 7f6a50e47eca7a6ece258bc71db0a6400e05297e
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSlotInput
+  _manager: {fileID: 1883874863}
+  _leftSlot: 0
+  _rightSlot: 1
 --- !u!4 &1071011291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -18431,12 +18454,11 @@ MonoBehaviour:
   weaponSlots:
   - {fileID: 11400000, guid: 12eb1edbb9447544696ea81f150a9758, type: 2}
   - {fileID: 11400000, guid: 9b3b9cf16135c1a4b89410e01f332b52, type: 2}
-  - {fileID: 0}
   firingPoint: {fileID: 1857264121}
   projectilePool: {fileID: 1916096744}
   audioSource: {fileID: 1102865941}
   movementController: {fileID: 1061515121}
-  laserBeam: {fileID: 1061515130}
+  laserBeam: {fileID: 493816964}
 --- !u!4 &1886345976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7265071298528938118, guid: 8d2e7ecf4f019df4c9e8b2d797edcbad, type: 3}

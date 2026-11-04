@@ -23,6 +23,14 @@ public class WeaponManager : MonoBehaviour
     public int SelectedSlotIndex => selectedSlotIndex;
     public int SlotCount => weapons.Length;
 
+    public Weapon GetWeapon(int slotIndex)
+    {
+        if (weapons == null || slotIndex < 0 || slotIndex >= weapons.Length)
+            return null;
+
+        return weapons[slotIndex];
+    }
+
     public event Action<Weapon> OnSelectedWeaponChanged;
 
     private void Awake()
@@ -32,7 +40,6 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
-        // Atualiza todas as armas, mesmo as que não estão selecionadas.
         foreach (Weapon weapon in weapons)
         {
             weapon?.Tick(Time.deltaTime);
@@ -85,7 +92,6 @@ public class WeaponManager : MonoBehaviour
             weapons[i] = new Weapon(data, context);
         }
 
-        // Seleciona automaticamente a primeira arma disponível.
         for (int i = 0; i < weapons.Length; i++)
         {
             if (weapons[i] != null)
@@ -116,12 +122,10 @@ public class WeaponManager : MonoBehaviour
         if (newWeapon == null || slotIndex == selectedSlotIndex)
             return;
 
-        // Deseleciona a arma anterior.
         CurrentWeapon?.Unequip();
 
         selectedSlotIndex = slotIndex;
 
-        // Equipa a nova arma.
         CurrentWeapon.Equip();
 
         OnSelectedWeaponChanged?.Invoke(CurrentWeapon);

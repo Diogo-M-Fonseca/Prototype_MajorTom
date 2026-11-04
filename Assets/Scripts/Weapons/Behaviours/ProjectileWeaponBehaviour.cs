@@ -13,25 +13,23 @@ public class ProjectileWeaponBehaviour : WeaponBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioClip shootClip;
 
+    public override void Tick(Weapon weapon, float deltaTime)
+    {
+        if (!weapon.IsFiring || !weapon.CanFire)
+            return;
+
+        FireProjectile(weapon);
+        weapon.StartFireCooldown(1f / fireRate);
+    }
+
     public override void StartFiring(Weapon weapon)
     {
-        // O disparo é tratado continuamente no Tick, então não há necessidade de lógica adicional aqui.
-        throw new NotImplementedException();
+        // O disparo é tratado continuamente no Tick.
     }
 
     public override void StopFiring(Weapon weapon)
     {
         // Não é necessário interromper um projétil já disparado.
-        throw new NotImplementedException();
-    }
-
-    public override void Tick(Weapon weapon, float deltaTime)
-    {
-        if (!weapon.IsFiring || !weapon.CanFire)
-            return;
-        
-        FireProjectile(weapon);
-        weapon.StartFireCooldown(1f / fireRate);
     }
 
     private void FireProjectile(Weapon weapon)
@@ -40,7 +38,7 @@ public class ProjectileWeaponBehaviour : WeaponBehaviour
 
         if (context.ProjectilePool == null || context.FiringPoint == null)
             return;
-        
+
         context.ProjectilePool.GetProjectile(context.FiringPoint.position, context.FiringPoint.rotation, projectileSpeed, range, damage);
 
         if (shootClip != null && context.AudioSource != null)
