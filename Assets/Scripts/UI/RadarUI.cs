@@ -14,6 +14,10 @@ public class RadarUI : MonoBehaviour
     [SerializeField, Min(1f)] private float _range = 150f;
     [SerializeField, Min(0f)] private float _levelTolerance = 8f;
 
+    [Header("Arrow")]
+    [SerializeField, Min(1f)] private float _arrowSize = 10f;
+    [SerializeField, Min(0f)] private float _arrowGap = 1f;
+
     [Header("Orientation")]
     [SerializeField] private bool _yawOnly = false;
 
@@ -24,7 +28,7 @@ public class RadarUI : MonoBehaviour
     [SerializeField] private bool _showOutOfRange = true;
     [SerializeField, Range(0f, 1f)] private float _outOfRangeAlpha = 0.35f;
 
-    [Header("Height Icons")]
+    [Header("Sprites / Colors")]
     [SerializeField] private Sprite _aboveSprite;
     [SerializeField] private Sprite _levelSprite;
     [SerializeField] private Sprite _belowSprite;
@@ -32,7 +36,7 @@ public class RadarUI : MonoBehaviour
     [SerializeField] private Color _levelColor = Color.white;
     [SerializeField] private Color _belowColor = Color.red;
 
-    private readonly List<Image> _blips = new();
+    private readonly List<RadarBlip> _blips = new();
     private float _nextUpdate;
     private Vector3 _lastFlatForward = Vector3.forward;
 
@@ -84,37 +88,61 @@ public class RadarUI : MonoBehaviour
                 position = flat / _range * radius;
             }
 
-            Image blip = GetBlip(used++);
-            blip.rectTransform.anchoredPosition = position;
-
-            Sprite sprite;
+            float direction;
+            Sprite arrowSprite;
             Color color;
 
             if (local.y > _levelTolerance)
             {
-                sprite = _aboveSprite;
+                direction = 1f;
+                arrowSprite = _aboveSprite;
                 color = _aboveColor;
             }
             else if (local.y < -_levelTolerance)
             {
-                sprite = _belowSprite;
+                direction = -1f;
+                arrowSprite = _belowSprite;
                 color = _belowColor;
             }
             else
             {
-                sprite = _levelSprite;
+                direction = 0f;
+                arrowSprite = null;
                 color = _levelColor;
             }
 
             if (outOfRange)
                 color.a *= _outOfRangeAlpha;
 
-            blip.sprite = sprite;
-            blip.color = color;
+            RadarBlip blip = GetBlip(used++);
+            blip.Root.anchoredPosition = position;
+
+            blip.Dot.sprite = _levelSprite;
+            blip.Dot.color = color;
+
+            ApplyArrow(blip, direction, arrowSprite, color);
         }
 
         for (int i = used; i < _blips.Count; i++)
-            _blips[i].gameObject.SetActive(false);
+            _blips[i].Root.gameObject.SetActive(false);
+    }
+
+    private void ApplyArrow(RadarBlip blip, float direction, Sprite sprite, Color color)
+    {
+        bool visible = direction != 0f;
+        blip.Arrow.gameObject.SetActive(visible);
+
+        if (!visible)
+            return;
+
+        float offset = blip.Dot.rectTransform.sizeDelta.y * 0.5f + _arrowGap + _arrowSize * 0.5f;
+
+        RectTransform arrow = blip.Arrow.rectTransform;
+        arrow.sizeDelta = new Vector2(_arrowSize, _arrowSize);
+        arrow.anchoredPosition = new Vector2(0f, direction * offset);
+
+        blip.Arrow.sprite = sprite;
+        blip.Arrow.color = color;
     }
 
     private Quaternion GetRadarFrame()
@@ -134,12 +162,40 @@ public class RadarUI : MonoBehaviour
         return Quaternion.LookRotation(flat, Vector3.up);
     }
 
-    private Image GetBlip(int index)
+    private RadarBlip GetBlip(int index)
     {
         if (index == _blips.Count)
-            _blips.Add(Instantiate(_blipPrefab, _container));
+            _blips.Add(CreateBlip());
 
-        _blips[index].gameObject.SetActive(true);
-        return _blips[index];
+        RadarBlip blip = _blips[index];
+        blip.Root.gameObject.SetActive(true);
+        return blip;
+    }
+
+    private RadarBlip CreateBlip()
+    {
+        GameObject rootObject = new GameObject("Blip", typeof(RectTransform));
+        rootObject.layer = _container.gameObject.layer;
+
+        RectTransform root = (RectTransform)rootObject.transform;
+        root.SetParent(_container, false);
+        root.anchorMin = root.anchorMax = root.pivot = new Vector2(0.5f, 0.5f);
+        root.sizeDelta = Vector2.zero;
+
+        Image dot = Instantiate(_blipPrefab, root);
+        dot.name = "Dot";
+        dot.raycastTarget = false;
+
+        GameObject arrowObject = new GameObject("Arrow", typeof(RectTransform), typeof(Image));
+        arrowObject.layer = root.gameObject.layer;
+
+        RectTransform arrowRect = (RectTransform)arrowObject.transform;
+        arrowRect.SetParent(root, false);
+        arrowRect.anchorMin = arrowRect.anchorMax = arrowRect.pivot = new Vector2(0.5f, 0.5f);
+
+        Image arrow = arrowObject.GetComponent<Image>();
+        arrow.raycastTarget = false;
+
+        return new RadarBlip { Root = root, Dot = dot, Arrow = arrow };
     }
 }
