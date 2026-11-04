@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4902140739455310701}
-  m_Layer: 0
-  m_Name: Satelite
+  - component: {fileID: 3269409324199080214}
+  m_Layer: 8
+  m_Name: Satellite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +34,32 @@ Transform:
   - {fileID: 27650908717525095}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3269409324199080214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743661976166339825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee570c32aca6b84e9aa7c6a642f70c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SatelliteRing
+  _player: {fileID: 0}
+  _center: {fileID: 0}
+  _innerRadius: 5.004037
+  _oneShot: 0
+  _cooldown: 5
+  _speedMultiplier: 3
+  _boostDuration: 4
+  _shieldAmount: 50
+  _shieldDuration: 10
+  _passClip: {fileID: 0}
+  _passEffect: {fileID: 0}
+  _passed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3006415197866783410
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +72,7 @@ GameObject:
   - component: {fileID: 1006834462327416692}
   - component: {fileID: 7820140743756728004}
   - component: {fileID: 2300203463091579986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SateliteTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,15 +198,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -193,9 +220,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7272911518199237601, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270418177553459612, guid: 428b3804dd9b0be4a9b61b5ba1caf724, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

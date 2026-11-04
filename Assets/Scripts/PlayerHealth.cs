@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private ShipStats _stats;
     [SerializeField] private AudioClip _deathClip;
+    [SerializeField] private PlayerShield _shield;
 
     [Header("Defeat")]
     [SerializeField] private GameObject DefeatPanel;
@@ -28,6 +29,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         Time.timeScale = 1f;
 
+        if (_shield == null)
+            _shield = GetComponent<PlayerShield>();
+
         if (_stats == null)
         {
             Debug.LogError($"{name}: falta o ShipStats.", this);
@@ -40,6 +44,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         if (_currentHealth <= 0f)
+            return;
+
+        if (_shield != null)
+            damage = _shield.Absorb(damage);
+
+        if (damage <= 0f)
             return;
 
         _currentHealth = Mathf.Max(0f, _currentHealth - damage);

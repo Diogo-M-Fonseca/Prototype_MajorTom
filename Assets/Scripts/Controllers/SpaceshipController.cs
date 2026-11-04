@@ -24,7 +24,7 @@ namespace SpaceFlight
         [SerializeField]
         bool invertForward = true;
 
-        
+
         [SerializeField, Min(0f)]
         float mouseSensitivity = 0.15f;
 
@@ -52,9 +52,17 @@ namespace SpaceFlight
             roll,
             thrust,
             throttle;
-        Vector2 smoothedStep; 
+        Vector2 smoothedStep;
+        float boostMultiplier = 1f;
+        bool boostForcesThrottle;
 
         float DirSign => invertForward ? -1f : 1f;
+
+        public void SetBoost(float multiplier, bool forceThrottle)
+        {
+            boostMultiplier = Mathf.Max(1f, multiplier);
+            boostForcesThrottle = forceThrottle;
+        }
 
         public void SetInput(float roll, float thrust)
         {
@@ -107,10 +115,14 @@ namespace SpaceFlight
             float vf = Vector3.Dot(v, fwd);
             Vector3 sideways = v - fwd * vf;
 
-            throttle = Mathf.MoveTowards(throttle, thrust, throttleResponse * dt);
+            float targetThrottle = boostForcesThrottle ? 1f : thrust;
+            throttle = Mathf.MoveTowards(throttle, targetThrottle, throttleResponse * dt);
             float power = throttle >= 0f ? throttle : throttle * reverseRatio;
+
+            float effectivePower = enginePower * boostMultiplier;
+            float effectiveMaxSpeed = maxSpeed * boostMultiplier;
             Vector3 accel =
-                fwd * (power * enginePower - vf * (enginePower / maxSpeed))
+                fwd * (power * effectivePower - vf * (effectivePower / effectiveMaxSpeed))
                 - sideways * lateralGrip;
             rb.AddForce(accel, ForceMode.Acceleration);
         }

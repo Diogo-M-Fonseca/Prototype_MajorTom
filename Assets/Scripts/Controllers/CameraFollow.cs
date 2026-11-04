@@ -5,7 +5,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     Transform target;
 
-    [Tooltip("Igual ao 'invertForward' da nave.")]
     [SerializeField]
     bool invertForward = true;
 
@@ -15,18 +14,18 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     float height = 3f;
 
-    [Tooltip("Distância à frente da nave para onde a câmera olha.")]
     [SerializeField, Min(0f)]
     float lookAheadDistance = 15f;
 
     [SerializeField, Min(0.01f)]
     float positionSmoothTime = 0.08f;
 
-    [Tooltip("Maior = a câmera acompanha a rotação mais depressa.")]
     [SerializeField, Min(0.1f)]
     float rotationSharpness = 8f;
 
     Vector3 posVelocity;
+
+    public float ExtraDistance { get; set; }
 
     void Start()
     {
@@ -40,7 +39,7 @@ public class CameraFollow : MonoBehaviour
 
     Vector3 Forward => target.forward * (invertForward ? -1f : 1f);
 
-    Vector3 DesiredPosition => target.position - Forward * distance + target.up * height;
+    Vector3 DesiredPosition => target.position - Forward * (distance + ExtraDistance) + target.up * height;
 
     Quaternion DesiredRotation()
     {

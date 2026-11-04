@@ -5,10 +5,14 @@
 // Uma so janela para:
 //   Inimigo : criar/atualizar todos os dados (stats, movimento, behaviours, perfis, FSM de estados, arma) + prefab
 //   Jogador : criar/atualizar o prefab do jogador (com movimento e input ja configurados)
-//   Cena    : criar pools de projeteis, colocar o jogador (com a camara a segui-lo) e os inimigos (individuais ou em bando)
+//   Satelite: criar/atualizar o prefab do satelite (aro que da boost de velocidade e escudo ao jogador)
+//   Cena    : criar pools de projeteis, colocar o jogador (com a camara a segui-lo), os satelites e os inimigos (individuais ou em bando)
+//
+// O separador Jogador tambem configura o boost/escudo (ShipBoost, PlayerShield) e o efeito FTL da camara (CameraBoostEffect).
 //
 // Depende de: EditorAssetUtility, EnemyDataFactory, EnemyDataSettings, ShipPrefabUtility,
-// PlayerMovementSettings, CameraFollowSettings (+ SpaceshipController, ShipInputAdapter, CameraFollow)
+// PlayerMovementSettings, CameraFollowSettings, SatelliteSettings (+ SpaceshipController, ShipInputAdapter, CameraFollow,
+// SatelliteRing, ShipBoost, PlayerShield, CameraBoostEffect)
 // (substitui o EnemyCreatorWindow, que podes apagar).
 using System.Collections.Generic;
 using SpaceFlight;
@@ -18,7 +22,7 @@ using UnityEngine.InputSystem;
 
 public class ShipCreatorWindow : EditorWindow
 {
-    private enum Tab { Enemy, Player, Scene }
+    private enum Tab { Enemy, Player, Satellite, Scene }
     private enum ProfileChoice { Flock, Solo }
     private enum SpawnMode { Individual, Flock }
 
@@ -83,6 +87,18 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private bool _setupCameraOnPlace = true;
     [SerializeField] private CameraFollowSettings _cameraSettings = new CameraFollowSettings();
 
+    // ---- Jogador: boost e escudo (satelites)
+    [SerializeField] private bool _playerBoostShield = true;
+    [SerializeField, Min(0.01f)] private float _boostRampIn = 0.5f;
+    [SerializeField, Min(0.01f)] private float _boostRampOut = 1.5f;
+    [SerializeField] private Material _shieldVisualMaterial;
+
+    // ---- Camara: efeito FTL durante o boost
+    [SerializeField] private bool _cameraBoostEffect = true;
+    [SerializeField, Min(0f)] private float _boostFovIncrease = 35f;
+    [SerializeField, Min(0f)] private float _boostPunchFov = 15f;
+    [SerializeField, Min(0f)] private float _boostPullBack = 6f;
+
     // ---- Opcoes comuns de prefab
     [SerializeField] private bool _replaceModel;
     [SerializeField] private bool _rebuildCollider;
@@ -106,6 +122,24 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private Flock _existingFlock;
     [SerializeField] private float _spreadRadius = 30f;
 
+    // ---- Satelite: prefab
+    [SerializeField] private string _satelliteName = "Satellite";
+    [SerializeField] private string _satelliteFolder = "Assets/Satellites";
+    [SerializeField] private GameObject _satelliteModel;
+    [SerializeField] private Vector3 _satelliteModelEuler;
+    [SerializeField] private bool _satelliteMeshCollider = true;
+    [SerializeField] private int _satelliteLayer;
+    [SerializeField] private SatelliteSettings _satellite = new SatelliteSettings();
+
+    // ---- Cena: satelites
+    [SerializeField] private GameObject _satellitePrefabToPlace;
+    [SerializeField, Min(1)] private int _satelliteCount = 3;
+    [SerializeField, Min(0f)] private float _satelliteSpread = 300f;
+    [SerializeField, Min(0f)] private float _satelliteMinSpacing = 80f;
+    [SerializeField, Min(0.1f)] private float _satelliteMinScale = 1f;
+    [SerializeField, Min(0.1f)] private float _satelliteMaxScale = 1f;
+    [SerializeField] private bool _satelliteFacePlayer = true;
+
     [MenuItem("Tools/Ship Creator")]
     private static void Open()
     {
@@ -118,6 +152,7 @@ public class ShipCreatorWindow : EditorWindow
         FindInputActions(false);
         _so = new SerializedObject(this);
         _so.FindProperty("_settings").isExpanded = true;
+        _so.FindProperty("_satellite").isExpanded = true;
         DetectLayers();
     }
 
@@ -126,6 +161,7 @@ public class ShipCreatorWindow : EditorWindow
         if (_playerLayer == 0) _playerLayer = Mathf.Max(0, LayerMask.NameToLayer(PlayerLayerName));
         if (_enemyLayer == 0) _enemyLayer = Mathf.Max(0, LayerMask.NameToLayer(EnemyLayerName));
         if (_obstacleLayer == 0) _obstacleLayer = Mathf.Max(0, LayerMask.NameToLayer(ObstacleLayerName));
+        if (_satelliteLayer == 0) _satelliteLayer = _obstacleLayer;
     }
 
     // =============================================================== GUI
@@ -137,7 +173,7 @@ public class ShipCreatorWindow : EditorWindow
 
         DrawHeader();
 
-        _tab = (Tab)GUILayout.Toolbar((int)_tab, new[] { "Inimigo", "Jogador", "Cena" });
+        _tab = (Tab)GUILayout.Toolbar((int)_tab, new[] { "Inimigo", "Jogador", "Satelite", "Cena" });
         EditorGUILayout.Space();
 
         _scroll = EditorGUILayout.BeginScrollView(_scroll);
@@ -146,6 +182,7 @@ public class ShipCreatorWindow : EditorWindow
         {
             case Tab.Enemy: DrawEnemyTab(); break;
             case Tab.Player: DrawPlayerTab(); break;
+            case Tab.Satellite: DrawSatelliteTab(); break;
             default: DrawSceneTab(); break;
         }
 
@@ -439,7 +476,38 @@ public class ShipCreatorWindow : EditorWindow
         Prop("_setupCameraOnPlace", "Configurar a camara ao colocar o jogador na cena");
 
         if (_setupCameraOnPlace)
+        {
             Prop("_cameraSettings", "Parametros da camara");
+            Prop("_cameraBoostEffect", "Efeito FTL no boost (CameraBoostEffect)");
+
+            if (_cameraBoostEffect)
+            {
+                Prop("_boostFovIncrease", "FOV extra no boost (graus)");
+                Prop("_boostPunchFov", "Soco de FOV no arranque (graus)");
+                Prop("_boostPullBack", "Recuo da camara (m)");
+            }
+        }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Boost e escudo (satelites)", EditorStyles.boldLabel);
+        Prop("_playerBoostShield", "Adicionar ShipBoost e PlayerShield");
+
+        if (_playerBoostShield)
+        {
+            if (!_playerMovement)
+                EditorGUILayout.HelpBox(
+                    "O ShipBoost precisa do SpaceshipController ('Adicionar movimento e input'). Sem ele so o escudo e adicionado.",
+                    MessageType.Info);
+
+            Prop("_boostRampIn", "Subida do boost (s)");
+            Prop("_boostRampOut", "Descida do boost (s)");
+            Prop("_shieldVisualMaterial", "Material do escudo (cria a esfera visual)");
+
+            if (_shieldVisualMaterial == null)
+                EditorGUILayout.HelpBox(
+                    "Sem material, o escudo funciona mas nao tem esfera visual. Usa um material transparente.",
+                    MessageType.None);
+        }
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Vida", EditorStyles.boldLabel);
@@ -558,6 +626,8 @@ public class ShipCreatorWindow : EditorWindow
             if (_playerMovement)
                 BuildPlayerMovement(root);
 
+            BuildPlayerBoostShield(root, health);
+
             AddExtraScripts(root);
             ShipPrefabUtility.SetLayerRecursively(root, _playerLayer);
 
@@ -600,6 +670,93 @@ public class ShipCreatorWindow : EditorWindow
         EditorAssetUtility.SetObject(input, "move", _moveAction);
         EditorAssetUtility.SetObject(input, "look", _lookAction);
         EditorAssetUtility.SetBool(input, "lockCursor", _movement.LockCursor);
+    }
+
+    // Boost (precisa do SpaceshipController) e escudo. Com a opcao desligada, remove-os do prefab.
+    private void BuildPlayerBoostShield(GameObject root, PlayerHealth health)
+    {
+        ShipBoost existingBoost = root.GetComponent<ShipBoost>();
+        PlayerShield existingShield = root.GetComponent<PlayerShield>();
+
+        if (!_playerBoostShield)
+        {
+            if (existingBoost != null)
+                DestroyImmediate(existingBoost);
+
+            EditorAssetUtility.SetObject(health, "_shield", null);
+
+            if (existingShield != null)
+                DestroyImmediate(existingShield);
+
+            Transform oldVisual = root.transform.Find("ShieldVisual");
+            if (oldVisual != null)
+                DestroyImmediate(oldVisual.gameObject);
+
+            return;
+        }
+
+        SpaceshipController ship = root.GetComponent<SpaceshipController>();
+
+        if (ship != null)
+        {
+            ShipBoost boost = GetOrAdd<ShipBoost>(root);
+            EditorAssetUtility.SetObject(boost, "_ship", ship);
+            EditorAssetUtility.SetFloat(boost, "_rampInTime", _boostRampIn);
+            EditorAssetUtility.SetFloat(boost, "_rampOutTime", _boostRampOut);
+        }
+        else
+        {
+            Debug.LogWarning("Ship Creator: o jogador nao tem SpaceshipController, por isso so adicionei o escudo (o boost precisa dele).");
+        }
+
+        PlayerShield shield = GetOrAdd<PlayerShield>(root);
+        EditorAssetUtility.SetObject(health, "_shield", shield);
+        EditorAssetUtility.SetObject(shield, "_visual", BuildShieldVisual(root));
+    }
+
+    // Esfera translucida que envolve a nave. So e criada/atualizada com um material atribuido;
+    // sem material mantem o que ja existir (se existir). O PlayerShield liga/desliga-a em jogo.
+    private GameObject BuildShieldVisual(GameObject root)
+    {
+        Transform existing = root.transform.Find("ShieldVisual");
+
+        if (_shieldVisualMaterial == null)
+            return existing != null ? existing.gameObject : null;
+
+        // Mede a nave sem contar com a propria esfera (senao crescia a cada atualizacao).
+        if (existing != null)
+            existing.gameObject.SetActive(false);
+
+        bool hasBounds = ShipPrefabUtility.TryGetLocalBounds(root, out Bounds bounds);
+
+        if (existing != null)
+            existing.gameObject.SetActive(true);
+
+        GameObject visual;
+
+        if (existing != null)
+        {
+            visual = existing.gameObject;
+        }
+        else
+        {
+            visual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            visual.name = "ShieldVisual";
+            DestroyImmediate(visual.GetComponent<Collider>());
+            visual.transform.SetParent(root.transform, false);
+        }
+
+        float diameter = hasBounds ? bounds.extents.magnitude * 2f : 4f;
+        visual.transform.localPosition = hasBounds ? bounds.center : Vector3.zero;
+        visual.transform.localRotation = Quaternion.identity;
+        visual.transform.localScale = Vector3.one * diameter;
+
+        MeshRenderer renderer = visual.GetComponent<MeshRenderer>();
+        renderer.sharedMaterial = _shieldVisualMaterial;
+        renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        renderer.receiveShadows = false;
+
+        return visual;
     }
 
     private void FindInputActions(bool overwrite)
@@ -657,6 +814,142 @@ public class ShipCreatorWindow : EditorWindow
             if (root.GetComponent(type) == null)
                 root.AddComponent(type);
         }
+    }
+
+    // =============================================================== Satelite
+
+    private void DrawSatelliteTab()
+    {
+        EditorGUILayout.LabelField("Prefab do satelite", EditorStyles.boldLabel);
+        Prop("_satelliteName", "Nome");
+        Prop("_satelliteFolder", "Pasta");
+        Prop("_satelliteModel", "Modelo do aro");
+        Prop("_satelliteModelEuler", "Rotacao do modelo (graus)");
+
+        EditorGUILayout.HelpBox(
+            "O aro tem de ficar com o buraco virado para o eixo Z (azul) da raiz do prefab: o jogador atravessa-o ao longo de Z. " +
+            "Se o modelo vier deitado (comum em torus exportados), ajusta a rotacao do modelo (por exemplo X = 90) " +
+            "e confirma com o gizmo cian do SatelliteRing (seleciona o satelite na cena).",
+            MessageType.Info);
+
+        Prop("_satelliteMeshCollider", "Collider no aro (MeshCollider so na estrutura)");
+        _satelliteLayer = EditorGUILayout.LayerField("Layer", _satelliteLayer);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Parametros do aro", EditorStyles.boldLabel);
+        Prop("_satellite", "Aro, boost e escudo");
+
+        EditorGUILayout.Space();
+        Prop("_replaceModel", "Substituir modelo (se o prefab ja existir)");
+
+        string error = ValidateSatellitePrefab();
+        if (error != null)
+            EditorGUILayout.HelpBox(error, MessageType.Warning);
+        else if (_satelliteLayer == 0)
+            EditorGUILayout.HelpBox("O satelite vai ficar na layer Default. Usa 'Preparar layers' e escolhe Obstacle.", MessageType.Info);
+
+        using (new EditorGUI.DisabledScope(error != null))
+        {
+            if (GUILayout.Button("Criar / atualizar prefab do satelite", GUILayout.Height(30)))
+            {
+                BuildSatellitePrefab();
+                GUIUtility.ExitGUI();
+            }
+        }
+    }
+
+    private string ValidateSatellitePrefab()
+    {
+        if (string.IsNullOrWhiteSpace(_satelliteName)) return "Da um nome ao satelite.";
+        if (string.IsNullOrWhiteSpace(_satelliteFolder) || !_satelliteFolder.StartsWith("Assets"))
+            return "A pasta tem de comecar em 'Assets'.";
+
+        string path = $"{_satelliteFolder.TrimEnd('/')}/{_satelliteName}.prefab";
+        if (_satelliteModel == null && AssetDatabase.LoadAssetAtPath<GameObject>(path) == null)
+            return "Falta o modelo do aro.";
+
+        return null;
+    }
+
+    private void BuildSatellitePrefab()
+    {
+        _so.ApplyModifiedProperties();
+
+        GameObject root = LoadOrCreatePrefabContents(_satelliteName, _satelliteModel, _satelliteFolder,
+            out string path, out bool created);
+
+        try
+        {
+            if (!created && _replaceModel)
+                ReplaceModel(root, _satelliteModel);
+
+            // A rotacao do modelo e a deste separador (como os restantes valores, e reescrita em cada atualizacao).
+            Transform model = root.transform.Find("Model");
+            if (model != null)
+                model.localRotation = Quaternion.Euler(_satelliteModelEuler);
+
+            if (_satelliteMeshCollider)
+                AddMeshColliders(root);
+
+            SatelliteRing ring = GetOrAdd<SatelliteRing>(root);
+
+            float radius = _satellite.InnerRadius;
+            if (_satellite.AutoRadius && ShipPrefabUtility.TryGetLocalBounds(root, out Bounds bounds))
+                radius = Mathf.Min(bounds.extents.x, bounds.extents.y) * _satellite.AutoRadiusFactor;
+
+            EditorAssetUtility.SetFloat(ring, "_innerRadius", Mathf.Max(0.1f, radius));
+            EditorAssetUtility.SetBool(ring, "_oneShot", _satellite.OneShot);
+            EditorAssetUtility.SetFloat(ring, "_cooldown", _satellite.Cooldown);
+            EditorAssetUtility.SetFloat(ring, "_speedMultiplier", _satellite.SpeedMultiplier);
+            EditorAssetUtility.SetFloat(ring, "_boostDuration", _satellite.BoostDuration);
+            EditorAssetUtility.SetFloat(ring, "_shieldAmount", _satellite.ShieldAmount);
+            EditorAssetUtility.SetFloat(ring, "_shieldDuration", _satellite.ShieldDuration);
+
+            if (_satellite.PassClip != null)
+                EditorAssetUtility.SetObject(ring, "_passClip", _satellite.PassClip);
+
+            ShipPrefabUtility.SetLayerRecursively(root, _satelliteLayer);
+
+            GameObject prefab = PrefabUtility.SaveAsPrefabAsset(root, path);
+            _satellitePrefabToPlace = prefab;
+
+            Selection.activeObject = prefab;
+            EditorGUIUtility.PingObject(prefab);
+            Debug.Log($"Ship Creator: prefab do satelite {(created ? "criado" : "atualizado")} em {path} " +
+                      $"(raio interior {radius:0.#}).", prefab);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(root);
+        }
+
+        _so.Update();
+    }
+
+    // MeshCollider (nao convexo) em cada malha do aro, para o jogador bater na estrutura mas poder passar no buraco.
+    // Nao faz nada se o prefab ja tiver algum collider.
+    private static void AddMeshColliders(GameObject root)
+    {
+        if (root.GetComponentInChildren<Collider>() != null)
+        {
+            Debug.Log($"Ship Creator: '{root.name}' ja tem collider, nao adicionei outro.");
+            return;
+        }
+
+        int added = 0;
+
+        foreach (MeshFilter filter in root.GetComponentsInChildren<MeshFilter>())
+        {
+            if (filter.sharedMesh == null)
+                continue;
+
+            MeshCollider collider = filter.gameObject.AddComponent<MeshCollider>();
+            collider.sharedMesh = filter.sharedMesh;
+            added++;
+        }
+
+        if (added == 0)
+            Debug.LogWarning($"Ship Creator: '{root.name}' nao tem malhas, collider nao adicionado.");
     }
 
     // =============================================================== Cena
@@ -721,6 +1014,9 @@ public class ShipCreatorWindow : EditorWindow
 
         if (playerError != null)
             EditorGUILayout.HelpBox(playerError, MessageType.Warning);
+
+        // ---- Satelites
+        DrawSatelliteSpawn();
 
         // ---- Inimigos
         EditorGUILayout.Space();
@@ -914,6 +1210,8 @@ public class ShipCreatorWindow : EditorWindow
         EditorAssetUtility.SetFloat(follow, "positionSmoothTime", _cameraSettings.PositionSmoothTime);
         EditorAssetUtility.SetFloat(follow, "rotationSharpness", _cameraSettings.RotationSharpness);
 
+        SetupBoostEffect(cameraObject, follow);
+
         // Posiciona a camara ja em modo de edicao, como o CameraFollow faria no arranque.
         Vector3 forward = target.forward * (invertForward ? -1f : 1f);
         Vector3 position = target.position - forward * _cameraSettings.Distance + target.up * _cameraSettings.Height;
@@ -924,6 +1222,139 @@ public class ShipCreatorWindow : EditorWindow
             Quaternion.LookRotation(lookPoint - position, target.up));
 
         Debug.Log($"Ship Creator: camara '{cameraObject.name}' a seguir '{target.name}'.", cameraObject);
+    }
+
+    // Efeito FTL da camara. Se a opcao estiver desligada nao mexe no que ja la estiver.
+    private void SetupBoostEffect(GameObject cameraObject, CameraFollow follow)
+    {
+        if (!_cameraBoostEffect)
+            return;
+
+        CameraBoostEffect effect = cameraObject.GetComponent<CameraBoostEffect>();
+        if (effect == null)
+            effect = Undo.AddComponent<CameraBoostEffect>(cameraObject);
+
+        EditorAssetUtility.SetObject(effect, "_follow", follow);
+        EditorAssetUtility.SetFloat(effect, "_fovIncrease", _boostFovIncrease);
+        EditorAssetUtility.SetFloat(effect, "_punchFov", _boostPunchFov);
+        EditorAssetUtility.SetFloat(effect, "_extraDistance", _boostPullBack);
+    }
+
+    // ------------------------------------------------------------ Satelites na cena
+
+    private void DrawSatelliteSpawn()
+    {
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Satelites", EditorStyles.boldLabel);
+        Prop("_satellitePrefabToPlace", "Prefab do satelite");
+        Prop("_satelliteCount", "Quantidade");
+        Prop("_satelliteSpread", "Raio de dispersao");
+        Prop("_satelliteMinSpacing", "Distancia minima entre satelites");
+        Prop("_satelliteMinScale", "Escala minima");
+        Prop("_satelliteMaxScale", "Escala maxima");
+        Prop("_satelliteFacePlayer", "Virar o aro para o jogador");
+
+        string error = ValidateSatelliteSpawn();
+        if (error != null)
+            EditorGUILayout.HelpBox(error, MessageType.Warning);
+        else if (_satelliteFacePlayer && FindFirstObjectByType<PlayerHealth>() == null)
+            EditorGUILayout.HelpBox("Sem jogador na cena, os aros ficam com rotacao aleatoria.", MessageType.Info);
+
+        using (new EditorGUI.DisabledScope(error != null))
+        {
+            if (GUILayout.Button("Colocar satelites na cena", GUILayout.Height(28)))
+            {
+                SpawnSatellites();
+                GUIUtility.ExitGUI();
+            }
+        }
+    }
+
+    private string ValidateSatelliteSpawn()
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode)
+            return "Colocar satelites so funciona em modo de edicao.";
+
+        if (_satellitePrefabToPlace == null)
+            return "Indica o prefab do satelite (cria-o no separador Satelite).";
+
+        if (!EditorUtility.IsPersistent(_satellitePrefabToPlace))
+            return "O prefab do satelite tem de ser um asset, nao um objeto da cena.";
+
+        if (_satellitePrefabToPlace.GetComponent<SatelliteRing>() == null)
+            return $"'{_satellitePrefabToPlace.name}' nao tem SatelliteRing.";
+
+        return null;
+    }
+
+    private void SpawnSatellites()
+    {
+        _so.ApplyModifiedProperties();
+
+        Undo.IncrementCurrentGroup();
+        int undoGroup = Undo.GetCurrentGroup();
+
+        PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+        Transform player = playerHealth != null ? playerHealth.transform : null;
+
+        GameObject group = new GameObject("Satellites");
+        Undo.RegisterCreatedObjectUndo(group, "Spawn satellites");
+
+        Vector3 center = GetSpawnCenter();
+        List<Vector3> placed = new List<Vector3>();
+        int crowded = 0;
+
+        float minScale = Mathf.Min(_satelliteMinScale, _satelliteMaxScale);
+        float maxScale = Mathf.Max(_satelliteMinScale, _satelliteMaxScale);
+
+        for (int i = 0; i < _satelliteCount; i++)
+        {
+            Vector3 position = center;
+            bool found = false;
+
+            for (int attempt = 0; attempt < 30 && !found; attempt++)
+            {
+                position = center + Random.insideUnitSphere * _satelliteSpread;
+                found = IsFarEnough(position, placed, _satelliteMinSpacing);
+            }
+
+            if (!found)
+                crowded++;
+
+            placed.Add(position);
+
+            Quaternion rotation = _satelliteFacePlayer && player != null
+                ? GetFacing(position, player) * Quaternion.AngleAxis(Random.Range(0f, 360f), Vector3.forward)
+                : Random.rotation;
+
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(_satellitePrefabToPlace);
+            Undo.RegisterCreatedObjectUndo(instance, "Spawn satellites");
+
+            instance.transform.SetPositionAndRotation(position, rotation);
+            instance.transform.SetParent(group.transform, true);
+            instance.transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
+        }
+
+        Selection.activeGameObject = group;
+        Undo.CollapseUndoOperations(undoGroup);
+        Debug.Log($"Ship Creator: {_satelliteCount} satelite(s) colocados.", group);
+
+        if (crowded > 0)
+            Debug.LogWarning($"Ship Creator: {crowded} satelite(s) ficaram mais perto que a distancia minima " +
+                             "(aumenta o raio de dispersao ou diminui a distancia minima).", group);
+    }
+
+    private static bool IsFarEnough(Vector3 position, List<Vector3> placed, float minDistance)
+    {
+        float sqr = minDistance * minDistance;
+
+        foreach (Vector3 other in placed)
+        {
+            if ((other - position).sqrMagnitude < sqr)
+                return false;
+        }
+
+        return true;
     }
 
     // ------------------------------------------------------------ Inimigos na cena
@@ -1076,6 +1507,7 @@ public class ShipCreatorWindow : EditorWindow
         _playerLayer = player;
         _enemyLayer = enemy;
         _obstacleLayer = obstacle;
+        _satelliteLayer = obstacle;
 
         // Obstaculos dos inimigos: so a layer Obstacle (se incluisses o jogador, fugiam dele).
         _settings.SetObstacleMask(1 << obstacle);
