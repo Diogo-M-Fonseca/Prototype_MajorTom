@@ -17,6 +17,8 @@ public class WeaponManager : MonoBehaviour
     private int selectedSlotIndex = -1;
     private bool hasBeenEnabled;
 
+    public Transform FiringPoint => firingPoint;
+
     public Weapon CurrentWeapon =>
         selectedSlotIndex >= 0 ? weapons[selectedSlotIndex] : null;
 

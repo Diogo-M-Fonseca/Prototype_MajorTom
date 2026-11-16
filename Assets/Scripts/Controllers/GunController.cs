@@ -73,6 +73,8 @@ public class GunController : MonoBehaviour
     private Vector3 shipVelocity;
 
     public float Range => gunData != null ? gunData.Range : 0f;
+    public float ProjectileSpeed => gunData != null ? gunData.ProjectileSpeed : 0f;
+    public Transform FiringPoint => firingPoint;
     public event Action<int, int> OnAmmoChanged;
     public int CurrentAmmo { get; private set; }
     public int MaxAmmo => gunData != null ? gunData.MaxAmmo : 0;

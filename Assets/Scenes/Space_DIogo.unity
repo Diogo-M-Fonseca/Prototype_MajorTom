@@ -10430,6 +10430,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994325183}
   m_CullTransparentMesh: 1
+--- !u!1 &1005206913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1005206916}
+  - component: {fileID: 1005206915}
+  m_Layer: 0
+  m_Name: AimAssist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1005206915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005206913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d79921abfa9c79428525f232cdfd106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AimAssist
+  assistLevel: 0.95
+  maxCaptureAngle: 20
+  maxPullRate: 100
+  maxDegreesPerSecond: 90
+--- !u!4 &1005206916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005206913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.24906, y: -0.78914, z: -1.73767}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1008182743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -10855,7 +10903,7 @@ MonoBehaviour:
   mouseSensitivity: 0.15
   invertMouseY: 0
   invertMouseX: 1
-  aimSmoothing: 0.03
+  aimSmoothing: 0.1
   maxRollRate: 120
   rollAcceleration: 600
 --- !u!54 &1061515122
@@ -17705,6 +17753,7 @@ MonoBehaviour:
   lookAheadDistance: 15
   positionSmoothTime: 0.08
   rotationSharpness: 8
+  shipSafeZone: 0.7
 --- !u!4 &1727690420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -21449,3 +21498,4 @@ SceneRoots:
   - {fileID: 864021878}
   - {fileID: 780925110}
   - {fileID: 559828533}
+  - {fileID: 1005206916}

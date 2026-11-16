@@ -13,6 +13,9 @@ public class ProjectileWeaponBehaviour : WeaponBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioClip shootClip;
 
+    public float ProjectileSpeed => projectileSpeed;
+    public float Range => range;
+
     public override void Tick(Weapon weapon, float deltaTime)
     {
         if (!weapon.IsFiring || !weapon.CanFire)

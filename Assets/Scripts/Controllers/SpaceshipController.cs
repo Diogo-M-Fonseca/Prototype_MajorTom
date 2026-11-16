@@ -70,6 +70,16 @@ namespace SpaceFlight
             this.thrust = Mathf.Clamp(thrust, -1f, 1f);
         }
 
+        /// <summary>
+        /// Adiciona rotação direta (graus, eixos locais da nave) ao próximo passo de física.
+        /// Usado pelo aim assist: x = pitch (eixo X local), y = yaw (eixo Y local).
+        /// </summary>
+        public void AddRotationDegrees(float pitch, float yaw)
+        {
+            pendingPitch += pitch;
+            pendingYaw += yaw;
+        }
+
         public void AddLook(float mouseX, float mouseY)
         {
             float x = invertMouseX ? -mouseX : mouseX;

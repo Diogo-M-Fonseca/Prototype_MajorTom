@@ -5,28 +5,28 @@ using UnityEngine;
 public class AimPositioner : MonoBehaviour
 {
     [Header("References")]
-    [Tooltip("Transform da nave que define a direção de mira.")]
     [SerializeField]
     private Transform shipTransform;
 
-    [Tooltip(
-        "Opcional: ponto de onde sai a direção de mira (ex.: o firingPoint). Se vazio, usa o Ship Transform."
-    )]
+    
     [SerializeField]
     private Transform aimOrigin;
 
-    [Tooltip("Elemento de UI (RectTransform) que representa a mira.")]
     [SerializeField]
     private RectTransform aimRect;
 
-    [Tooltip("Câmara usada para projetar o ponto. Se vazio, usa a Camera.main.")]
     [SerializeField]
     private Camera aimCamera;
 
     [Header("Settings")]
-    [Tooltip("Distância (em metros) à frente da nave onde a mira é projetada.")]
     [SerializeField]
     private float aimDistance = 100f;
+
+    /// <summary>Distância (com sinal) usada para projetar a mira. Pode ser negativa se a nave estiver invertida.</summary>
+    public float AimDistance => aimDistance;
+
+    /// <summary>Transform de onde a mira é projetada (aimOrigin, ou a nave se vazio).</summary>
+    public Transform AimOriginTransform => aimOrigin != null ? aimOrigin : shipTransform;
 
     private RectTransform aimParentRect;
     private Camera aimUICamera;
