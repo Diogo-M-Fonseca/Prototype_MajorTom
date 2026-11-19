@@ -1,4 +1,3 @@
-using SpaceFlight;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,10 +5,8 @@ public class ShipInputAdapter : MonoBehaviour
 {
     [SerializeField] SpaceshipController ship;
 
-    [Tooltip("Vector2: x = A/D (roll), y = W/S (thrust)")]
     [SerializeField] InputActionReference move;
 
-    [Tooltip("Vector2 ligado a <Mouse>/delta")]
     [SerializeField] InputActionReference look;
 
     [SerializeField] bool lockCursor = true;

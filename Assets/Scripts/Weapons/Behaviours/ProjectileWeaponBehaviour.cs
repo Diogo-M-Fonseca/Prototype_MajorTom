@@ -42,7 +42,13 @@ public class ProjectileWeaponBehaviour : WeaponBehaviour
         if (context.ProjectilePool == null || context.FiringPoint == null)
             return;
 
-        context.ProjectilePool.GetProjectile(context.FiringPoint.position, context.FiringPoint.rotation, projectileSpeed, range, damage);
+        context.ProjectilePool.GetProjectile(
+            context.FiringPoint.position,
+            context.FiringPoint.rotation,
+            projectileSpeed * context.SpeedMultiplier,
+            range,
+            damage,
+            context.ShooterVelocity);
 
         if (shootClip != null && context.AudioSource != null)
         {

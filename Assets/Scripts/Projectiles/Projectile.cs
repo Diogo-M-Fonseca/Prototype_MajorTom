@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     private ProjectilePool projectilePool;
 
     private float speed;
-    private float inheritedSpeed;
+    private Vector3 inheritedVelocity;
     private float remainingRange;
     private float damage;
 
@@ -24,20 +24,27 @@ public class Projectile : MonoBehaviour
         projectilePool = pool;
     }
 
-    public void Initialize(float projectileSpeed, float range, float projectileDamage, float shooterSpeed = 0f)
+    public void Initialize(float projectileSpeed, float range, float projectileDamage, Vector3 shooterVelocity)
     {
         speed = projectileSpeed;
-        inheritedSpeed = shooterSpeed;
+        inheritedVelocity = shooterVelocity;
         remainingRange = range;
         damage = projectileDamage;
     }
 
+    public void Initialize(float projectileSpeed, float range, float projectileDamage, float shooterSpeed = 0f)
+    {
+        Initialize(projectileSpeed, range, projectileDamage, transform.forward * shooterSpeed);
+    }
+
     private void Update()
     {
-        float distanceThisFrame = (speed + inheritedSpeed) * Time.deltaTime;
+        Vector3 displacement = (transform.forward * speed + inheritedVelocity) * Time.deltaTime;
+        float distanceThisFrame = displacement.magnitude;
+        Vector3 moveDirection = distanceThisFrame > 1e-6f ? displacement / distanceThisFrame : transform.forward;
 
         if (debugLogs &&
-            Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit any,
+            Physics.SphereCast(transform.position, hitRadius, moveDirection, out RaycastHit any,
                 distanceThisFrame, ~0, QueryTriggerInteraction.Collide))
         {
             Debug.Log($"[Projectile] no caminho: {any.collider.name} " +
@@ -45,14 +52,14 @@ public class Projectile : MonoBehaviour
                       $"trigger={any.collider.isTrigger})", this);
         }
 
-        if (Physics.SphereCast(transform.position, hitRadius, transform.forward, out RaycastHit hit,
+        if (Physics.SphereCast(transform.position, hitRadius, moveDirection, out RaycastHit hit,
                 distanceThisFrame, hitMask, QueryTriggerInteraction.Ignore))
         {
             HandleHit(hit);
             return;
         }
 
-        transform.position += transform.forward * distanceThisFrame;
+        transform.position += displacement;
 
         remainingRange -= speed * Time.deltaTime;
 

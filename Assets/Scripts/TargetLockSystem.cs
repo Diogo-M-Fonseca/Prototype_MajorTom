@@ -1,4 +1,3 @@
-using SpaceFlight;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -15,7 +14,6 @@ public class TargetLockSystem : MonoBehaviour
 
     [Header("Lead")]
     [SerializeField] private float fallbackProjectileSpeed = 100f;
-    // if there's not a AimPositioner
     [SerializeField] private float aimDistance = 100f;
     [SerializeField, Min(0f)] private float leadSmoothing = 0.05f;
 
@@ -237,12 +235,13 @@ public class TargetLockSystem : MonoBehaviour
             {
                 if (weapon.Data.WeaponBehaviour is ProjectileWeaponBehaviour projectile)
                 {
-                    speed = projectile.ProjectileSpeed;
+                    speed = projectile.ProjectileSpeed * weaponManager.SpeedMultiplier;
                     range = projectile.Range;
+                    inheritShipSpeed = true;
                 }
                 else
                 {
-                    isProjectile = false; // laser: acerta instantaneamente, não há lead
+                    isProjectile = false;
                 }
             }
         }
@@ -258,7 +257,12 @@ public class TargetLockSystem : MonoBehaviour
     private void GetCrosshair(Transform muzzle, out Vector3 origin, out Vector3 offset)
     {
         Transform aimOrigin = aimPositioner != null ? aimPositioner.AimOriginTransform : null;
-        if (aimOrigin != null)
+        if (aimOrigin != null && ship != null && ship.UsesFreeReticle)
+        {
+            origin = aimOrigin.position;
+            offset = ship.AimDirection * Mathf.Abs(aimPositioner.AimDistance);
+        }
+        else if (aimOrigin != null)
         {
             origin = aimOrigin.position;
             offset = aimOrigin.forward * aimPositioner.AimDistance;
@@ -279,7 +283,6 @@ public class TargetLockSystem : MonoBehaviour
         Vector3 shipVel = ship.TryGetComponent(out Rigidbody shipBody) ? shipBody.linearVelocity : Vector3.zero;
         float distance = Vector3.Distance(muzzle.position, targetPos);
 
-        // Marcador no inimigo
         SetUIVisible(true);
         PlaceOnScreen(targetBox, cam.WorldToScreenPoint(targetPos), out bool targetOnScreen);
         targetBox.sizeDelta = Vector2.one * targetBoxSize;
@@ -313,7 +316,8 @@ public class TargetLockSystem : MonoBehaviour
 
         Vector3 leadDir = (smoothedLead - muzzle.position).normalized;
         GetCrosshair(muzzle, out Vector3 aimOrigin, out Vector3 aimOffset);
-        Quaternion toLead = Quaternion.FromToRotation(muzzle.forward, leadDir);
+        Vector3 aimNow = ship.UsesFreeReticle ? ship.AimDirection : muzzle.forward;
+        Quaternion toLead = Quaternion.FromToRotation(aimNow, leadDir);
         Vector3 leadScreen = cam.WorldToScreenPoint(aimOrigin + toLead * aimOffset);
         Vector3 aimScreen = cam.WorldToScreenPoint(aimOrigin + aimOffset);
 
@@ -435,8 +439,8 @@ public class TargetLockSystem : MonoBehaviour
 
         Color32[] pixels = new Color32[size * size];
         for (int y = 0; y < size; y++)
-        for (int x = 0; x < size; x++)
-            pixels[y * size + x] = fill(x, y, size) ? new Color32(255, 255, 255, 255) : new Color32(255, 255, 255, 0);
+            for (int x = 0; x < size; x++)
+                pixels[y * size + x] = fill(x, y, size) ? new Color32(255, 255, 255, 255) : new Color32(255, 255, 255, 0);
 
         tex.SetPixels32(pixels);
         tex.Apply(false, true);

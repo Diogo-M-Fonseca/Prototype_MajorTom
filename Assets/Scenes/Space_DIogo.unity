@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (28)
@@ -253,6 +257,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -527,6 +535,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (100)
@@ -674,6 +686,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (81)
@@ -731,6 +747,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (91)
@@ -867,6 +887,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (62)
@@ -929,6 +953,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (178)
@@ -986,6 +1014,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -1043,6 +1075,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (2)
@@ -1105,6 +1141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (181)
@@ -1162,6 +1202,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (14)
@@ -1224,6 +1268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (74)
@@ -1286,6 +1334,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (49)
@@ -1343,6 +1395,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (13)
@@ -1392,6 +1448,78 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+--- !u!1 &120162542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 120162545}
+  - component: {fileID: 120162544}
+  - component: {fileID: 120162543}
+  m_Layer: 0
+  m_Name: TargetLockSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &120162543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120162542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d79921abfa9c79428525f232cdfd106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AimAssist
+  assistLevel: 0.5
+  maxCaptureAngle: 20
+  maxPullRate: 8
+  maxDegreesPerSecond: 90
+--- !u!114 &120162544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120162542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b633e7391be4e8d4399157c99c06dcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetLockSystem
+  selectionRadius: 0.25
+  cameraFocusBlend: 0.5
+  fallbackProjectileSpeed: 100
+  aimDistance: 100
+  leadSmoothing: 0.05
+  leadBoxSize: 44
+  targetBoxSize: 70
+  aimedTolerance: 1
+  idleColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  aimedColor: {r: 0.2, g: 1, b: 0.3, a: 1}
+  unreachableColor: {r: 1, g: 0.25, b: 0.25, a: 0.8}
+--- !u!4 &120162545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120162542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &121557602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -1405,6 +1533,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (103)
@@ -1472,6 +1604,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (174)
@@ -1529,6 +1665,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (50)
@@ -1586,6 +1726,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (29)
@@ -1643,6 +1787,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -1710,6 +1858,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (5)
@@ -1863,6 +2015,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -1989,6 +2145,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (26)
@@ -2183,6 +2343,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (146)
@@ -2324,6 +2488,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -2459,6 +2627,7 @@ GameObject:
   - component: {fileID: 221232936}
   - component: {fileID: 221232935}
   - component: {fileID: 221232934}
+  - component: {fileID: 221232938}
   m_Layer: 8
   m_Name: Planet
   m_TagString: Untagged
@@ -2559,6 +2728,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221232938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221232933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fadfd70d6e97a149b2a81c0a5f87d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcePlanet
+  _capacity: 10
+  _deliveryRadius: 218.82
+  _delivered: 0
 --- !u!4 &221304764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -2572,6 +2756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (67)
@@ -2639,6 +2827,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (180)
@@ -2688,38 +2880,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1 &238785185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 238785186}
-  m_Layer: 6
-  m_Name: PlayerTransform
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &238785186
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238785185}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1154601328}
-  m_Father: {fileID: 1061515120}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &250256205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2728,6 +2888,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (8)
@@ -2795,6 +2959,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (85)
@@ -2862,6 +3030,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (98)
@@ -3199,6 +3371,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (138)
@@ -3248,6 +3424,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+--- !u!1 &333487725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333487727}
+  - component: {fileID: 333487726}
+  m_Layer: 0
+  m_Name: AsteroidPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &333487726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333487725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b4584c8e7a3164f9a4315a82d9f831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AsteroidPool
+  _fragmentPrefab: {fileID: 9211962781584866568, guid: 77ec3f70caca3ab46b933f113df752de, type: 3}
+  _fragmentInitialCapacity: 30
+  _fragmentMaxCapacity: 300
+  _fragmentPrewarm: 30
+  _resourcePrefab: {fileID: 6777250992405825808, guid: 49b118f57c9b73a4b8704981c79532cb, type: 3}
+  _resourceInitialCapacity: 20
+  _resourceMaxCapacity: 200
+  _resourcePrewarm: 20
+--- !u!4 &333487727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333487725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &336568645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -3286,6 +3514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (111)
@@ -3348,6 +3580,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (79)
@@ -3479,6 +3715,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (21)
@@ -3546,6 +3786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -3668,7 +3912,7 @@ PrefabInstance:
     - target: {fileID: 3994488466035747562, guid: 8c6278458bc66434ea17c0fd5964f725, type: 3}
       propertyPath: 'gameplayBehaviourToDisableOnVictory.Array.data[0]'
       value: 
-      objectReference: {fileID: 1061515121}
+      objectReference: {fileID: 0}
     - target: {fileID: 3994488466035747562, guid: 8c6278458bc66434ea17c0fd5964f725, type: 3}
       propertyPath: 'gameplayBehaviourToDisableOnVictory.Array.data[1]'
       value: 
@@ -3705,6 +3949,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -3762,6 +4010,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (59)
@@ -3829,6 +4081,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (115)
@@ -4024,6 +4280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (87)
@@ -4081,6 +4341,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (151)
@@ -4143,6 +4407,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (185)
@@ -4225,6 +4493,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (125)
@@ -4282,6 +4554,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (171)
@@ -4379,6 +4655,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (27)
@@ -4441,6 +4721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (179)
@@ -4490,167 +4774,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1 &493816961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 493816962}
-  - component: {fileID: 493816963}
-  - component: {fileID: 493816964}
-  m_Layer: 6
-  m_Name: LaserVisual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &493816962
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493816961}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1061515120}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &493816963
-LineRenderer:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493816961}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 0f9f89f1cc94af34c9b35cf5e27c5633, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 0.15
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_ColorSpace: -1
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
-  m_ApplyActiveColorSpace: 1
---- !u!114 &493816964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493816961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405a3eefcd8b7d448a6bb0e575c54ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LaserBeam
-  range: 500
-  damagePerSecond: 200
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 439
-  laserLine: {fileID: 493816963}
 --- !u!1001 &496954741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4659,6 +4782,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (3)
@@ -4716,6 +4843,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (38)
@@ -4783,6 +4914,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (141)
@@ -4840,6 +4975,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (76)
@@ -4902,6 +5041,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (17)
@@ -4959,6 +5102,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (46)
@@ -5016,6 +5163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (71)
@@ -5157,6 +5308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (41)
@@ -5228,6 +5383,7 @@ GameObject:
   - component: {fileID: 547735395}
   - component: {fileID: 547735394}
   - component: {fileID: 547735393}
+  - component: {fileID: 547735397}
   m_Layer: 8
   m_Name: Planet (2)
   m_TagString: Untagged
@@ -5328,6 +5484,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &547735397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547735392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fadfd70d6e97a149b2a81c0a5f87d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcePlanet
+  _capacity: 10
+  _deliveryRadius: 139.13795
+  _delivered: 0
 --- !u!1001 &549686950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5336,6 +5507,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (113)
@@ -5398,6 +5573,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (89)
@@ -5535,6 +5714,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (136)
@@ -5584,68 +5767,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1001 &563137732
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1061515120}
-    m_Modifications:
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.552
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.399
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.887
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5541461203349248097, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_Name
-      value: Blaster
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
---- !u!4 &563137733 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-  m_PrefabInstance: {fileID: 563137732}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &563965022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5654,6 +5775,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (90)
@@ -5813,6 +5938,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (65)
@@ -5870,6 +5999,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (66)
@@ -5927,6 +6060,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -5984,6 +6121,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (106)
@@ -6041,6 +6182,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (25)
@@ -6098,6 +6243,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (9)
@@ -6249,6 +6398,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (20)
@@ -6386,6 +6539,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (168)
@@ -6443,6 +6600,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -6500,6 +6661,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (32)
@@ -6704,6 +6869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (11)
@@ -6776,6 +6945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (43)
@@ -6833,6 +7006,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (112)
@@ -7033,6 +7210,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (61)
@@ -7090,6 +7271,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (121)
@@ -7167,6 +7352,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (48)
@@ -7229,6 +7418,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (124)
@@ -7355,6 +7548,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (60)
@@ -7417,6 +7614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (164)
@@ -7474,6 +7675,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (56)
@@ -7536,6 +7741,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (44)
@@ -7609,6 +7818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 780925110}
+  - component: {fileID: 780925111}
   m_Layer: 0
   m_Name: Asteroids
   m_TagString: Untagged
@@ -7838,6 +8048,30 @@ Transform:
   - {fileID: 623847446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &780925111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780925109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef13dc9daec61f468a2f5c6457b8d1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AsteroidField
+  _pool: {fileID: 333487726}
+  _health: 100
+  _fragmentGenerations: 2
+  _fragmentCount: {x: 3, y: 5}
+  _fragmentScale: 0.534
+  _scatterSpeed: 12
+  _maxSpinSpeed: 90
+  _resourceCount: {x: 1, y: 2}
+  _dropChance: 0.5
+  _resourceScatterSpeed: 6
+  _breakClip: {fileID: 8300000, guid: 0819fe5f4bc821e4b88144fc760cbbca, type: 3}
+  _breakEffect: {fileID: 0}
 --- !u!1001 &783031332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7930,6 +8164,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -7987,6 +8225,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (143)
@@ -8123,6 +8365,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (12)
@@ -8259,6 +8505,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (117)
@@ -8316,6 +8566,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (169)
@@ -8522,6 +8776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (107)
@@ -8998,6 +9256,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (144)
@@ -9055,6 +9317,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (120)
@@ -9187,6 +9453,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (86)
@@ -9254,6 +9524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (148)
@@ -9463,6 +9737,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (51)
@@ -9520,6 +9798,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (15)
@@ -9652,6 +9934,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (7)
@@ -9789,6 +10075,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (158)
@@ -9856,6 +10146,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (34)
@@ -9913,6 +10207,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (118)
@@ -10049,6 +10347,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (80)
@@ -10106,6 +10408,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (165)
@@ -10168,6 +10474,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (161)
@@ -10496,6 +10806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (177)
@@ -10563,6 +10877,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (68)
@@ -10620,6 +10938,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (109)
@@ -10832,345 +11154,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee570c32aca6b84e9aa7c6a642f70c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SatelliteRing
---- !u!1 &1061515119
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1061515120}
-  - component: {fileID: 1061515122}
-  - component: {fileID: 1061515121}
-  - component: {fileID: 1061515123}
-  - component: {fileID: 1061515124}
-  - component: {fileID: 1061515125}
-  - component: {fileID: 1061515126}
-  - component: {fileID: 1061515127}
-  - component: {fileID: 1061515129}
-  - component: {fileID: 1061515128}
-  - component: {fileID: 1061515130}
-  - component: {fileID: 1061515131}
-  m_Layer: 6
-  m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1061515120
+--- !u!4 &1061515120 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+  m_PrefabInstance: {fileID: 4910618835761662057}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.15, y: 1.35, z: -0.07}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 563137733}
-  - {fileID: 1718083970}
-  - {fileID: 238785186}
-  - {fileID: 1883874862}
-  - {fileID: 1728204122}
-  - {fileID: 1857264121}
-  - {fileID: 1102865940}
-  - {fileID: 493816962}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1061515121
+--- !u!114 &1061515124 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7482595437975787540, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+  m_PrefabInstance: {fileID: 4910618835761662057}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb8b6c1a440e5de4d923d354d0fc2ae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpaceFlight.SpaceshipController
-  maxSpeed: 150
-  enginePower: 30
-  reverseRatio: 0.5
-  throttleResponse: 4
-  lateralGrip: 4
-  invertForward: 1
-  mouseSensitivity: 0.15
-  invertMouseY: 0
-  invertMouseX: 1
-  aimSmoothing: 0.1
-  maxRollRate: 120
-  rollAcceleration: 600
---- !u!54 &1061515122
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1061515123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14f017bb2e0f5f1489d0f9b42ae80a9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShipInputAdapter
-  ship: {fileID: 1061515121}
-  move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  lockCursor: 0
---- !u!114 &1061515124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
+  m_GameObject: {fileID: 1101065806}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1f1f0ee3e18d0843854dc0f3910c248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  _stats: {fileID: 11400000, guid: f7ef2c1d354ccbf4782490bcf69c5e69, type: 2}
-  _deathClip: {fileID: 8300000, guid: 86b5e547de31e334fbbe59e4f3a43070, type: 3}
-  _shield: {fileID: 0}
-  DefeatPanel: {fileID: 1052399685}
-  gameplayBehaviourToDisableOnVictory:
-  - {fileID: 1061515121}
-  - {fileID: 0}
-  - {fileID: 0}
-  slowDownDuration: 1.5
-  mainMenuSceneName: MainMenu
-  playerShipToDisableOnDeath: {fileID: 1154601329}
---- !u!114 &1061515125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c924ef3fb727d40b82448e3b122c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HitFlash
-  _flashMaterial: {fileID: 2100000, guid: 68bfc7f87ef23e6439ba3600251362e8, type: 2}
-  _duration: 0.08
---- !u!65 &1061515126
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.46065485, z: 2.0923748}
-  m_Center: {x: 0, y: -0.06248206, z: 1.8001759}
---- !u!114 &1061515127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c185557581064ca50794edef7f148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AimPositioner
-  shipTransform: {fileID: 1061515120}
-  aimOrigin: {fileID: 1061515120}
-  aimRect: {fileID: 324085417}
-  aimCamera: {fileID: 1725915435}
-  aimDistance: -40
---- !u!114 &1061515128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fdeb772f550db439ac740f7f7cba63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShipEngineAudioSource
-  shipRigidbody: {fileID: 1061515122}
-  engineAudioSource: {fileID: 1061515129}
-  maxSpeed: 100
-  minPitch: 0.7
-  maxPitch: 1.2
-  minVolume: 0.15
-  maxVolume: 0.35
-  smoothSpeed: 2
---- !u!82 &1061515129
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: c9569dd0707f29745bc870c693f4560c, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 0.7
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1061515130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b5140e229071cc419ee097536e81509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ShipBoost
-  _ship: {fileID: 1061515121}
-  _rampInTime: 0.5
-  _rampOutTime: 1.5
---- !u!114 &1061515131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061515119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5a02cf164091d48a1882cb329dc9b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponSlotInput
-  _manager: {fileID: 1883874863}
-  _leftSlot: 0
-  _rightSlot: 1
 --- !u!4 &1071011291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -11253,6 +11252,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (147)
@@ -11310,6 +11313,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (10)
@@ -11436,6 +11443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (83)
@@ -11493,6 +11504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (114)
@@ -11550,6 +11565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (35)
@@ -11599,135 +11618,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1 &1102865939
+--- !u!1 &1101065806 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1577505838454925386, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+  m_PrefabInstance: {fileID: 4910618835761662057}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1102865940}
-  - component: {fileID: 1102865941}
-  m_Layer: 6
-  m_Name: Audio Source shots
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1102865940
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!114 &1101065807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7289594192650225488, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+  m_PrefabInstance: {fileID: 4910618835761662057}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102865939}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1061515120}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1102865941
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102865939}
+  m_GameObject: {fileID: 1101065806}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8267b97b4de26ed4d98bc842e7071eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceCollector
+--- !u!114 &1101065820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101065806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683782125de7a8345a2aaf2b9c3eb6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceDelivery
+  _collector: {fileID: 1101065807}
+  _deliverAction: {fileID: 0}
+  _prompt: {fileID: 0}
+  _deliverClip: {fileID: 0}
+  _flySpeed: 60
+  _flyAcceleration: 120
+  _launchInterval: 0.12
 --- !u!4 &1110276530 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7265071298528938118, guid: 8d2e7ecf4f019df4c9e8b2d797edcbad, type: 3}
@@ -11746,6 +11671,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (119)
@@ -11803,6 +11732,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (36)
@@ -11958,6 +11891,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (130)
@@ -12007,81 +11944,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1001 &1154601327
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 238785186}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.99
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: a3e42f6475d14f44e86b993642413029, type: 2}
-    - target: {fileID: 919132149155446097, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_Name
-      value: PlayerSpaceship
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
---- !u!4 &1154601328 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-  m_PrefabInstance: {fileID: 1154601327}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1154601329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 79e324d3ffa4abf4b8a135a30cd78438, type: 3}
-  m_PrefabInstance: {fileID: 1154601327}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1155584744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12090,6 +11952,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (6)
@@ -12501,6 +12367,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (134)
@@ -12563,6 +12433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (183)
@@ -12645,6 +12519,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (69)
@@ -12702,6 +12580,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (139)
@@ -12764,6 +12646,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (55)
@@ -12821,6 +12707,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (150)
@@ -12938,6 +12828,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (78)
@@ -13000,6 +12894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (126)
@@ -13067,6 +12965,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (152)
@@ -13218,6 +13120,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -13275,6 +13181,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (157)
@@ -13342,6 +13252,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (37)
@@ -13399,6 +13313,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (31)
@@ -13530,6 +13448,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -13602,6 +13524,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (162)
@@ -13669,6 +13595,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (99)
@@ -13750,6 +13680,7 @@ GameObject:
   - component: {fileID: 1394200600}
   - component: {fileID: 1394200599}
   - component: {fileID: 1394200598}
+  - component: {fileID: 1394200602}
   m_Layer: 8
   m_Name: Planet (1)
   m_TagString: Untagged
@@ -13850,6 +13781,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394200602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394200597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fadfd70d6e97a149b2a81c0a5f87d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcePlanet
+  _capacity: 10
+  _deliveryRadius: 66.95207
+  _delivered: 0
 --- !u!1001 &1399070162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13932,6 +13878,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (95)
@@ -14068,6 +14018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (18)
@@ -14125,6 +14079,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (97)
@@ -14182,6 +14140,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (116)
@@ -14308,6 +14270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (82)
@@ -14365,6 +14331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (142)
@@ -14432,6 +14402,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (16)
@@ -14489,6 +14463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (186)
@@ -14631,6 +14609,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (47)
@@ -14837,6 +14819,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (155)
@@ -14894,6 +14880,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -14956,6 +14946,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (104)
@@ -15023,6 +15017,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (33)
@@ -15233,6 +15231,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (137)
@@ -15290,6 +15292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (156)
@@ -15362,6 +15368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (182)
@@ -15419,6 +15429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (70)
@@ -15476,6 +15490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (145)
@@ -15533,6 +15551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -15590,6 +15612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (23)
@@ -15647,6 +15673,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (184)
@@ -15798,6 +15828,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (92)
@@ -15870,6 +15904,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (64)
@@ -15995,6 +16033,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -16196,6 +16238,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (40)
@@ -16253,6 +16299,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -16310,6 +16360,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (45)
@@ -16382,6 +16436,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (105)
@@ -16454,6 +16512,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (122)
@@ -16511,6 +16573,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (149)
@@ -16568,6 +16634,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (75)
@@ -16630,6 +16700,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (133)
@@ -16702,6 +16776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (154)
@@ -16759,6 +16837,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (1)
@@ -16821,6 +16903,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (167)
@@ -16878,6 +16964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (53)
@@ -16935,6 +17025,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (187)
@@ -17118,6 +17212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (173)
@@ -17180,6 +17278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (24)
@@ -17257,6 +17359,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (30)
@@ -17314,6 +17420,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -17371,6 +17481,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (77)
@@ -17428,6 +17542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (88)
@@ -17477,68 +17595,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1001 &1718083969
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1061515120}
-    m_Modifications:
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.552
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.399
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.887
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5541461203349248097, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-      propertyPath: m_Name
-      value: Blaster
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
---- !u!4 &1718083970 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
-  m_PrefabInstance: {fileID: 1718083969}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1722129294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17547,6 +17603,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (39)
@@ -17759,53 +17819,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
   m_PrefabInstance: {fileID: 389915902}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1728204121
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1728204122}
-  - component: {fileID: 1728204123}
-  m_Layer: 6
-  m_Name: WeaponController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1728204122
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728204121}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1061515120}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1728204123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728204121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5afcd5e4635bed4282d59a0e8f7edb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponController
-  weaponManager: {fileID: 1883874863}
-  fireAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  weaponScrollAction: {fileID: 7137853546308438057, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!4 &1731034546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -17834,6 +17847,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (176)
@@ -17891,6 +17908,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (84)
@@ -17953,6 +17974,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (52)
@@ -18010,6 +18035,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (42)
@@ -18141,6 +18170,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (135)
@@ -18198,6 +18231,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (128)
@@ -18255,6 +18292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (72)
@@ -18327,6 +18368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (170)
@@ -18409,6 +18454,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (129)
@@ -18600,37 +18649,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856967151}
   m_CullTransparentMesh: 1
---- !u!1 &1857264120
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1857264121}
-  m_Layer: 6
-  m_Name: FiringPoint1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1857264121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857264120}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1061515120}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &1857638552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7265071298528938118, guid: 8d2e7ecf4f019df4c9e8b2d797edcbad, type: 3}
@@ -18793,6 +18811,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (123)
@@ -18850,6 +18872,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (22)
@@ -18899,58 +18925,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
---- !u!1 &1883874861
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1883874862}
-  - component: {fileID: 1883874863}
-  m_Layer: 6
-  m_Name: WeaponManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1883874862
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883874861}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1061515120}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1883874863
+--- !u!114 &1883874863 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3565307754162159869, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+  m_PrefabInstance: {fileID: 4910618835761662057}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883874861}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e6b783bb5441d44ebc851d799254a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
-  weaponSlots:
-  - {fileID: 11400000, guid: 12eb1edbb9447544696ea81f150a9758, type: 2}
-  - {fileID: 11400000, guid: 9b3b9cf16135c1a4b89410e01f332b52, type: 2}
-  firingPoint: {fileID: 1857264121}
-  projectilePool: {fileID: 1916096744}
-  audioSource: {fileID: 1102865941}
-  movementController: {fileID: 1061515121}
-  laserBeam: {fileID: 493816964}
 --- !u!4 &1886345976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7265071298528938118, guid: 8d2e7ecf4f019df4c9e8b2d797edcbad, type: 3}
@@ -19048,6 +19033,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (96)
@@ -19105,6 +19094,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -19255,6 +19248,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (140)
@@ -19312,6 +19309,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (19)
@@ -19369,6 +19370,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (102)
@@ -19615,6 +19620,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (153)
@@ -19672,6 +19681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (93)
@@ -19729,6 +19742,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (58)
@@ -19786,6 +19803,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (166)
@@ -19843,6 +19864,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (54)
@@ -19900,6 +19925,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (159)
@@ -19972,6 +20001,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -20034,6 +20067,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (131)
@@ -20096,6 +20133,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (163)
@@ -20168,6 +20209,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (63)
@@ -20225,6 +20270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (132)
@@ -20287,6 +20336,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (127)
@@ -20344,6 +20397,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (94)
@@ -20434,6 +20491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (108)
@@ -20491,6 +20552,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (110)
@@ -20553,6 +20618,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (175)
@@ -20610,6 +20679,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (73)
@@ -20672,6 +20745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (172)
@@ -20864,7 +20941,6 @@ RectTransform:
   m_Children:
   - {fileID: 177173640}
   - {fileID: 1688075925}
-  - {fileID: 2112318253}
   - {fileID: 315252819}
   - {fileID: 1052399686}
   - {fileID: 324085417}
@@ -21088,81 +21164,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d2e7ecf4f019df4c9e8b2d797edcbad, type: 3}
---- !u!1 &2112318252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2112318253}
-  - component: {fileID: 2112318255}
-  - component: {fileID: 2112318254}
-  m_Layer: 5
-  m_Name: Crossair
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &2112318253
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112318252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2109587174}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2112318254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112318252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2112318255
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112318252}
-  m_CullTransparentMesh: 1
 --- !u!1001 &2115992873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21171,6 +21172,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (160)
@@ -21233,6 +21238,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid
@@ -21295,6 +21304,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (101)
@@ -21367,6 +21380,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (57)
@@ -21429,6 +21446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 780925110}
     m_Modifications:
+    - target: {fileID: 5832528022989528077, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+      propertyPath: _pool
+      value: 
+      objectReference: {fileID: 333487726}
     - target: {fileID: 6799181482003130330, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
       propertyPath: m_Name
       value: Asteroid (4)
@@ -21478,13 +21499,93 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
+--- !u!1001 &4910618835761662057
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 342447495475942450, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: aimRect
+      value: 
+      objectReference: {fileID: 324085417}
+    - target: {fileID: 342447495475942450, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: aimCamera
+      value: 
+      objectReference: {fileID: 1725915435}
+    - target: {fileID: 1382303700593088073, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: aimTransform
+      value: 
+      objectReference: {fileID: 324085417}
+    - target: {fileID: 1577505838454925386, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565307754162159869, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: projectilePool
+      value: 
+      objectReference: {fileID: 1916096744}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244849243988955689, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482595437975787540, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: DefeatPanel
+      value: 
+      objectReference: {fileID: 1052399685}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1577505838454925386, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1101065820}
+  m_SourcePrefab: {fileID: 100100000, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1170309256}
   - {fileID: 1725915436}
-  - {fileID: 1061515120}
+  - {fileID: 4910618835761662057}
   - {fileID: 221232937}
   - {fileID: 1394200601}
   - {fileID: 547735396}
@@ -21499,3 +21600,5 @@ SceneRoots:
   - {fileID: 780925110}
   - {fileID: 559828533}
   - {fileID: 1005206916}
+  - {fileID: 120162545}
+  - {fileID: 333487727}

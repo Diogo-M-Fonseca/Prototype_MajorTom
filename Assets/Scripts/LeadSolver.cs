@@ -18,31 +18,20 @@ public static class LeadSolver
         if (projectileSpeed <= 0.01f)
             return false;
 
-        float speed = projectileSpeed;
-        int iterations = inheritShooterSpeed ? 4 : 1;
+        Vector3 relativeVel = inheritShooterSpeed ? targetVel - shooterVel : targetVel;
 
-        for (int i = 0; i < iterations; i++)
+        if (!SolveTime(targetPos - muzzle, relativeVel, projectileSpeed, out timeToHit))
         {
-            if (!SolveTime(targetPos - muzzle, targetVel, speed, out timeToHit))
-            {
-                timeToHit = 0f;
-                interceptPoint = targetPos;
-                return false;
-            }
-
-            interceptPoint = targetPos + targetVel * timeToHit;
-
-            if (inheritShooterSpeed)
-            {
-                Vector3 dir = (interceptPoint - muzzle).normalized;
-                speed = projectileSpeed + Mathf.Max(0f, Vector3.Dot(shooterVel, dir));
-            }
+            timeToHit = 0f;
+            interceptPoint = targetPos;
+            return false;
         }
+
+        interceptPoint = targetPos + relativeVel * timeToHit;
 
         return true;
     }
 
-    // |d + v*t| = s*t  ->  (v.v - s²)t² + 2(d.v)t + d.d = 0
     private static bool SolveTime(Vector3 d, Vector3 v, float s, out float t)
     {
         t = 0f;

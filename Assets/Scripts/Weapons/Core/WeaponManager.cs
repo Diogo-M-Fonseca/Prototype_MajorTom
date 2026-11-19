@@ -16,8 +16,13 @@ public class WeaponManager : MonoBehaviour
     private Weapon[] weapons;
     private int selectedSlotIndex = -1;
     private bool hasBeenEnabled;
+    private Rigidbody shipBody;
+    private ShipBoost shipBoost;
 
     public Transform FiringPoint => firingPoint;
+
+    public Vector3 ShooterVelocity => shipBody != null ? shipBody.linearVelocity : Vector3.zero;
+    public float SpeedMultiplier => shipBoost != null ? shipBoost.CurrentMultiplier : 1f;
 
     public Weapon CurrentWeapon =>
         selectedSlotIndex >= 0 ? weapons[selectedSlotIndex] : null;
@@ -37,6 +42,13 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
+        shipBody = GetComponentInParent<Rigidbody>();
+        if (shipBody == null && firingPoint != null)
+            shipBody = firingPoint.GetComponentInParent<Rigidbody>();
+
+        Transform shipRoot = shipBody != null ? shipBody.transform : transform.root;
+        shipBoost = shipRoot.GetComponentInChildren<ShipBoost>();
+
         InitializeWeapons();
     }
 
@@ -71,7 +83,9 @@ public class WeaponManager : MonoBehaviour
             projectilePool,
             audioSource,
             laserBeam,
-            SetMovementLocked
+            SetMovementLocked,
+            () => ShooterVelocity,
+            () => SpeedMultiplier
         );
 
         for (int i = 0; i < weaponSlots.Length; i++)

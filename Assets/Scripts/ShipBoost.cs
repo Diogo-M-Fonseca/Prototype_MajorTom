@@ -1,12 +1,11 @@
 using System;
-using SpaceFlight;
 using UnityEngine;
 
 public class ShipBoost : MonoBehaviour
 {
     [SerializeField] private SpaceshipController _ship;
 
-    [Header("Transições")]
+    [Header("Transitions")]
     [SerializeField, Min(0.01f)] private float _rampInTime = 0.5f;
     [SerializeField, Min(0.01f)] private float _rampOutTime = 1.5f;
 
@@ -19,6 +18,7 @@ public class ShipBoost : MonoBehaviour
 
     public bool IsActive => _remaining > 0f;
     public float Intensity => _intensity;
+    public float CurrentMultiplier => Mathf.Lerp(1f, _speedMultiplier, _intensity);
 
     private void Awake()
     {

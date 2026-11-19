@@ -8,7 +8,7 @@ public class AimPositioner : MonoBehaviour
     [SerializeField]
     private Transform shipTransform;
 
-    
+
     [SerializeField]
     private Transform aimOrigin;
 
@@ -22,12 +22,11 @@ public class AimPositioner : MonoBehaviour
     [SerializeField]
     private float aimDistance = 100f;
 
-    /// <summary>Distância (com sinal) usada para projetar a mira. Pode ser negativa se a nave estiver invertida.</summary>
     public float AimDistance => aimDistance;
 
-    /// <summary>Transform de onde a mira é projetada (aimOrigin, ou a nave se vazio).</summary>
     public Transform AimOriginTransform => aimOrigin != null ? aimOrigin : shipTransform;
 
+    private SpaceshipController ship;
     private RectTransform aimParentRect;
     private Camera aimUICamera;
 
@@ -42,6 +41,10 @@ public class AimPositioner : MonoBehaviour
         {
             Debug.LogError("AimPositioner: não há câmara (Aim Camera vazio e sem Camera.main).", this);
         }
+
+        Transform shipRoot = shipTransform != null ? shipTransform : aimOrigin;
+        if (shipRoot != null)
+            ship = shipRoot.GetComponentInParent<SpaceshipController>();
 
         if (shipTransform == null && aimOrigin == null)
         {
@@ -77,7 +80,10 @@ public class AimPositioner : MonoBehaviour
             return;
         }
 
-        Vector3 worldPoint = origin.position + origin.forward * aimDistance;
+        Vector3 worldPoint =
+            ship != null && ship.UsesFreeReticle
+                ? origin.position + ship.AimDirection * Mathf.Abs(aimDistance)
+                : origin.position + origin.forward * aimDistance;
         Vector3 screenPoint = aimCamera.WorldToScreenPoint(worldPoint);
 
         if (screenPoint.z <= 0f)

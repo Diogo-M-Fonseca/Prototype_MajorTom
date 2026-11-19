@@ -19,11 +19,14 @@ public class GunController : MonoBehaviour
     private Transform firingPoint;
 
     [Header("Velocity Inheritance")]
-    [Tooltip(
-        "Transform da nave cuja velocidade a bala herda. Se vazio, usa o Rigidbody do pai ou o root."
-    )]
     [SerializeField]
     private Transform shipTransform;
+
+    [SerializeField]
+    private bool scaleSpeedWithBoost = true;
+
+    [SerializeField]
+    private ShipBoost shipBoost;
 
     [Header("Audio")]
     [SerializeField]
@@ -46,7 +49,6 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private Transform aimTransform;
 
-    [Tooltip("Valor 0-1 ao longo do tempo normalizado (0 a 1). Editável no Inspector.")]
     [SerializeField]
     private AnimationCurve aimCurve = new AnimationCurve(
         new Keyframe(0f, 0f),
@@ -71,9 +73,15 @@ public class GunController : MonoBehaviour
 
     private Vector3 lastShipPosition;
     private Vector3 shipVelocity;
+    private Rigidbody shipBody;
+
+    private const int MaxShotsPerFrame = 5;
 
     public float Range => gunData != null ? gunData.Range : 0f;
-    public float ProjectileSpeed => gunData != null ? gunData.ProjectileSpeed : 0f;
+    public float ProjectileSpeed => gunData != null ? gunData.ProjectileSpeed * BoostMultiplier : 0f;
+
+    private float BoostMultiplier =>
+        scaleSpeedWithBoost && shipBoost != null ? shipBoost.CurrentMultiplier : 1f;
     public Transform FiringPoint => firingPoint;
     public event Action<int, int> OnAmmoChanged;
     public int CurrentAmmo { get; private set; }
@@ -103,6 +111,14 @@ public class GunController : MonoBehaviour
             shipTransform = body != null ? body.transform : transform.root;
         }
         lastShipPosition = shipTransform.position;
+        shipTransform.TryGetComponent(out shipBody);
+
+        if (shipBoost == null)
+        {
+            shipBoost = shipTransform.GetComponentInChildren<ShipBoost>();
+            if (shipBoost == null)
+                shipBoost = shipTransform.GetComponentInParent<ShipBoost>();
+        }
 
         if (aimTransform != null)
         {
@@ -156,7 +172,9 @@ public class GunController : MonoBehaviour
     {
         if (Time.deltaTime > 0f)
         {
-            shipVelocity = (shipTransform.position - lastShipPosition) / Time.deltaTime;
+            shipVelocity = shipBody != null
+                ? shipBody.linearVelocity
+                : (shipTransform.position - lastShipPosition) / Time.deltaTime;
             lastShipPosition = shipTransform.position;
         }
 
@@ -199,29 +217,65 @@ public class GunController : MonoBehaviour
             return;
         }
 
-        if (CurrentAmmo <= 0)
-        {
-            StartReload();
-            return;
-        }
-
         if (gunData.FireRate <= 0f)
         {
             return;
         }
 
         float fireInterval = 1f / gunData.FireRate;
-        nextFireTime = Time.time + fireInterval;
 
-        float inheritedSpeed = Mathf.Max(0f, Vector3.Dot(shipVelocity, firingPoint.forward));
+        if (Time.time - nextFireTime > fireInterval)
+        {
+            nextFireTime = Time.time;
+        }
+        int shots = 0;
+
+        while (Time.time >= nextFireTime && shots < MaxShotsPerFrame)
+        {
+            if (CurrentAmmo <= 0)
+            {
+                StartReload();
+                return;
+            }
+
+            nextFireTime += fireInterval;
+            shots++;
+
+            float lateBy = Time.time - (nextFireTime - fireInterval);
+            FireOne(lateBy);
+
+            if (isReloading)
+            {
+                return;
+            }
+        }
+
+        if (Time.time >= nextFireTime)
+        {
+            nextFireTime = Time.time + fireInterval;
+        }
+    }
+
+    private void FireOne(float lateBy)
+    {
+        Vector3 position = firingPoint.position;
+        float range = gunData.Range;
+        float projectileSpeed = ProjectileSpeed;
+
+        if (lateBy > 0f)
+        {
+            float advance = Mathf.Min(projectileSpeed * lateBy, range);
+            position += firingPoint.forward * advance;
+            range -= advance;
+        }
 
         projectilePool.GetProjectile(
-            firingPoint.position,
+            position,
             firingPoint.rotation,
-            gunData.ProjectileSpeed,
-            gunData.Range,
+            projectileSpeed,
+            range,
             gunData.Damage,
-            inheritedSpeed
+            shipVelocity
         );
 
         CurrentAmmo--;

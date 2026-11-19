@@ -10,9 +10,17 @@ public class WeaponContext
     public LaserBeam LaserBeam { get; }
 
     private readonly Action<bool> setMovementLocked;
+    private readonly Func<Vector3> getShooterVelocity;
+    private readonly Func<float> getSpeedMultiplier;
 
-    public WeaponContext(Transform firingPoint, MonoBehaviour coroutineRunner,ProjectilePool projectilePool, AudioSource audioSource,LaserBeam laserBeam, Action<bool> setMovementLocked)
+    public Vector3 ShooterVelocity => getShooterVelocity != null ? getShooterVelocity() : Vector3.zero;
+    public float SpeedMultiplier => getSpeedMultiplier != null ? getSpeedMultiplier() : 1f;
+
+    public WeaponContext(Transform firingPoint, MonoBehaviour coroutineRunner, ProjectilePool projectilePool, AudioSource audioSource, LaserBeam laserBeam, Action<bool> setMovementLocked,
+        Func<Vector3> getShooterVelocity = null, Func<float> getSpeedMultiplier = null)
     {
+        this.getShooterVelocity = getShooterVelocity;
+        this.getSpeedMultiplier = getSpeedMultiplier;
         FiringPoint = firingPoint;
         CoroutineRunner = coroutineRunner;
         ProjectilePool = projectilePool;

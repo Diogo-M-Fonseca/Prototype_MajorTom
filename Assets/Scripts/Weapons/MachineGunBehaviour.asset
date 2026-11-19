@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MachineGunBehaviour
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileWeaponBehaviour
   fireRate: 10
-  projectileSpeed: 100
-  range: 500
+  projectileSpeed: 200
+  range: 700
   damage: 10
   shootClip: {fileID: 8300000, guid: 7b554a611ec2cc04dbc43793bbf78fa3, type: 3}

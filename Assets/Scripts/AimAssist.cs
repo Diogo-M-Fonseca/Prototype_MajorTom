@@ -1,11 +1,11 @@
-using SpaceFlight;
+
 using UnityEngine;
 
 
 [DefaultExecutionOrder(100)]
 public class AimAssist : MonoBehaviour
 {
-    
+
     [SerializeField, Range(0f, 1f)]
     private float assistLevel = 0.5f;
 
@@ -47,7 +47,7 @@ public class AimAssist : MonoBehaviour
         if (!lockSystem.TryGetLead(out Transform muzzle, out Vector3 leadDir))
             return;
 
-        Vector3 current = muzzle.forward;
+        Vector3 current = ship.UsesFreeReticle ? ship.AimDirection : muzzle.forward;
         float error = Vector3.Angle(current, leadDir);
 
         float capture = maxCaptureAngle * assistLevel;
@@ -75,6 +75,6 @@ public class AimAssist : MonoBehaviour
             angle -= 360f;
 
         Vector3 degrees = axis * angle;
-        ship.AddRotationDegrees(degrees.x, degrees.y); // x = pitch, y = yaw; roll não altera a direção do cano
+        ship.AddRotationDegrees(degrees.x, degrees.y);
     }
 }
