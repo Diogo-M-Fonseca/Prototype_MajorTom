@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class TargetTracker
 {
-
     private Transform _current;
     private Vector3 _lastPosition;
     private Vector3 _velocity;
+    private readonly TargetAim _aim = new();
 
     public TargetInfo Sample(Transform target, float dt)
     {
         if (target == null)
         {
             _current = null;
+            _aim.Get(null);
             return default;
         }
 
@@ -28,9 +29,7 @@ public class TargetTracker
         }
 
         _lastPosition = position;
-        return new TargetInfo(true, position, _velocity);
+        return new TargetInfo(true, position, _velocity, _aim.Get(target));
     }
-
-
 
 }

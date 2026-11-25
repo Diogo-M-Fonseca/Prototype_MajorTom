@@ -197,6 +197,8 @@ MonoBehaviour:
   projectilePool: {fileID: 0}
   firingPoint: {fileID: 5657813684993031851}
   shipTransform: {fileID: 0}
+  scaleSpeedWithBoost: 1
+  shipBoost: {fileID: 0}
   audioSource: {fileID: 0}
   shootClip: {fileID: 0}
   reloadClip: {fileID: 0}

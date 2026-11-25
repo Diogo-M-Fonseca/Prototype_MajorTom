@@ -32,7 +32,7 @@ public class TargetLockSystem : MonoBehaviour
     private GunController gunController;
     private AimPositioner aimPositioner;
 
-    private RadarTarget target;
+    private IAimLockable target;
     private Rigidbody targetBody;
     private Vector3 lastTargetPos;
     private Vector3 targetVel;
@@ -42,6 +42,8 @@ public class TargetLockSystem : MonoBehaviour
     private bool leadValid;
     private Transform leadMuzzle;
     private Vector3 leadDirection;
+
+    public IAimLockable CurrentTarget => target != null && target.IsLockable ? target : null;
 
     public bool TryGetLead(out Transform muzzle, out Vector3 direction)
     {
@@ -113,7 +115,7 @@ public class TargetLockSystem : MonoBehaviour
         if (mouse != null && mouse.middleButton.wasPressedThisFrame)
             HandleSelectionClick(mouse);
 
-        if (target != null && !target.isActiveAndEnabled)
+        if (target != null && !target.IsLockable)
             ClearTarget();
     }
 
@@ -148,15 +150,15 @@ public class TargetLockSystem : MonoBehaviour
         }
 
         float maxDist = selectionRadius * Screen.height;
-        RadarTarget best = null;
+        IAimLockable best = null;
         float bestDist = maxDist;
 
-        for (int i = 0; i < RadarTarget.All.Count; i++)
+        for (int i = 0; i < AimLockRegistry.All.Count; i++)
         {
-            RadarTarget candidate = RadarTarget.All[i];
-            if (candidate == null) continue;
+            IAimLockable candidate = AimLockRegistry.All[i];
+            if (candidate == null || !candidate.IsLockable) continue;
 
-            Vector3 sp = cam.WorldToScreenPoint(candidate.transform.position);
+            Vector3 sp = cam.WorldToScreenPoint(candidate.LockPoint.position);
             if (sp.z <= 0f) continue;
 
             float dist = Vector2.Distance(refPoint, sp);
@@ -173,18 +175,19 @@ public class TargetLockSystem : MonoBehaviour
             SetTarget(best);
     }
 
-    private void SetTarget(RadarTarget newTarget)
+    private void SetTarget(IAimLockable newTarget)
     {
+        Transform point = newTarget.LockPoint;
         target = newTarget;
-        targetBody = newTarget.GetComponentInParent<Rigidbody>();
-        lastTargetPos = newTarget.transform.position;
+        targetBody = point.GetComponentInParent<Rigidbody>();
+        lastTargetPos = point.position;
         targetVel = targetBody != null ? targetBody.linearVelocity : Vector3.zero;
         hasSmoothedLead = false;
 
         if (cameraFollow != null)
         {
             cameraFollow.FocusBlend = cameraFocusBlend;
-            cameraFollow.FocusTarget = newTarget.transform;
+            cameraFollow.FocusTarget = point;
         }
     }
 
@@ -206,10 +209,10 @@ public class TargetLockSystem : MonoBehaviour
         }
         else if (Time.deltaTime > 0f)
         {
-            targetVel = (target.transform.position - lastTargetPos) / Time.deltaTime;
+            targetVel = (target.LockPoint.position - lastTargetPos) / Time.deltaTime;
         }
 
-        lastTargetPos = target.transform.position;
+        lastTargetPos = target.LockPoint.position;
     }
 
     private void GetMuzzle(
@@ -279,7 +282,7 @@ public class TargetLockSystem : MonoBehaviour
     {
         GetMuzzle(out Transform muzzle, out float speed, out float range, out bool inherit, out bool isProjectile);
 
-        Vector3 targetPos = target.transform.position;
+        Vector3 targetPos = target.LockPoint.position;
         Vector3 shipVel = ship.TryGetComponent(out Rigidbody shipBody) ? shipBody.linearVelocity : Vector3.zero;
         float distance = Vector3.Distance(muzzle.position, targetPos);
 
@@ -288,7 +291,7 @@ public class TargetLockSystem : MonoBehaviour
         targetBox.sizeDelta = Vector2.one * targetBoxSize;
         distanceLabel.text = Mathf.RoundToInt(distance) + " m";
 
-        if (!isProjectile)
+        if (!isProjectile || !target.ShowLead)
         {
             leadBox.gameObject.SetActive(false);
             line.gameObject.SetActive(false);

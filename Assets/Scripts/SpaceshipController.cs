@@ -12,6 +12,21 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField, Range(5f, 89f)]
     float reticleConeAngle = 35f;
 
+    [SerializeField]
+    bool reticleConeBySpeed = true;
+
+    [SerializeField, Range(5f, 89f)]
+    float reticleConeAtMaxSpeed = 60f;
+
+    [SerializeField, Range(0.05f, 2f)]
+    float alignSpeedAtStandstill = 0.4f;
+
+    [SerializeField, Min(0.1f)]
+    float alignSpeedAtMaxSpeed = 2f;
+
+    [SerializeField, Min(0.1f)]
+    float reticleConeResponse = 6f;
+
     [SerializeField, Min(1f)]
     float maxPitchRate = 70f;
 
@@ -45,6 +60,12 @@ public class SpaceshipController : MonoBehaviour
 
     [SerializeField, Min(0.1f)]
     float throttleResponse = 4f;
+
+    [SerializeField, Range(0f, 1f)]
+    float idleThrottle = 0.3f;
+
+    [SerializeField, Min(1f)]
+    float limitBrakeDecel = 40f;
 
     [SerializeField, Min(0f)]
     float lateralGrip = 4f;
@@ -92,11 +113,30 @@ public class SpaceshipController : MonoBehaviour
     float pitchTilt;
     Quaternion bankBaseRotation = Quaternion.identity;
 
+    float currentCone = -1f;
+
     public bool UsesFreeReticle => flightMode == FlightMode.FreeReticle;
+
+    public float CurrentReticleCone => currentCone < 0f ? reticleConeAngle : currentCone;
 
     public Vector3 Nose => transform.rotation * Vector3.forward * DirSign;
 
     public Vector3 AimDirection => UsesFreeReticle ? aimDir : Nose;
+
+    float speedLimit = 1f;
+    float turnLimit = 1f;
+
+    public void SetMovementLimit(float speedFraction, float turnScale)
+    {
+        speedLimit = Mathf.Clamp01(speedFraction);
+        turnLimit = Mathf.Max(0f, turnScale);
+    }
+
+    public void ClearMovementLimit()
+    {
+        speedLimit = 1f;
+        turnLimit = 1f;
+    }
 
     public void SetBoost(float multiplier, bool forceThrottle)
     {
@@ -196,8 +236,21 @@ public class SpaceshipController : MonoBehaviour
                 aimDir = rot * (Quaternion.Euler(pitchStep, yawStep, 0f) * local);
             }
 
-            if (Vector3.Angle(nose, aimDir) > reticleConeAngle)
-                aimDir = Vector3.RotateTowards(nose, aimDir, reticleConeAngle * Mathf.Deg2Rad, 0f);
+            float speedFraction = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
+            float targetCone = reticleConeBySpeed
+                ? Mathf.Lerp(reticleConeAngle, reticleConeAtMaxSpeed, speedFraction)
+                : reticleConeAngle;
+            float alignScale = reticleConeBySpeed
+                ? Mathf.Lerp(alignSpeedAtStandstill, alignSpeedAtMaxSpeed, speedFraction)
+                : 1f;
+            alignScale *= turnLimit;
+
+            currentCone = currentCone < 0f
+                ? targetCone
+                : Mathf.Lerp(currentCone, targetCone, 1f - Mathf.Exp(-reticleConeResponse * dt));
+
+            if (Vector3.Angle(nose, aimDir) > currentCone)
+                aimDir = Vector3.RotateTowards(nose, aimDir, currentCone * Mathf.Deg2Rad, 0f);
             aimDir.Normalize();
 
             Quaternion world = Quaternion.FromToRotation(nose, aimDir);
@@ -207,10 +260,11 @@ public class SpaceshipController : MonoBehaviour
                 errAngle -= 360f;
             Vector3 err = float.IsNaN(errAxis.x) || float.IsInfinity(errAxis.x) ? Vector3.zero : errAxis * errAngle;
 
-            float wantPitch = DesiredRate(err.x, maxPitchRate, turnAcceleration, dt);
-            float wantYaw = DesiredRate(err.y, maxYawRate, turnAcceleration, dt);
-            turnRate.x = Mathf.MoveTowards(turnRate.x, wantPitch, turnAcceleration * dt);
-            turnRate.y = Mathf.MoveTowards(turnRate.y, wantYaw, turnAcceleration * dt);
+            float alignAccel = turnAcceleration * alignScale;
+            float wantPitch = DesiredRate(err.x, maxPitchRate * alignScale, alignAccel, dt);
+            float wantYaw = DesiredRate(err.y, maxYawRate * alignScale, alignAccel, dt);
+            turnRate.x = Mathf.MoveTowards(turnRate.x, wantPitch, alignAccel * dt);
+            turnRate.y = Mathf.MoveTowards(turnRate.y, wantYaw, alignAccel * dt);
 
             rb.MoveRotation(rot * Quaternion.Euler(turnRate.x * dt, turnRate.y * dt, rollStep));
         }
@@ -226,7 +280,10 @@ public class SpaceshipController : MonoBehaviour
         float vf = Vector3.Dot(v, fwd);
         Vector3 sideways = v - fwd * vf;
 
-        float targetThrottle = boostForcesThrottle ? 1f : thrust;
+        float targetThrottle = boostForcesThrottle ? 1f : (thrust < -0.01f ? thrust : Mathf.Max(thrust, idleThrottle));
+
+        if (speedLimit < 0.999f)
+            targetThrottle = 0f;
         throttle = Mathf.MoveTowards(throttle, targetThrottle, throttleResponse * dt);
         float power = throttle >= 0f ? throttle : throttle * reverseRatio;
 
@@ -236,5 +293,17 @@ public class SpaceshipController : MonoBehaviour
             fwd * (power * effectivePower - vf * (effectivePower / effectiveMaxSpeed))
             - sideways * lateralGrip;
         rb.AddForce(accel, ForceMode.Acceleration);
+
+        if (speedLimit < 0.999f)
+        {
+            float cap = effectiveMaxSpeed * speedLimit;
+            Vector3 current = rb.linearVelocity;
+
+            if (current.magnitude > cap)
+            {
+                Vector3 goal = cap <= 0.01f ? Vector3.zero : current.normalized * cap;
+                rb.linearVelocity = Vector3.MoveTowards(current, goal, limitBrakeDecel * dt);
+            }
+        }
     }
 }

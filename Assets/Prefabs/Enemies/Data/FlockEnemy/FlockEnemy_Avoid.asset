@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AvoidObstaclesBehaviour
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   _distance: 40
   _radius: 2.5

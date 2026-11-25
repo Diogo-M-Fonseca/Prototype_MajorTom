@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7523583489013032471}
+  - component: {fileID: 881007287658946856}
   m_Layer: 6
   m_Name: FiringPoint1
   m_TagString: Untagged
@@ -31,6 +32,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5244849243988955689}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &881007287658946856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85693010133121225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e5bfd88b2eb2a48aaae2dc12e5d3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunAimer
+  ship: {fileID: 702154829817820651}
+  maxTraverseAngle: 0
+  turnSpeed: 150
+  convergeDistance: 0
 --- !u!1 &616514695446352447
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +428,21 @@ MonoBehaviour:
   aimRect: {fileID: 0}
   aimCamera: {fileID: 0}
   aimDistance: -40
+  followWeapons: 1
+  guns: []
+  scaleNearObjects: 1
+  proximityMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  proximityRange: 150
+  proximityRadius: 2
+  maxScale: 2.2
+  scaleSharpness: 12
+  snapToTargetDepth: 1
+  depthRange: 500
+  depthSharpness: 6
+  screenSmoothing: 18
+  maxLag: 120
 --- !u!82 &486643995353603941
 AudioSource:
   m_ObjectHideFlags: 0
@@ -651,23 +683,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipController
   flightMode: 1
-  reticleConeAngle: 20
-  maxPitchRate: 30
-  maxYawRate: 30
-  turnAcceleration: 200
-  bankAngle: 40
+  reticleConeAngle: 35
+  reticleConeBySpeed: 1
+  reticleConeAtMaxSpeed: 60
+  alignSpeedAtStandstill: 0.4
+  alignSpeedAtMaxSpeed: 2
+  reticleConeResponse: 6
+  maxPitchRate: 70
+  maxYawRate: 90
+  turnAcceleration: 300
+  bankAngle: 35
   pitchTiltAngle: 12
   bankResponse: 8
   bankVisual: {fileID: 61826045349293317}
-  maxSpeed: 100
-  enginePower: 150
+  maxSpeed: 15
+  enginePower: 30
   reverseRatio: 0.5
   throttleResponse: 4
+  idleThrottle: 0.3
+  limitBrakeDecel: 40
   lateralGrip: 4
-  invertForward: 1
+  invertForward: 0
   mouseSensitivity: 0.15
-  invertMouseY: 0
-  invertMouseX: 1
+  invertMouseY: 1
+  invertMouseX: 0
   aimSmoothing: 0.03
   maxRollRate: 120
   rollAcceleration: 600
@@ -813,6 +852,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunAimer
   ship: {fileID: 702154829817820651}
+  maxTraverseAngle: 0
+  turnSpeed: 150
+  convergeDistance: 0
 --- !u!1 &6207604139570961582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1052,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6954384525574180096, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 486643995353603941}
     - target: {fileID: 8899095910690604775, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1017,8 +1063,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4792634955964507076, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8752764956831328155}
   m_SourcePrefab: {fileID: 100100000, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+--- !u!1 &1172397657845775646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4792634955964507076, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+  m_PrefabInstance: {fileID: 5964997283128270554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8752764956831328155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172397657845775646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e5bfd88b2eb2a48aaae2dc12e5d3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunAimer
+  ship: {fileID: 702154829817820651}
+  maxTraverseAngle: 0
+  turnSpeed: 150
+  convergeDistance: 0
 --- !u!4 &9174869726136627699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
@@ -1167,6 +1237,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6954384525574180096, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 486643995353603941}
     - target: {fileID: 8899095910690604775, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1174,8 +1248,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4792634955964507076, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9117562510038346084}
   m_SourcePrefab: {fileID: 100100000, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+--- !u!1 &4151516345476517851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4792634955964507076, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}
+  m_PrefabInstance: {fileID: 8872084700042718239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9117562510038346084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4151516345476517851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e5bfd88b2eb2a48aaae2dc12e5d3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunAimer
+  ship: {fileID: 702154829817820651}
+  maxTraverseAngle: 0
+  turnSpeed: 150
+  convergeDistance: 0
 --- !u!4 &6236280472161567542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3284322643638759209, guid: aa9e7f6448399a9448d4ce20754c2d8e, type: 3}

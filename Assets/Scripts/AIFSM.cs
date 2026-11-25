@@ -22,6 +22,10 @@ public class AIFSM : MonoBehaviour
 
     private float _timeAway;
 
+    private float _lastDamageTime = float.NegativeInfinity;
+
+    private readonly TargetAim _targetAim = new();
+
 
     public AIState Current => _current;
 
@@ -39,7 +43,21 @@ public class AIFSM : MonoBehaviour
 
     private void OnEnable()
     {
+        if (_health != null)
+            _health.Damaged += OnDamaged;
+
         Enter(_initialState);
+    }
+
+    private void OnDisable()
+    {
+        if (_health != null)
+            _health.Damaged -= OnDamaged;
+    }
+
+    private void OnDamaged()
+    {
+        _lastDamageTime = Time.time;
     }
 
     private void Update()
@@ -117,6 +135,7 @@ public class AIFSM : MonoBehaviour
         bool hasTarget = target != null;
         float distance = 0f;
         float angle = 0f;
+        float aimedAt = 180f;
 
         if (hasTarget)
         {
@@ -124,11 +143,19 @@ public class AIFSM : MonoBehaviour
             distance = toTarget.magnitude;
 
             if (distance > 0.0001f)
+            {
                 angle = Vector3.Angle(transform.forward, toTarget);
+
+                Vector3 aim = _targetAim.Get(target);
+                if (aim.sqrMagnitude > 0.0001f)
+                    aimedAt = Vector3.Angle(aim, -toTarget);
+            }
         }
 
         float health = _health != null ? _health.HealthFraction : 1f;
+        float sinceDamaged = Time.time - _lastDamageTime;
 
-        return new StateContext(_elapsed, _duration, dt, Random.value, hasTarget, distance, angle, health);
+        return new StateContext(_elapsed, _duration, dt, Random.value, hasTarget, distance, angle, health,
+            aimedAt, sinceDamaged);
     }
 }

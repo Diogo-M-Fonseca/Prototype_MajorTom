@@ -10,6 +10,7 @@ public class SteeringAgent : MonoBehaviour
 
     private readonly TargetTracker _tracker = new();
     private ShipMovementVelocity _movement;
+    private GunController _gun;
     private Vector3 _desiredDirection;
     private float _throttle;
     private float _seed;
@@ -23,6 +24,7 @@ public class SteeringAgent : MonoBehaviour
     private void Awake()
     {
         _movement = GetComponent<ShipMovementVelocity>();
+        TryGetComponent(out _gun);
         _seed = Random.value * 100f;
     }
 
@@ -69,7 +71,8 @@ public class SteeringAgent : MonoBehaviour
         TargetInfo target = own.HasTarget ? own : flockTarget;
 
         SteeringContext context = new SteeringContext(Position, transform.forward, _movement.Profile.MaxSpeed,
-            neighbourhood, target.HasTarget, target.Position, target.Velocity, _seed);
+            neighbourhood, target.HasTarget, target.Position, target.Velocity, _seed,
+            target.Forward, Velocity, _gun != null ? _gun.ProjectileSpeed : 0f);
 
         Vector3 sum = transform.forward;
         foreach (BehaviourProfile.Entry entry in _behaviour.Entries)

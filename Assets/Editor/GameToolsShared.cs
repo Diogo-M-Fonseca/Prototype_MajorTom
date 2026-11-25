@@ -426,6 +426,34 @@ public static class EnemyDataFactory
         return new EnemyDataSet(stats, movement, flockProfile, soloProfile, gun, initialState);
     }
 
+    // So a IA: refaz os behaviours, perfis, estados e condicoes da FSM sem tocar em stats, movimento ou arma.
+    // Devolve o estado inicial (ou null se "Criar FSM" estiver desligado).
+    public static AIState CreateAi(EnemyDataSettings settings)
+    {
+        string root = settings.Folder.TrimEnd('/');
+        string sharedFolder = $"{root}/Shared";
+        string typeFolder = $"{root}/{settings.Name}";
+        string name = settings.Name;
+
+        SeparationBehaviour separation = EditorAssetUtility.LoadOrCreateAsset<SeparationBehaviour>(sharedFolder, "Separation");
+        AlignmentBehaviour alignment = EditorAssetUtility.LoadOrCreateAsset<AlignmentBehaviour>(sharedFolder, "Alignment");
+        CohesionBehaviour cohesion = EditorAssetUtility.LoadOrCreateAsset<CohesionBehaviour>(sharedFolder, "Cohesion");
+
+        PursueTargetBehaviour pursue = EditorAssetUtility.LoadOrCreateAsset<PursueTargetBehaviour>(typeFolder, $"{name}_Pursue");
+        EditorAssetUtility.SetFloat(pursue, "_leadFactor", settings.LeadFactor);
+
+        AvoidObstaclesBehaviour avoid = EditorAssetUtility.LoadOrCreateAsset<AvoidObstaclesBehaviour>(typeFolder, $"{name}_Avoid");
+        EditorAssetUtility.SetInt(avoid, "_obstacleMask", settings.ObstacleMask.value);
+        EditorAssetUtility.SetFloat(avoid, "_distance", settings.AvoidDistance);
+        EditorAssetUtility.SetFloat(avoid, "_radius", settings.AvoidRadius);
+
+        AIState initialState = CreateFsm(settings, sharedFolder, typeFolder,
+            pursue, avoid, separation, alignment, cohesion);
+
+        AssetDatabase.SaveAssets();
+        return initialState;
+    }
+
     // Material branco partilhado pelo HitFlash de todos os inimigos (<pasta>/Shared/HitFlash_White.mat).
     public static Material LoadOrCreateFlashMaterial(string dataFolder)
     {
@@ -476,13 +504,28 @@ public static class EnemyDataFactory
 
         FleeTargetBehaviour flee = EditorAssetUtility.LoadOrCreateAsset<FleeTargetBehaviour>(sharedFolder, "Flee");
 
+        // Pontaria com lead (mantem o nariz a apontar para onde o alvo vai estar)
+        AimLeadBehaviour aimLead = EditorAssetUtility.LoadOrCreateAsset<AimLeadBehaviour>(sharedFolder, "AimLead");
+
+        // Esquiva: sai da linha de mira do jogador com um zigue-zague
+        EvadeBehaviour evade = EditorAssetUtility.LoadOrCreateAsset<EvadeBehaviour>(typeFolder, $"{name}_Evade");
+        EditorAssetUtility.SetFloat(evade, "_maxDistance", settings.EvadeMaxDistance);
+        EditorAssetUtility.SetFloat(evade, "_weaveFrequency", settings.EvadeWeaveFrequency);
+        EditorAssetUtility.SetFloat(evade, "_weaveAmount", settings.EvadeWeaveAmount);
+
         // Perfis por estado
         BehaviourProfile patrolProfile = CreateStateProfile(fsmFolder, $"{name}_PatrolProfile", settings,
             wander, settings.WanderWeight, separation, alignment, cohesion, avoid);
         BehaviourProfile attackProfile = CreateStateProfile(fsmFolder, $"{name}_AttackProfile", settings,
             pursue, settings.PursueWeight, separation, alignment, cohesion, avoid);
+        AddProfileEntry(attackProfile, aimLead, settings.AimLeadWeight);
+
         BehaviourProfile orbitProfile = CreateStateProfile(fsmFolder, $"{name}_OrbitProfile", settings,
             orbit, settings.OrbitWeight, separation, alignment, cohesion, avoid);
+
+        BehaviourProfile evadeProfile = CreateStateProfile(fsmFolder, $"{name}_EvadeProfile", settings,
+            evade, settings.EvadeWeight, separation, alignment, cohesion, avoid);
+        AddProfileEntry(evadeProfile, aimLead, settings.EvadeAimLeadWeight);
         BehaviourProfile fleeProfile = CreateStateProfile(fsmFolder, $"{name}_FleeProfile", settings,
             flee, settings.FleeWeight, separation, alignment, cohesion, avoid);
 
@@ -491,6 +534,8 @@ public static class EnemyDataFactory
         AIState attack = CreateState(fsmFolder, $"{name}_Attack", attackProfile, 3f, 6f, settings.CommitTime);
         AIState orbitState = CreateState(fsmFolder, $"{name}_OrbitState", orbitProfile,
             settings.OrbitMinDuration, settings.OrbitMaxDuration, settings.CommitTime);
+        AIState evadeState = CreateState(fsmFolder, $"{name}_EvadeState", evadeProfile,
+            settings.EvadeMinDuration, settings.EvadeMaxDuration, settings.EvadeCommitTime);
         AIState fleeState = CreateState(fsmFolder, $"{name}_Flee", fleeProfile,
             settings.FleeMinDuration, settings.FleeMaxDuration, settings.CommitTime);
 
@@ -506,17 +551,39 @@ public static class EnemyDataFactory
         TargetDistanceCondition orbitBreak = CreateDistanceCondition(fsmFolder, $"{name}_OrbitBreak",
             ComparisonMode.Above, settings.OrbitBreakRange);
 
+        AimedAtCondition aimedAt = EditorAssetUtility.LoadOrCreateAsset<AimedAtCondition>(fsmFolder, $"{name}_AimedAt");
+        EditorAssetUtility.SetFloat(aimedAt, "_angle", settings.AimedAtAngle);
+        EditorAssetUtility.SetFloat(aimedAt, "_maxDistance", settings.AimedAtMaxDistance);
+        EditorAssetUtility.SetFloat(aimedAt, "_chancePerSecond", settings.ReactionChancePerSecond);
+
+        RecentlyDamagedCondition damaged = EditorAssetUtility.LoadOrCreateAsset<RecentlyDamagedCondition>(fsmFolder, $"{name}_Damaged");
+        EditorAssetUtility.SetFloat(damaged, "_seconds", 0.3f);
+
         HealthCondition lowHealth = EditorAssetUtility.LoadOrCreateAsset<HealthCondition>(fsmFolder, $"{name}_LowHealth");
         EditorAssetUtility.SetEnum(lowHealth, "_mode", (int)ComparisonMode.Below);
         EditorAssetUtility.SetFloat(lowHealth, "_fraction", settings.FleeHealthFraction);
 
         // Transicoes (a primeira que for verdadeira ganha, por isso a fuga vem sempre primeiro)
-        SetTransitions(patrol, (detect, attack));
-        SetTransitions(attack, (lowHealth, fleeState), (close, orbitState), (lose, patrol));
-        SetTransitions(orbitState, (lowHealth, fleeState), (orbitBreak, attack), (timeUp, attack));
+        SetTransitions(patrol, (damaged, attack), (detect, attack));
+        SetTransitions(attack, (lowHealth, fleeState), (aimedAt, evadeState), (close, orbitState), (lose, patrol));
+        SetTransitions(orbitState, (lowHealth, fleeState), (aimedAt, evadeState), (orbitBreak, attack), (timeUp, attack));
+        SetTransitions(evadeState, (lowHealth, fleeState), (timeUp, attack));
         SetTransitions(fleeState, (timeUp, patrol));
 
         return patrol;
+    }
+
+    private static void AddProfileEntry(BehaviourProfile profile, SteeringBehaviour behaviour, float weight)
+    {
+        SerializedObject serialized = new SerializedObject(profile);
+        SerializedProperty array = serialized.FindProperty("_entries");
+        int index = array.arraySize;
+        array.arraySize = index + 1;
+
+        SerializedProperty element = array.GetArrayElementAtIndex(index);
+        element.FindPropertyRelative("_behaviour").objectReferenceValue = behaviour;
+        element.FindPropertyRelative("_weight").floatValue = weight;
+        serialized.ApplyModifiedProperties();
     }
 
     private static BehaviourProfile CreateStateProfile(string folder, string assetName, EnemyDataSettings settings,
@@ -599,6 +666,7 @@ public class EnemyDataSettings
 {
     [Header("Identificacao")]
     [SerializeField] private string _name = "NewEnemy";
+    [FolderPopup]
     [SerializeField] private string _folder = "Assets/Enemies/Data";
 
     [Header("Stats")]
@@ -655,6 +723,20 @@ public class EnemyDataSettings
     [SerializeField] private float _fleeMinDuration = 4f;
     [SerializeField] private float _fleeMaxDuration = 7f;
 
+    [Header("FSM: pontaria e esquiva")]
+    [SerializeField] private float _aimLeadWeight = 2.5f;
+    [SerializeField] private float _evadeWeight = 1.5f;
+    [SerializeField] private float _evadeAimLeadWeight = 2.5f;
+    [SerializeField] private float _evadeMaxDistance = 300f;
+    [SerializeField] private float _evadeWeaveFrequency = 2.5f;
+    [SerializeField, Range(0f, 1f)] private float _evadeWeaveAmount = 0.5f;
+    [SerializeField] private float _evadeMinDuration = 0.8f;
+    [SerializeField] private float _evadeMaxDuration = 1.6f;
+    [SerializeField, Min(0f)] private float _evadeCommitTime = 0.4f;
+    [SerializeField, Range(1f, 90f)] private float _aimedAtAngle = 15f;
+    [SerializeField] private float _aimedAtMaxDistance = 250f;
+    [SerializeField, Min(0f)] private float _reactionChancePerSecond = 0.4f;
+
     [Header("Feedback")]
     [SerializeField] private bool _hitFlash = true;
     [SerializeField, Min(0.01f)] private float _hitFlashDuration = 0.08f;
@@ -709,6 +791,18 @@ public class EnemyDataSettings
     public float OrbitMaxDuration => _orbitMaxDuration;
     public float FleeMinDuration => _fleeMinDuration;
     public float FleeMaxDuration => _fleeMaxDuration;
+    public float AimLeadWeight => _aimLeadWeight;
+    public float EvadeWeight => _evadeWeight;
+    public float EvadeAimLeadWeight => _evadeAimLeadWeight;
+    public float EvadeMaxDistance => _evadeMaxDistance;
+    public float EvadeWeaveFrequency => _evadeWeaveFrequency;
+    public float EvadeWeaveAmount => _evadeWeaveAmount;
+    public float EvadeMinDuration => _evadeMinDuration;
+    public float EvadeMaxDuration => _evadeMaxDuration;
+    public float EvadeCommitTime => _evadeCommitTime;
+    public float AimedAtAngle => _aimedAtAngle;
+    public float AimedAtMaxDistance => _aimedAtMaxDistance;
+    public float ReactionChancePerSecond => _reactionChancePerSecond;
 
     public bool HitFlash => _hitFlash;
     public float HitFlashDuration => _hitFlashDuration;
@@ -953,8 +1047,6 @@ public class AsteroidSetupSettings
     [SerializeField, Min(1)] private int _planetCapacity = 10;
     [Tooltip("A nave pode entregar a esta distancia da superficie (raio do planeta + margem).")]
     [SerializeField, Min(0f)] private float _deliveryMargin = 30f;
-    [Tooltip("Opcional. Objeto de UI mostrado quando se pode entregar (ex.: 'E - Entregar').")]
-    [SerializeField] private GameObject _deliverPrompt;
     [SerializeField] private AudioClip _deliverClip;
 
     [Header("Projétil (opcional)")]
@@ -1028,7 +1120,6 @@ public class AsteroidSetupSettings
 
     public int PlanetCapacity => _planetCapacity;
     public float DeliveryMargin => _deliveryMargin;
-    public GameObject DeliverPrompt => _deliverPrompt;
     public AudioClip DeliverClip => _deliverClip;
 
     public GameObject ProjectilePrefab => _projectilePrefab;
@@ -1064,8 +1155,6 @@ public class PlanetSetupSettings
     [Tooltip("Objeto da nave na cena. Recebe o ResourceDelivery (precisa de um ResourceCollector, " +
              "que o Asteroid Setup acrescenta).")]
     [SerializeField] private GameObject _ship;
-    [Tooltip("Opcional. Objeto de UI mostrado quando se pode entregar (ex.: 'E - Entregar').")]
-    [SerializeField] private GameObject _deliverPrompt;
     [SerializeField] private AudioClip _deliverClip;
 
     public Transform PlanetsParent => _planetsParent;
@@ -1078,6 +1167,21 @@ public class PlanetSetupSettings
     public bool OverwriteExisting => _overwriteExisting;
 
     public GameObject Ship => _ship;
-    public GameObject DeliverPrompt => _deliverPrompt;
     public AudioClip DeliverClip => _deliverClip;
+}
+
+// Componentes que todo o planeta com ResourcePlanet deve ter: o aviso de entrega e o lock de alvo.
+public static class PlanetExtras
+{
+    public static void Ensure(GameObject planet)
+    {
+        if (planet == null)
+            return;
+
+        if (planet.GetComponent<ResourcePlanetPrompt>() == null)
+            Undo.AddComponent<ResourcePlanetPrompt>(planet);
+
+        if (planet.GetComponent<IAimLockable>() == null)
+            Undo.AddComponent<AimLockTarget>(planet);
+    }
 }

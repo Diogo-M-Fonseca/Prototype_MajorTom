@@ -7,8 +7,6 @@ public class ResourceDelivery : MonoBehaviour
 
     [SerializeField] private InputActionReference _deliverAction;
 
-    [SerializeField] private GameObject _prompt;
-
     [SerializeField] private AudioClip _deliverClip;
 
     [Header("Voo ate ao planeta")]
@@ -20,6 +18,8 @@ public class ResourceDelivery : MonoBehaviour
 
     public ResourcePlanet NearbyPlanet { get; private set; }
 
+    public string KeyLabel => _deliverAction != null ? _deliverAction.action.GetBindingDisplayString() : "E";
+
     public event System.Action<ResourcePlanet, int> Delivered;
 
     public event System.Action<ResourcePlanet> Rejected;
@@ -28,9 +28,6 @@ public class ResourceDelivery : MonoBehaviour
     {
         if (_collector == null)
             _collector = GetComponent<ResourceCollector>();
-
-        if (_prompt != null)
-            _prompt.SetActive(false);
     }
 
     private void OnEnable()
@@ -42,14 +39,6 @@ public class ResourceDelivery : MonoBehaviour
     private void Update()
     {
         NearbyPlanet = FindNearestPlanet();
-
-        if (_prompt != null)
-        {
-            bool show = NearbyPlanet != null && NearbyPlanet.Remaining > 0 && _collector.Count > 0;
-
-            if (_prompt.activeSelf != show)
-                _prompt.SetActive(show);
-        }
 
         if (NearbyPlanet != null && WasPressed())
             Deliver(NearbyPlanet);

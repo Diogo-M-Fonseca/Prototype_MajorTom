@@ -17,5 +17,7 @@ MonoBehaviour:
   _maxDuration: 6
   _commitTime: 1
   _transitions:
+  - _condition: {fileID: 11400000, guid: 0a955bedad27dca47b14f7f3db359e51, type: 2}
+    _next: {fileID: 11400000, guid: e442e80996d795246b020fe8d3478f77, type: 2}
   - _condition: {fileID: 11400000, guid: f6ad21b117892954792721edb4e4b886, type: 2}
     _next: {fileID: 11400000, guid: e442e80996d795246b020fe8d3478f77, type: 2}

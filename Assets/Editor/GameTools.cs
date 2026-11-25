@@ -74,7 +74,8 @@ public class GameToolsWindow : EditorWindow
         {
             // Instância "escondida": nunca abre como janela, só serve para desenhar o separador.
             EditorWindow window = (EditorWindow)CreateInstance(TabTypes[i]);
-            window.hideFlags = HideFlags.HideAndDontSave;
+            // HideAndDontSave inclui NotEditable, o que deixava todos os campos do separador cinzentos.
+            window.hideFlags = HideFlags.HideAndDontSave & ~HideFlags.NotEditable;
 
             _hosted[i] = window;
             _onGui[i] = TabTypes[i].GetMethod("OnGUI", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
@@ -181,10 +182,12 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private ShipColliderType _enemyCollider = ShipColliderType.Box;
     [SerializeField] private ProfileChoice _profileChoice = ProfileChoice.Flock;
     [SerializeField] private bool _useFsm = true;
+    [FolderPopup]
     [SerializeField] private string _enemyPrefabFolder = "Assets/Enemies";
 
     // ---- Jogador
     [SerializeField] private string _playerName = "Player";
+    [FolderPopup]
     [SerializeField] private string _playerFolder = "Assets/Player";
     [SerializeField] private GameObject _playerModel;
     [SerializeField] private ShipColliderType _playerCollider = ShipColliderType.Box;
@@ -192,6 +195,8 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private float _playerMaxHealth = 100f;
     [SerializeField] private ShipStats _playerStats;
     [SerializeField] private GunData _playerGun;
+    [SerializeField] private GunData _playerSecondGun;
+    [SerializeField, Min(0.1f)] private float _playerGunSpacing = 2f;
     [SerializeField] private AudioClip _playerShootClip;
     [SerializeField] private AudioClip _playerDeathClip;
     [SerializeField] private List<MonoScript> _playerExtraScripts = new List<MonoScript>();
@@ -220,6 +225,9 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private bool _replaceModel;
     [SerializeField] private bool _rebuildCollider;
 
+    // ---- Inimigo existente (prefab ou objeto da cena) a quem se aplica a IA nova
+    [SerializeField] private GameObject _existingEnemy;
+
     // ---- Inimigo: radar / lock de alvo
     [SerializeField] private bool _enemyRadarTarget = true;
 
@@ -228,6 +236,7 @@ public class ShipCreatorWindow : EditorWindow
     [SerializeField] private InputActionReference _reloadAction;
 
     // ---- Sistemas: mira, lock de alvo, radar
+    [FolderPopup]
     [SerializeField] private string _hudFolder = "Assets/UI";
     [SerializeField] private Sprite _crosshairSprite;
     [SerializeField] private Vector2 _crosshairSize = new Vector2(32f, 32f);
@@ -259,6 +268,7 @@ public class ShipCreatorWindow : EditorWindow
 
     // ---- Satelite: prefab
     [SerializeField] private string _satelliteName = "Satellite";
+    [FolderPopup]
     [SerializeField] private string _satelliteFolder = "Assets/Satellites";
     [SerializeField] private GameObject _satelliteModel;
     [SerializeField] private Vector3 _satelliteModelEuler;
@@ -297,6 +307,9 @@ public class ShipCreatorWindow : EditorWindow
 
     private void OnGUI()
     {
+        // Garante que um estado "desativado" deixado por um erro anterior nao bloqueia a janela toda.
+        GUI.enabled = true;
+
         if (_so == null) _so = new SerializedObject(this);
         _so.Update();
 
@@ -353,6 +366,25 @@ public class ShipCreatorWindow : EditorWindow
 
     private void DrawEnemyTab()
     {
+        EditorGUILayout.LabelField("Atualizar a IA de um inimigo que ja existe", EditorStyles.boldLabel);
+        Prop("_existingEnemy", "Inimigo (arrasta o prefab ou um da cena)");
+        EditorGUILayout.HelpBox(
+            "Arrasta o prefab ou escolhe um inimigo da cena. O tool usa o nome dele, refaz so a FSM (estados, perfis, " +
+            "condicoes) com os valores dos Parametros e liga-a ao inimigo. Stats, movimento e arma ficam como estao. " +
+            "Os pesos e duracoes da FSM sao reescritos com os valores dos Parametros.",
+            MessageType.None);
+
+        using (new EditorGUI.DisabledScope(_existingEnemy == null))
+        {
+            if (GUILayout.Button("Aplicar IA nova ao inimigo", GUILayout.Height(28)))
+            {
+                UpgradeEnemyAi();
+                GUIUtility.ExitGUI();
+            }
+        }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Ou criar um inimigo de raiz", EditorStyles.miniBoldLabel);
         EditorGUILayout.LabelField("1. Dados do inimigo", EditorStyles.boldLabel);
 
         Prop("_settings", "Parametros");
@@ -417,6 +449,119 @@ public class ShipCreatorWindow : EditorWindow
                 BuildEnemyPrefab();
 
             GUIUtility.ExitGUI();
+        }
+    }
+
+    private void UpgradeEnemyAi()
+    {
+        _so.ApplyModifiedProperties();
+
+        GameObject target = _existingEnemy;
+
+        if (target == null)
+            return;
+
+        // Prefab (asset), instancia de prefab na cena (edita-se o prefab de origem) ou objeto solto da cena.
+        string prefabPath = null;
+
+        if (EditorUtility.IsPersistent(target))
+        {
+            prefabPath = AssetDatabase.GetAssetPath(target);
+        }
+        else
+        {
+            GameObject source = PrefabUtility.GetCorrespondingObjectFromOriginalSource(target);
+
+            if (source != null)
+                prefabPath = AssetDatabase.GetAssetPath(source);
+        }
+
+        GameObject root = prefabPath != null ? PrefabUtility.LoadPrefabContents(prefabPath) : target;
+
+        try
+        {
+            SteeringAgent agent = root.GetComponent<SteeringAgent>();
+
+            if (agent == null)
+            {
+                Debug.LogWarning($"Ship Creator: '{root.name}' nao tem SteeringAgent, por isso nao parece um inimigo.");
+                return;
+            }
+
+            string enemyName = prefabPath != null ? System.IO.Path.GetFileNameWithoutExtension(prefabPath) : root.name;
+
+            // Pasta dos dados: sobe a partir de um asset do inimigo ate encontrar a pasta com o nome dele.
+            string dataFolder = _settings.Folder;
+            BehaviourProfile current = new SerializedObject(agent).FindProperty("_behaviour").objectReferenceValue as BehaviourProfile;
+            string assetPath = current != null ? AssetDatabase.GetAssetPath(current) : null;
+
+            while (!string.IsNullOrEmpty(assetPath))
+            {
+                string parent = System.IO.Path.GetDirectoryName(assetPath)?.Replace('\\', '/');
+
+                if (string.IsNullOrEmpty(parent) || parent == "Assets")
+                    break;
+
+                if (System.IO.Path.GetFileName(parent) == enemyName)
+                {
+                    dataFolder = System.IO.Path.GetDirectoryName(parent).Replace('\\', '/');
+                    break;
+                }
+
+                assetPath = parent;
+            }
+
+            _so.FindProperty("_settings._name").stringValue = enemyName;
+            _so.FindProperty("_settings._folder").stringValue = dataFolder;
+            _so.ApplyModifiedProperties();
+
+            AIState initialState = EnemyDataFactory.CreateAi(_settings);
+
+            if (initialState == null)
+            {
+                Debug.LogWarning("Ship Creator: liga 'Criar FSM' nos Parametros para atualizar a IA.");
+                return;
+            }
+
+            _initialState = initialState;
+
+            EnemyHealth health = root.GetComponent<EnemyHealth>();
+            AIFSM fsm = GetOrAdd<AIFSM>(root);
+            EditorAssetUtility.SetObject(fsm, "_initialState", initialState);
+
+            if (health != null)
+                EditorAssetUtility.SetObject(fsm, "_health", health);
+
+            EditorAssetUtility.SetObject(agent, "_behaviour", initialState.Profile);
+
+            // Liga o gatilho de tiro se o inimigo tiver arma mas ainda nao tiver o AIGunTrigger.
+            GunController gun = root.GetComponent<GunController>();
+
+            if (gun != null)
+            {
+                AIGunTrigger trigger = GetOrAdd<AIGunTrigger>(root);
+                EditorAssetUtility.SetObject(trigger, "_gun", gun);
+                EditorAssetUtility.SetObject(trigger, "_agent", agent);
+            }
+
+            if (prefabPath != null)
+            {
+                RemoveMissingScripts(root);
+                PrefabUtility.SaveAsPrefabAsset(root, prefabPath);
+            }
+            else
+            {
+                EditorUtility.SetDirty(root);
+                EditorSceneManager.MarkSceneDirty(root.scene);
+            }
+
+            _so.Update();
+            Debug.Log($"Ship Creator: IA nova aplicada a '{enemyName}' (dados em {dataFolder}/{enemyName}/FSM).", initialState);
+        }
+        finally
+        {
+            if (prefabPath != null)
+                PrefabUtility.UnloadPrefabContents(root);
         }
     }
 
@@ -670,7 +815,18 @@ public class ShipCreatorWindow : EditorWindow
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Arma (opcional)", EditorStyles.boldLabel);
-        Prop("_playerGun", "Gun Data");
+        Prop("_playerGun", "Arma 1 (Gun Data)");
+        Prop("_playerSecondGun", "Arma 2 (opcional)");
+
+        if (_playerSecondGun != null)
+        {
+            Prop("_playerGunSpacing", "Distancia de cada arma ao centro");
+            EditorGUILayout.HelpBox(
+                "Com duas armas, o tool cria Gun_Left (arma 1) e Gun_Right (arma 2), cada uma com o seu GunController, " +
+                "ponto de disparo e GunAimer. O GunController e o ponto de disparo do centro sao removidos.",
+                MessageType.None);
+        }
+
         Prop("_fireAction", "Acao de disparo (Player/Attack)");
         Prop("_reloadAction", "Acao de recarga (Player/Reload)");
         Prop("_playerShootClip", "Som de disparo");
@@ -753,26 +909,63 @@ public class ShipCreatorWindow : EditorWindow
 
             if (_playerGun != null)
             {
-                Transform muzzle = ShipPrefabUtility.GetOrCreateFiringPoint(root);
-                GunController gun = GetOrAdd<GunController>(root);
+                // Cada arma da nave tem o seu proprio GunController (com o seu ponto de disparo).
+                // So se cria um na raiz, com o ponto central, quando a nave ainda nao tem nenhum.
+                List<(GunController controller, GunData data)> guns = new List<(GunController, GunData)>();
 
-                EditorAssetUtility.SetObject(gun, "gunData", _playerGun);
+                if (_playerSecondGun != null)
+                {
+                    // Duas armas: uma montagem em cada lado, cada uma com o seu controller e o seu ponto de disparo.
+                    GunController centerGun = root.GetComponent<GunController>();
+                    if (centerGun != null)
+                        DestroyImmediate(centerGun);
 
-                // Sem estas acoes o GunController do jogador nunca dispara nem recarrega.
-                if (_fireAction != null)
-                    EditorAssetUtility.SetObject(gun, "fireAction", _fireAction);
+                    Transform centerMuzzle = root.transform.Find("FiringPoint");
+                    if (centerMuzzle != null)
+                        DestroyImmediate(centerMuzzle.gameObject);
 
-                if (_reloadAction != null)
-                    EditorAssetUtility.SetObject(gun, "reloadAction", _reloadAction);
-                EditorAssetUtility.SetObject(gun, "firingPoint", muzzle);
+                    float muzzleZ = ShipPrefabUtility.TryGetLocalBounds(root, out Bounds shipBounds) ? shipBounds.max.z + 0.5f : 1f;
+
+                    guns.Add((GetOrCreateGunMount(root, "Gun_Left", -_playerGunSpacing, muzzleZ), _playerGun));
+                    guns.Add((GetOrCreateGunMount(root, "Gun_Right", _playerGunSpacing, muzzleZ), _playerSecondGun));
+                }
+                else
+                {
+                    foreach (GunController existing in root.GetComponentsInChildren<GunController>(true))
+                        guns.Add((existing, _playerGun));
+
+                    if (guns.Count == 0)
+                    {
+                        GunController rootGun = GetOrAdd<GunController>(root);
+                        EditorAssetUtility.SetObject(rootGun, "firingPoint", ShipPrefabUtility.GetOrCreateFiringPoint(root));
+                        guns.Add((rootGun, _playerGun));
+                    }
+                }
+
+                AudioSource source = null;
 
                 if (_playerShootClip != null)
                 {
-                    AudioSource source = GetOrAdd<AudioSource>(root);
+                    source = GetOrAdd<AudioSource>(root);
                     source.playOnAwake = false;
+                }
 
-                    EditorAssetUtility.SetObject(gun, "audioSource", source);
-                    EditorAssetUtility.SetObject(gun, "shootClip", _playerShootClip);
+                foreach ((GunController gun, GunData gunData) in guns)
+                {
+                    EditorAssetUtility.SetObject(gun, "gunData", gunData);
+
+                    // Sem estas acoes o GunController do jogador nunca dispara nem recarrega.
+                    if (_fireAction != null)
+                        EditorAssetUtility.SetObject(gun, "fireAction", _fireAction);
+
+                    if (_reloadAction != null)
+                        EditorAssetUtility.SetObject(gun, "reloadAction", _reloadAction);
+
+                    if (source != null)
+                    {
+                        EditorAssetUtility.SetObject(gun, "audioSource", source);
+                        EditorAssetUtility.SetObject(gun, "shootClip", _playerShootClip);
+                    }
                 }
             }
 
@@ -802,6 +995,35 @@ public class ShipCreatorWindow : EditorWindow
 
     // Valores atualizados de cada vez que o prefab e criado/atualizado, tal como nos dados do inimigo.
     // Componentes cujo script foi apagado ou renomeado (ex.: o antigo ReticleGimbal) impedem guardar o prefab.
+    // Montagem de uma arma: objeto filho com o seu GunController e um FiringPoint a frente.
+    private static GunController GetOrCreateGunMount(GameObject root, string mountName, float x, float muzzleZ)
+    {
+        Transform mount = root.transform.Find(mountName);
+
+        if (mount == null)
+        {
+            GameObject mountObject = new GameObject(mountName);
+            mountObject.transform.SetParent(root.transform, false);
+            mount = mountObject.transform;
+        }
+
+        mount.localPosition = new Vector3(x, 0f, 0f);
+
+        Transform muzzle = mount.Find("FiringPoint");
+
+        if (muzzle == null)
+        {
+            GameObject muzzleObject = new GameObject("FiringPoint");
+            muzzleObject.transform.SetParent(mount, false);
+            muzzle = muzzleObject.transform;
+            muzzle.localPosition = new Vector3(0f, 0f, muzzleZ);
+        }
+
+        GunController controller = GetOrAdd<GunController>(mount.gameObject);
+        EditorAssetUtility.SetObject(controller, "firingPoint", muzzle);
+        return controller;
+    }
+
     private static void RemoveMissingScripts(GameObject root)
     {
         int removed = 0;
@@ -844,12 +1066,22 @@ public class ShipCreatorWindow : EditorWindow
             EditorAssetUtility.SetObject(ship, "bankVisual", bankModel);
 
         // O cano segue a mira livre, para os tiros sairem onde esta o crosshair.
-        Transform gimbalMuzzle = root.transform.Find("FiringPoint");
-        if (gimbalMuzzle != null)
+        // Um GunAimer em cada ponto de disparo de cada GunController da nave.
+        List<Transform> gimbalMuzzles = new List<Transform>();
+
+        foreach (GunController gunController in root.GetComponentsInChildren<GunController>(true))
         {
-            GunAimer gimbal = gimbalMuzzle.GetComponent<GunAimer>();
+            Transform point = new SerializedObject(gunController).FindProperty("firingPoint").objectReferenceValue as Transform;
+
+            if (point != null && !gimbalMuzzles.Contains(point))
+                gimbalMuzzles.Add(point);
+        }
+
+        foreach (Transform muzzleTransform in gimbalMuzzles)
+        {
+            GunAimer gimbal = muzzleTransform.GetComponent<GunAimer>();
             if (gimbal == null)
-                gimbal = gimbalMuzzle.gameObject.AddComponent<GunAimer>();
+                gimbal = muzzleTransform.gameObject.AddComponent<GunAimer>();
             EditorAssetUtility.SetObject(gimbal, "ship", ship);
         }
 
@@ -1092,6 +1324,9 @@ public class ShipCreatorWindow : EditorWindow
                 AddMeshColliders(root);
 
             SatelliteRing ring = GetOrAdd<SatelliteRing>(root);
+
+            // Permite focar o satelite com o botao de lock.
+            GetOrAdd<AimLockTarget>(root);
 
             float radius = _satellite.InnerRadius;
             if (_satellite.AutoRadius && ShipPrefabUtility.TryGetLocalBounds(root, out Bounds bounds))
@@ -1341,10 +1576,16 @@ public class ShipCreatorWindow : EditorWindow
         Undo.RegisterCreatedObjectUndo(instance, "Place player");
         instance.transform.position = GetSpawnCenter();
 
-        GunController gun = instance.GetComponent<GunController>();
-        if (gun != null && _playerPool != null)
-            EditorAssetUtility.SetObject(gun, "projectilePool", _playerPool);
-        else if (gun != null)
+        // Cada arma tem o seu GunController (na raiz ou nos filhos): todos precisam da pool para disparar.
+        GunController[] playerGuns = instance.GetComponentsInChildren<GunController>(true);
+
+        foreach (GunController playerGun in playerGuns)
+        {
+            if (_playerPool != null)
+                EditorAssetUtility.SetObject(playerGun, "projectilePool", _playerPool);
+        }
+
+        if (playerGuns.Length > 0 && _playerPool == null)
             Debug.LogWarning("Ship Creator: o jogador tem arma mas nao ha pool do jogador ligada.");
 
         if (_setupCameraOnPlace)
@@ -2825,10 +3066,6 @@ public class AsteroidSetupWindow : EditorWindow
             EditorAssetUtility.SetObject(delivery, "_collector", collector);
             EditorAssetUtility.SetObject(delivery, "_deliverClip", s.DeliverClip);
 
-            // O prompt e um objeto da cena, por isso so se liga na nave da cena.
-            if (s.DeliverPrompt != null)
-                EditorAssetUtility.SetObject(delivery, "_prompt", s.DeliverPrompt);
-
             EditorUtility.SetDirty(delivery);
 
             EditorUtility.SetDirty(collector);
@@ -2907,6 +3144,9 @@ public class AsteroidSetupWindow : EditorWindow
 
             if (created)
                 planet = Undo.AddComponent<ResourcePlanet>(planetObject);
+
+            // Aviso "[E] Entregar" e lock de alvo (botao do meio do rato) em todos os planetas.
+            PlanetExtras.Ensure(planetObject);
 
             // Um planeta que ja tinha valores teus nao e mexido; so os novos recebem os das definicoes.
             if (created)
@@ -3196,6 +3436,9 @@ public class PlanetSetupWindow : EditorWindow
             if (isNew)
                 planet = Undo.AddComponent<ResourcePlanet>(target);
 
+            // Aviso "[E] Entregar" e lock de alvo (botao do meio do rato), mesmo nos planetas ja configurados.
+            PlanetExtras.Ensure(target);
+
             if (!isNew && !s.OverwriteExisting)
             {
                 skipped++;
@@ -3290,9 +3533,6 @@ public class PlanetSetupWindow : EditorWindow
 
         if (s.DeliverClip != null)
             EditorAssetUtility.SetObject(delivery, "_deliverClip", s.DeliverClip);
-
-        if (s.DeliverPrompt != null)
-            EditorAssetUtility.SetObject(delivery, "_prompt", s.DeliverPrompt);
 
         EditorUtility.SetDirty(delivery);
         EditorSceneManager.MarkSceneDirty(ship.scene);

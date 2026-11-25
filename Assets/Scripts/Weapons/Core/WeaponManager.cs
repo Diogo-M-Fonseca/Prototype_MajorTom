@@ -18,6 +18,7 @@ public class WeaponManager : MonoBehaviour
     private bool hasBeenEnabled;
     private Rigidbody shipBody;
     private ShipBoost shipBoost;
+    private SpaceshipController ship;
 
     public Transform FiringPoint => firingPoint;
 
@@ -48,6 +49,9 @@ public class WeaponManager : MonoBehaviour
 
         Transform shipRoot = shipBody != null ? shipBody.transform : transform.root;
         shipBoost = shipRoot.GetComponentInChildren<ShipBoost>();
+        ship = shipRoot.GetComponentInParent<SpaceshipController>();
+        if (ship == null)
+            ship = shipRoot.GetComponentInChildren<SpaceshipController>();
 
         InitializeWeapons();
     }
@@ -85,7 +89,8 @@ public class WeaponManager : MonoBehaviour
             laserBeam,
             SetMovementLocked,
             () => ShooterVelocity,
-            () => SpeedMultiplier
+            () => SpeedMultiplier,
+            SetMovementLimit
         );
 
         for (int i = 0; i < weaponSlots.Length; i++)
@@ -164,6 +169,17 @@ public class WeaponManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void SetMovementLimit(float speedFraction, float turnScale)
+    {
+        if (ship == null)
+            return;
+
+        if (speedFraction >= 0.999f && turnScale >= 0.999f)
+            ship.ClearMovementLimit();
+        else
+            ship.SetMovementLimit(speedFraction, turnScale);
     }
 
     private void SetMovementLocked(bool locked)
