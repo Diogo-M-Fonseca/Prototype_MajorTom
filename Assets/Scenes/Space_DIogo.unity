@@ -22940,6 +22940,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 342447495475942450, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: screenSmoothing
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 342447495475942450, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: 'guns.Array.data[0]'
       value: 
       objectReference: {fileID: 1577131532}
@@ -22993,7 +22997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: reticleConeAngle
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: reticleConeBySpeed
@@ -23009,7 +23013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: reticleConeAtMaxSpeed
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: alignSpeedAtStandstill
