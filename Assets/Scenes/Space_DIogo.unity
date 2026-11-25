@@ -18551,12 +18551,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 1061515120}
   invertForward: 1
-  distance: 10
+  distance: 5
   height: 3
   lookAheadDistance: 15
   positionSmoothTime: 0.08
   rotationSharpness: 8
-  shipSafeZone: 0.7
+  shipSafeZone: 0.95
 --- !u!4 &1727690420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082410936452746314, guid: 202aab7495fb25a47b1803ca4f692ba4, type: 3}
@@ -22957,11 +22957,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: maxSpeed
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: flightMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: maxYawRate
@@ -22970,6 +22970,10 @@ PrefabInstance:
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: enginePower
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: aimSmoothing
+      value: 0.0535
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: bankResponse
@@ -23000,6 +23004,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
+      propertyPath: turnAcceleration
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: reticleConeBySpeed
       value: 1
       objectReference: {fileID: 0}
@@ -23009,7 +23017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: alignSpeedAtMaxSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 702154829817820651, guid: 0659de65450119048af1d1a3e0f1c4f9, type: 3}
       propertyPath: reticleConeAtMaxSpeed

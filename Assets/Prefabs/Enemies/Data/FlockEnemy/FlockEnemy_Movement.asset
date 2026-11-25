@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlockEnemy_Movement
   m_EditorClassIdentifier: Assembly-CSharp::MovementProfile
   _minSpeed: 15
-  _maxSpeed: 100
+  _maxSpeed: 40
   _acceleration: 20
   _lateralGrip: 100
   _maxTurnRate: 100
