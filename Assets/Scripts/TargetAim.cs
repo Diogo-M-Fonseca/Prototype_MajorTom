@@ -4,6 +4,7 @@ public class TargetAim
 {
     private Transform _target;
     private SpaceshipController _ship;
+    private Transform _muzzle;
 
     public Vector3 Get(Transform target)
     {
@@ -11,6 +12,7 @@ public class TargetAim
         {
             _target = null;
             _ship = null;
+            _muzzle = null;
             return Vector3.zero;
         }
 
@@ -18,9 +20,27 @@ public class TargetAim
         {
             _target = target;
             _ship = target.GetComponent<SpaceshipController>();
+            _muzzle = null;
+
+            if (_ship != null)
+            {
+                WeaponManager weapons = _ship.GetComponentInChildren<WeaponManager>();
+                if (weapons != null)
+                    _muzzle = weapons.FiringPoint;
+
+                if (_muzzle == null)
+                {
+                    GunController gun = _ship.GetComponentInChildren<GunController>();
+                    if (gun != null)
+                        _muzzle = gun.FiringPoint;
+                }
+            }
         }
 
-        return _ship != null ? _ship.AimDirection : target.forward;
-    }
+        // Direção para onde o alvo realmente dispara (cano), não o reticle livre.
+        if (_muzzle != null)
+            return _muzzle.forward;
 
+        return _ship != null ? _ship.Nose : target.forward;
+    }
 }

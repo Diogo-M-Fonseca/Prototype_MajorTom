@@ -7,23 +7,44 @@ using UnityEngine.UI;
 public class TargetLockSystem : MonoBehaviour
 {
     [Header("Selection")]
-    [SerializeField, Range(0.02f, 1f)] private float selectionRadius = 0.25f;
+    [SerializeField, Range(0.02f, 1f)]
+    private float selectionRadius = 0.25f;
 
     [Header("Camera")]
-    [SerializeField, Range(0f, 1f)] private float cameraFocusBlend = 0.5f;
+    [SerializeField, Range(0f, 1f)]
+    private float cameraFocusBlend = 0.5f;
 
     [Header("Lead")]
-    [SerializeField] private float fallbackProjectileSpeed = 100f;
-    [SerializeField] private float aimDistance = 100f;
-    [SerializeField, Min(0f)] private float leadSmoothing = 0.05f;
+    [SerializeField]
+    private float fallbackProjectileSpeed = 100f;
+
+    [SerializeField]
+    private float aimDistance = 100f;
+
+    [SerializeField, Min(0f)]
+    private float leadSmoothing = 0.05f;
 
     [Header("UI")]
-    [SerializeField] private float leadBoxSize = 44f;
-    [SerializeField] private float targetBoxSize = 70f;
-    [SerializeField] private float aimedTolerance = 1f;
-    [SerializeField] private Color idleColor = new Color(1f, 0.85f, 0.2f, 1f);
-    [SerializeField] private Color aimedColor = new Color(0.2f, 1f, 0.3f, 1f);
-    [SerializeField] private Color unreachableColor = new Color(1f, 0.25f, 0.25f, 0.8f);
+    [SerializeField]
+    private float leadBoxSize = 44f;
+
+    [SerializeField]
+    private float targetBoxSize = 70f;
+
+    [SerializeField]
+    private float predictBoxSize = 26f;
+
+    [SerializeField]
+    private float aimedTolerance = 1f;
+
+    [SerializeField]
+    private Color idleColor = new Color(1f, 0.85f, 0.2f, 1f);
+
+    [SerializeField]
+    private Color aimedColor = new Color(0.2f, 1f, 0.3f, 1f);
+
+    [SerializeField]
+    private Color unreachableColor = new Color(1f, 0.25f, 0.25f, 0.8f);
 
     private SpaceshipController ship;
     private CameraFollow cameraFollow;
@@ -40,6 +61,11 @@ public class TargetLockSystem : MonoBehaviour
     private bool hasSmoothedLead;
 
     private bool leadValid;
+    private bool predictedValid;
+    private bool directValid;
+    private Vector3 directDirection;
+    private Vector3 predictedWorld;
+    private Vector3 smoothedPredicted;
     private Transform leadMuzzle;
     private Vector3 leadDirection;
 
@@ -52,13 +78,34 @@ public class TargetLockSystem : MonoBehaviour
         return leadValid && muzzle != null;
     }
 
+    // Direção para onde a mira deve ir: o lead se for válido; senão, direto ao alvo
+    // (armas laser/hitscan, alvos sem lead ou lead impossível).
+    public bool TryGetAimDirection(out Transform muzzle, out Vector3 direction)
+    {
+        if (TryGetLead(out muzzle, out direction))
+            return true;
+
+        muzzle = leadMuzzle;
+        direction = directDirection;
+        return directValid && muzzle != null;
+    }
+
+    public bool TryGetPredictedPosition(out Vector3 worldPosition)
+    {
+        worldPosition = predictedWorld;
+        return predictedValid;
+    }
+
     private RectTransform root;
     private RectTransform targetBox;
     private RectTransform leadBox;
+    private RectTransform predictBox;
     private RectTransform line;
-    private Image targetImg, leadImg, lineImg;
+    private Image targetImg,
+        leadImg,
+        lineImg,
+        predictImg;
     private Text distanceLabel;
-
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Bootstrap()
@@ -72,13 +119,15 @@ public class TargetLockSystem : MonoBehaviour
 
     private static void Spawn()
     {
-        if (FindFirstObjectByType<TargetLockSystem>() != null) return;
-        if (FindFirstObjectByType<SpaceshipController>() == null) return;
-        if (FindFirstObjectByType<CameraFollow>() == null) return;
+        if (FindFirstObjectByType<TargetLockSystem>() != null)
+            return;
+        if (FindFirstObjectByType<SpaceshipController>() == null)
+            return;
+        if (FindFirstObjectByType<CameraFollow>() == null)
+            return;
 
         new GameObject("TargetLockSystem").AddComponent<TargetLockSystem>();
     }
-
 
     private void Awake()
     {
@@ -91,25 +140,37 @@ public class TargetLockSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        if (cameraFollow != null) cameraFollow.FocusTarget = null;
+        if (cameraFollow != null)
+            cameraFollow.FocusTarget = null;
     }
 
     private void ResolveReferences()
     {
-        if (ship == null) ship = FindFirstObjectByType<SpaceshipController>();
-        if (cameraFollow == null) cameraFollow = FindFirstObjectByType<CameraFollow>();
-        if (cam == null) cam = cameraFollow != null ? cameraFollow.GetComponent<Camera>() : Camera.main;
-        if (weaponManager == null) weaponManager = FindFirstObjectByType<WeaponManager>();
-        if (weaponManager == null && gunController == null) gunController = FindFirstObjectByType<GunController>();
-        if (aimPositioner == null) aimPositioner = FindFirstObjectByType<AimPositioner>();
+        if (ship == null)
+            ship = FindFirstObjectByType<SpaceshipController>();
+        if (cameraFollow == null)
+            cameraFollow = FindFirstObjectByType<CameraFollow>();
+        if (cam == null)
+            cam = cameraFollow != null ? cameraFollow.GetComponent<Camera>() : Camera.main;
+        if (weaponManager == null)
+            weaponManager = FindFirstObjectByType<WeaponManager>();
+        if (weaponManager == null && gunController == null)
+            gunController = FindFirstObjectByType<GunController>();
+        if (aimPositioner == null)
+            aimPositioner = FindFirstObjectByType<AimPositioner>();
     }
 
     private void Update()
     {
-        if (Time.timeScale <= 0f) return;
+        if (Time.timeScale <= 0f)
+            return;
 
         ResolveReferences();
-        if (ship == null || cam == null) { SetUIVisible(false); return; }
+        if (ship == null || cam == null)
+        {
+            SetUIVisible(false);
+            return;
+        }
 
         Mouse mouse = Mouse.current;
         if (mouse != null && mouse.middleButton.wasPressedThisFrame)
@@ -122,6 +183,8 @@ public class TargetLockSystem : MonoBehaviour
     private void LateUpdate()
     {
         leadValid = false;
+        predictedValid = false;
+        directValid = false;
 
         if (target == null || ship == null || cam == null)
         {
@@ -133,7 +196,6 @@ public class TargetLockSystem : MonoBehaviour
         UpdateUI();
     }
 
-
     private void HandleSelectionClick(Mouse mouse)
     {
         Vector2 refPoint;
@@ -142,7 +204,8 @@ public class TargetLockSystem : MonoBehaviour
             GetMuzzle(out Transform muzzle, out _, out _, out _, out _);
             GetCrosshair(muzzle, out Vector3 aimOrigin, out Vector3 aimOffset);
             Vector3 sp = cam.WorldToScreenPoint(aimOrigin + aimOffset);
-            refPoint = sp.z > 0f ? (Vector2)sp : new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+            refPoint =
+                sp.z > 0f ? (Vector2)sp : new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         }
         else
         {
@@ -156,10 +219,12 @@ public class TargetLockSystem : MonoBehaviour
         for (int i = 0; i < AimLockRegistry.All.Count; i++)
         {
             IAimLockable candidate = AimLockRegistry.All[i];
-            if (candidate == null || !candidate.IsLockable) continue;
+            if (candidate == null || !candidate.IsLockable)
+                continue;
 
             Vector3 sp = cam.WorldToScreenPoint(candidate.LockPoint.position);
-            if (sp.z <= 0f) continue;
+            if (sp.z <= 0f)
+                continue;
 
             float dist = Vector2.Distance(refPoint, sp);
             if (dist < bestDist)
@@ -196,10 +261,10 @@ public class TargetLockSystem : MonoBehaviour
         target = null;
         targetBody = null;
         hasSmoothedLead = false;
-        if (cameraFollow != null) cameraFollow.FocusTarget = null;
+        if (cameraFollow != null)
+            cameraFollow.FocusTarget = null;
         SetUIVisible(false);
     }
-
 
     private void UpdateTargetVelocity()
     {
@@ -231,7 +296,8 @@ public class TargetLockSystem : MonoBehaviour
 
         if (weaponManager != null)
         {
-            if (weaponManager.FiringPoint != null) muzzle = weaponManager.FiringPoint;
+            if (weaponManager.FiringPoint != null)
+                muzzle = weaponManager.FiringPoint;
 
             Weapon weapon = weaponManager.CurrentWeapon;
             if (weapon != null && weapon.Data != null)
@@ -250,7 +316,8 @@ public class TargetLockSystem : MonoBehaviour
         }
         else if (gunController != null)
         {
-            if (gunController.FiringPoint != null) muzzle = gunController.FiringPoint;
+            if (gunController.FiringPoint != null)
+                muzzle = gunController.FiringPoint;
             speed = gunController.ProjectileSpeed;
             range = gunController.Range;
             inheritShipSpeed = true;
@@ -259,16 +326,14 @@ public class TargetLockSystem : MonoBehaviour
 
     private void GetCrosshair(Transform muzzle, out Vector3 origin, out Vector3 offset)
     {
-        Transform aimOrigin = aimPositioner != null ? aimPositioner.AimOriginTransform : null;
-        if (aimOrigin != null && ship != null && ship.UsesFreeReticle)
+        // Fonte única de verdade: o mesmo raio que o AimPositioner usa para desenhar o crosshair,
+        // ou seja, a direção REAL dos canos. Em FreeReticle, ship.AimDirection é só o reticle
+        // (o nariz persegue-o com atraso) e não é para onde as balas saem.
+        if (aimPositioner != null && aimPositioner.HasAimRay)
         {
-            origin = aimOrigin.position;
-            offset = ship.AimDirection * Mathf.Abs(aimPositioner.AimDistance);
-        }
-        else if (aimOrigin != null)
-        {
-            origin = aimOrigin.position;
-            offset = aimOrigin.forward * aimPositioner.AimDistance;
+            Ray ray = aimPositioner.AimRay;
+            origin = ray.origin;
+            offset = ray.direction * Mathf.Abs(aimPositioner.AimDistance);
         }
         else
         {
@@ -277,14 +342,26 @@ public class TargetLockSystem : MonoBehaviour
         }
     }
 
-
     private void UpdateUI()
     {
-        GetMuzzle(out Transform muzzle, out float speed, out float range, out bool inherit, out bool isProjectile);
+        GetMuzzle(
+            out Transform muzzle,
+            out float speed,
+            out float range,
+            out bool inherit,
+            out bool isProjectile
+        );
 
         Vector3 targetPos = target.LockPoint.position;
-        Vector3 shipVel = ship.TryGetComponent(out Rigidbody shipBody) ? shipBody.linearVelocity : Vector3.zero;
+        Vector3 shipVel = ship.TryGetComponent(out Rigidbody shipBody)
+            ? shipBody.linearVelocity
+            : Vector3.zero;
         float distance = Vector3.Distance(muzzle.position, targetPos);
+
+        leadMuzzle = muzzle;
+        Vector3 toTarget = targetPos - muzzle.position;
+        directValid = toTarget.sqrMagnitude > 1e-4f;
+        directDirection = directValid ? toTarget.normalized : Vector3.zero;
 
         SetUIVisible(true);
         PlaceOnScreen(targetBox, cam.WorldToScreenPoint(targetPos), out bool targetOnScreen);
@@ -294,24 +371,37 @@ public class TargetLockSystem : MonoBehaviour
         if (!isProjectile || !target.ShowLead)
         {
             leadBox.gameObject.SetActive(false);
+            predictBox.gameObject.SetActive(false);
             line.gameObject.SetActive(false);
             targetImg.color = idleColor;
             return;
         }
 
         bool solved = LeadSolver.Solve(
-            muzzle.position, targetPos, targetVel, speed, shipVel, inherit,
-            out Vector3 intercept, out float time
+            muzzle.position,
+            targetPos,
+            targetVel,
+            speed,
+            shipVel,
+            inherit,
+            out Vector3 intercept,
+            out float time
         );
+
+        // Posição futura REAL do alvo no momento do impacto (referencial do mundo).
+        // O "intercept" do LeadSolver está no referencial da nave e serve só para obter a direção de tiro.
+        Vector3 predicted = solved ? targetPos + targetVel * time : targetPos;
 
         if (hasSmoothedLead && leadSmoothing > 0f)
         {
             float a = 1f - Mathf.Exp(-Time.deltaTime / leadSmoothing);
             smoothedLead = Vector3.Lerp(smoothedLead, intercept, a);
+            smoothedPredicted = Vector3.Lerp(smoothedPredicted, predicted, a);
         }
         else
         {
             smoothedLead = intercept;
+            smoothedPredicted = predicted;
             hasSmoothedLead = true;
         }
 
@@ -319,7 +409,8 @@ public class TargetLockSystem : MonoBehaviour
 
         Vector3 leadDir = (smoothedLead - muzzle.position).normalized;
         GetCrosshair(muzzle, out Vector3 aimOrigin, out Vector3 aimOffset);
-        Vector3 aimNow = ship.UsesFreeReticle ? ship.AimDirection : muzzle.forward;
+        // Direção real do tiro (a mesma do crosshair desenhado), não o reticle livre.
+        Vector3 aimNow = aimOffset.normalized;
         Quaternion toLead = Quaternion.FromToRotation(aimNow, leadDir);
         Vector3 leadScreen = cam.WorldToScreenPoint(aimOrigin + toLead * aimOffset);
         Vector3 aimScreen = cam.WorldToScreenPoint(aimOrigin + aimOffset);
@@ -328,16 +419,26 @@ public class TargetLockSystem : MonoBehaviour
         leadBox.sizeDelta = Vector2.one * leadBoxSize;
         leadBox.gameObject.SetActive(true);
 
+        PlaceOnScreen(predictBox, cam.WorldToScreenPoint(smoothedPredicted), out _);
+        predictBox.sizeDelta = Vector2.one * predictBoxSize;
+        predictBox.gameObject.SetActive(solved);
+        predictedWorld = smoothedPredicted;
+        predictedValid = solved && !outOfRange;
+
         leadMuzzle = muzzle;
         leadDirection = leadDir;
         leadValid = solved && !outOfRange;
 
         bool aimed =
-            solved && !outOfRange && aimScreen.z > 0f && leadScreen.z > 0f &&
-            Vector2.Distance(aimScreen, leadScreen) <= leadBoxSize * 0.5f * aimedTolerance;
+            solved
+            && !outOfRange
+            && aimScreen.z > 0f
+            && leadScreen.z > 0f
+            && Vector2.Distance(aimScreen, leadScreen) <= leadBoxSize * 0.5f * aimedTolerance;
 
         Color c = !solved || outOfRange ? unreachableColor : (aimed ? aimedColor : idleColor);
         leadImg.color = c;
+        predictImg.color = c;
         targetImg.color = c;
         lineImg.color = new Color(c.r, c.g, c.b, 0.45f);
         distanceLabel.color = c;
@@ -358,9 +459,12 @@ public class TargetLockSystem : MonoBehaviour
     private void PlaceOnScreen(RectTransform rect, Vector3 screen, out bool onScreen)
     {
         const float margin = 40f;
-        onScreen = screen.z > 0f
-            && screen.x >= 0f && screen.x <= Screen.width
-            && screen.y >= 0f && screen.y <= Screen.height;
+        onScreen =
+            screen.z > 0f
+            && screen.x >= 0f
+            && screen.x <= Screen.width
+            && screen.y >= 0f
+            && screen.y <= Screen.height;
 
         if (screen.z <= 0f)
         {
@@ -375,7 +479,8 @@ public class TargetLockSystem : MonoBehaviour
 
     private void SetUIVisible(bool visible)
     {
-        if (root != null) root.gameObject.SetActive(visible);
+        if (root != null)
+            root.gameObject.SetActive(visible);
     }
 
     private void BuildUI()
@@ -388,20 +493,37 @@ public class TargetLockSystem : MonoBehaviour
 
         root = (RectTransform)canvasGo.transform;
 
-        Sprite square = MakeSprite(64, (x, y, s) => Mathf.Min(Mathf.Min(x, y), Mathf.Min(s - 1 - x, s - 1 - y)) < 3);
-        Sprite brackets = MakeSprite(64, (x, y, s) =>
-        {
-            int edge = Mathf.Min(Mathf.Min(x, y), Mathf.Min(s - 1 - x, s - 1 - y));
-            if (edge >= 3) return false;
-            int cx = Mathf.Min(x, s - 1 - x);
-            int cy = Mathf.Min(y, s - 1 - y);
-            return cx < 16 || cy < 16;
-        });
+        Sprite square = MakeSprite(
+            64,
+            (x, y, s) => Mathf.Min(Mathf.Min(x, y), Mathf.Min(s - 1 - x, s - 1 - y)) < 3
+        );
+        Sprite brackets = MakeSprite(
+            64,
+            (x, y, s) =>
+            {
+                int edge = Mathf.Min(Mathf.Min(x, y), Mathf.Min(s - 1 - x, s - 1 - y));
+                if (edge >= 3)
+                    return false;
+                int cx = Mathf.Min(x, s - 1 - x);
+                int cy = Mathf.Min(y, s - 1 - y);
+                return cx < 16 || cy < 16;
+            }
+        );
         Sprite flat = MakeSprite(4, (x, y, s) => true);
+        Sprite ring = MakeSprite(
+            64,
+            (x, y, s) =>
+            {
+                float c = (s - 1) * 0.5f;
+                float d = Mathf.Sqrt((x - c) * (x - c) + (y - c) * (y - c));
+                return (d <= c && d >= c - 4f) || d <= 4f;
+            }
+        );
 
         line = CreateImage("Line", flat, out lineImg);
         targetBox = CreateImage("TargetBox", brackets, out targetImg);
         leadBox = CreateImage("LeadBox", square, out leadImg);
+        predictBox = CreateImage("PredictedPosition", ring, out predictImg);
 
         GameObject textGo = new GameObject("Distance", typeof(RectTransform), typeof(Text));
         textGo.transform.SetParent(targetBox, false);
@@ -442,8 +564,10 @@ public class TargetLockSystem : MonoBehaviour
 
         Color32[] pixels = new Color32[size * size];
         for (int y = 0; y < size; y++)
-            for (int x = 0; x < size; x++)
-                pixels[y * size + x] = fill(x, y, size) ? new Color32(255, 255, 255, 255) : new Color32(255, 255, 255, 0);
+        for (int x = 0; x < size; x++)
+            pixels[y * size + x] = fill(x, y, size)
+                ? new Color32(255, 255, 255, 255)
+                : new Color32(255, 255, 255, 0);
 
         tex.SetPixels32(pixels);
         tex.Apply(false, true);

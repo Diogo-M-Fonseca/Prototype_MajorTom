@@ -73,7 +73,6 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField]
     bool invertForward = true;
 
-
     [SerializeField, Min(0f)]
     float mouseSensitivity = 0.15f;
 
@@ -82,7 +81,6 @@ public class SpaceshipController : MonoBehaviour
 
     [SerializeField]
     bool invertMouseX = false;
-
 
     [SerializeField, Range(0f, 0.1f)]
     float aimSmoothing = 0.03f;
@@ -150,6 +148,69 @@ public class SpaceshipController : MonoBehaviour
         this.thrust = Mathf.Clamp(thrust, -1f, 1f);
     }
 
+    Vector3 assistDir;
+    Vector3 assistLocalFrom;
+    float assistSharpness;
+    float assistMaxDegPerSec;
+    bool hasAssist;
+
+    // DirectNose: pede à nave para alinhar 'fromWorld' (ex.: direção do cano) com 'targetWorld'.
+    // O pedido é guardado (o último ganha) e aplicado no FixedUpdate com o estado real da nave.
+    public void SetAimAssist(
+        Vector3 targetWorld,
+        Vector3 fromWorld,
+        float sharpness,
+        float maxDegPerSec
+    )
+    {
+        if (UsesFreeReticle || targetWorld.sqrMagnitude < 1e-6f || fromWorld.sqrMagnitude < 1e-6f)
+        {
+            hasAssist = false;
+            return;
+        }
+
+        assistDir = targetWorld.normalized;
+        assistLocalFrom = Quaternion.Inverse(transform.rotation) * fromWorld.normalized;
+        assistSharpness = Mathf.Max(0f, sharpness);
+        assistMaxDegPerSec = Mathf.Max(0f, maxDegPerSec);
+        hasAssist = true;
+    }
+
+    public void ClearAimAssist() => hasAssist = false;
+
+    Quaternion ApplyAimAssist(Quaternion rot, float dt)
+    {
+        if (!hasAssist)
+            return rot;
+
+        Vector3 from = rot * assistLocalFrom;
+        float err = Vector3.Angle(from, assistDir);
+        if (err < 0.01f)
+            return rot;
+
+        float speed = Mathf.Min(err * assistSharpness, assistMaxDegPerSec);
+        float step = Mathf.Min(err, speed * dt);
+        if (step <= 0f)
+            return rot;
+
+        Quaternion turn = Quaternion.Slerp(
+            Quaternion.identity,
+            Quaternion.FromToRotation(from, assistDir),
+            step / err
+        );
+        return turn * rot;
+    }
+
+    public void RotateAimToward(Vector3 worldDirection, float fraction)
+    {
+        if (!UsesFreeReticle || worldDirection.sqrMagnitude < 1e-6f)
+            return;
+
+        aimDir = Vector3
+            .Slerp(aimDir, worldDirection.normalized, Mathf.Clamp01(fraction))
+            .normalized;
+    }
+
     public void AddRotationDegrees(float pitch, float yaw)
     {
         pendingPitch += pitch;
@@ -189,7 +250,9 @@ public class SpaceshipController : MonoBehaviour
         if (UsesFreeReticle && bankAngle > 0f)
             target = -Mathf.Clamp(turnRate.y / maxYawRate, -1f, 1f) * bankAngle * DirSign;
 
-        float tiltTarget = UsesFreeReticle ? Mathf.Clamp(turnRate.x / maxPitchRate, -1f, 1f) * pitchTiltAngle : 0f;
+        float tiltTarget = UsesFreeReticle
+            ? Mathf.Clamp(turnRate.x / maxPitchRate, -1f, 1f) * pitchTiltAngle
+            : 0f;
 
         float a = 1f - Mathf.Exp(-bankResponse * Time.deltaTime);
         bank = Mathf.Lerp(bank, target, a);
@@ -245,9 +308,14 @@ public class SpaceshipController : MonoBehaviour
                 : 1f;
             alignScale *= turnLimit;
 
-            currentCone = currentCone < 0f
-                ? targetCone
-                : Mathf.Lerp(currentCone, targetCone, 1f - Mathf.Exp(-reticleConeResponse * dt));
+            currentCone =
+                currentCone < 0f
+                    ? targetCone
+                    : Mathf.Lerp(
+                        currentCone,
+                        targetCone,
+                        1f - Mathf.Exp(-reticleConeResponse * dt)
+                    );
 
             if (Vector3.Angle(nose, aimDir) > currentCone)
                 aimDir = Vector3.RotateTowards(nose, aimDir, currentCone * Mathf.Deg2Rad, 0f);
@@ -258,7 +326,10 @@ public class SpaceshipController : MonoBehaviour
             localErr.ToAngleAxis(out float errAngle, out Vector3 errAxis);
             if (errAngle > 180f)
                 errAngle -= 360f;
-            Vector3 err = float.IsNaN(errAxis.x) || float.IsInfinity(errAxis.x) ? Vector3.zero : errAxis * errAngle;
+            Vector3 err =
+                float.IsNaN(errAxis.x) || float.IsInfinity(errAxis.x)
+                    ? Vector3.zero
+                    : errAxis * errAngle;
 
             float alignAccel = turnAcceleration * alignScale;
             float wantPitch = DesiredRate(err.x, maxPitchRate * alignScale, alignAccel, dt);
@@ -271,7 +342,9 @@ public class SpaceshipController : MonoBehaviour
         else
         {
             turnRate = Vector2.zero;
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(pitchStep, yawStep, rollStep));
+            Quaternion next = rb.rotation * Quaternion.Euler(pitchStep, yawStep, rollStep);
+            next = ApplyAimAssist(next, dt);
+            rb.MoveRotation(next);
             aimDir = Nose;
         }
 
@@ -280,7 +353,9 @@ public class SpaceshipController : MonoBehaviour
         float vf = Vector3.Dot(v, fwd);
         Vector3 sideways = v - fwd * vf;
 
-        float targetThrottle = boostForcesThrottle ? 1f : (thrust < -0.01f ? thrust : Mathf.Max(thrust, idleThrottle));
+        float targetThrottle = boostForcesThrottle
+            ? 1f
+            : (thrust < -0.01f ? thrust : Mathf.Max(thrust, idleThrottle));
 
         if (speedLimit < 0.999f)
             targetThrottle = 0f;
